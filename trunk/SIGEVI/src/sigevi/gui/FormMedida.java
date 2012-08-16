@@ -416,12 +416,14 @@ public class FormMedida extends javax.swing.JPanel {
     private void limpiartextos() {
         txtCodigo.setText("");
         txtNombre.setText("");
+        txtSimbolo.setText("");
         txtDescripcion.setText("");
     }
 
     private void activartextos(boolean b) {
         txtCodigo.setEnabled(!b);
         txtNombre.setEnabled(b);
+        txtSimbolo.setEnabled(b);
         txtDescripcion.setEnabled(b);
     }
 
