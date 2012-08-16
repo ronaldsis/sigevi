@@ -11,7 +11,7 @@
             <property name="JDBC.Driver" value="com.mysql.jdbc.Driver" />
             <property name="JDBC.ConnectionURL" value="jdbc:mysql://localhost:3306/vidrieria" />
             <property name="JDBC.Username" value="root" />
-            <property name="JDBC.Password" value="root" />
+            <property name="JDBC.Password" value="admin" />
         </dataSource>
     </transactionManager>
 
@@ -21,5 +21,6 @@
     <sqlMap resource="sigevi/map/ClienteMap.xml" />
     <sqlMap resource="sigevi/map/ProveedorMap.xml" />
     <sqlMap resource="sigevi/map/CategoriaMap.xml" />
+    <sqlMap resource="sigevi/map/ProductoMap.xml" />
     <sqlMap resource="sigevi/map/MedidaMap.xml" />
 </sqlMapConfig>
