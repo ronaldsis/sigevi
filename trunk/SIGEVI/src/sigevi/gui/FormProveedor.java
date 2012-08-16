@@ -280,7 +280,7 @@ public class FormProveedor extends javax.swing.JPanel {
         jToolBar.add(btnSalir);
 
         lblImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/proveedores.png"))); // NOI18N
+        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/proveedor.png"))); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -377,7 +377,7 @@ public class FormProveedor extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-     private int getNuevoCodigo() {
+    private int getNuevoCodigo() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         Object obj = null;
         int cod = 0;
@@ -454,7 +454,7 @@ public class FormProveedor extends javax.swing.JPanel {
         }
     }
 
-    private void listarProveedors() {
+    private void listarProveedores() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<Proveedor> proveedores = new ArrayList<>();
         try {
@@ -482,7 +482,7 @@ public class FormProveedor extends javax.swing.JPanel {
         txtCelular.setText("");
         txtNroDocumento.setText("");
         txtTelefono.setText("");
-        cboTipo.setSelectedItem("ELEGIR TIPO ");
+        cboTipo.setSelectedIndex(0);
     }
 
     private void activartextos(boolean b) {
@@ -514,7 +514,7 @@ public class FormProveedor extends javax.swing.JPanel {
         btnBuscar.setEnabled(false);
         btnEditar.setEnabled(false);
         btnEliminar.setEnabled(false);
-        btnGuardar.setEnabled(true);
+        btnGuardar.setEnabled(false);
         btnListar.setEnabled(false);
         limpiartextos();
         activartextos(true);
@@ -527,12 +527,12 @@ public class FormProveedor extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         }
         if (cboTipo.getSelectedIndex()==0){
-            JOptionPane.showMessageDialog(this, "SELECCIONE UN TIPO DE CLIENTE", "MENSAJE", 2, null);
+            JOptionPane.showMessageDialog(this, "SELECCIONE UN TIPO DE PROVEEDOR", "MENSAJE", 2, null);
         }
         else {
             agregarProveedor();
-            JOptionPane.showMessageDialog(this, "CLIENTE REGISTRADO", "MENSAJE", 1, null);
-            listarProveedors();
+            JOptionPane.showMessageDialog(this, "PROVEEDOR REGISTRADO", "MENSAJE", 1, null);
+            listarProveedores();
             activarBotones();
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -572,7 +572,9 @@ public class FormProveedor extends javax.swing.JPanel {
 
         if (JOptionPane.OK_OPTION == confirmado) {
             eliminarProveedor();
-            listarProveedors();
+            listarProveedores();
+            limpiartextos();
+            JOptionPane.showMessageDialog(this, "PROVEEDOR ELIMINADO", "MENSAJE", 1, null);
         } else {
             JOptionPane.showMessageDialog(this, "OPERACION CANCELADA", "MENSAJE", 1, null);
         }
@@ -585,13 +587,13 @@ public class FormProveedor extends javax.swing.JPanel {
         } else {
             modificarProveedor();
             JOptionPane.showMessageDialog(this, "PROVEEDOR MODIFICADO", "MENSAJE", 1, null);
-            listarProveedors();
+            listarProveedores();
             activarBotones();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        listarProveedors();
+        listarProveedores();
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
