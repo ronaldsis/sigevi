@@ -32,18 +32,12 @@ public class FormProducto extends javax.swing.JPanel {
         btnBuscar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         btnListar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnExcel = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        jFormattedTextField9 = new javax.swing.JFormattedTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jFormattedTextField10 = new javax.swing.JFormattedTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jFormattedTextField11 = new javax.swing.JFormattedTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jFormattedTextField12 = new javax.swing.JFormattedTextField();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -69,6 +63,7 @@ public class FormProducto extends javax.swing.JPanel {
         btnAgregar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/agregar.png"))); // NOI18N
         btnAgregar.setText("Agregar");
+        btnAgregar.setEnabled(false);
         btnAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAgregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -115,11 +110,17 @@ public class FormProducto extends javax.swing.JPanel {
         });
         jToolBar.add(btnEliminar);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/grabar.png"))); // NOI18N
-        jButton1.setText("Grabar");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar.add(jButton1);
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/grabar.png"))); // NOI18N
+        btnGuardar.setText("Grabar");
+        btnGuardar.setEnabled(false);
+        btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jToolBar.add(btnGuardar);
 
         btnListar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.jpg"))); // NOI18N
@@ -145,6 +146,32 @@ public class FormProducto extends javax.swing.JPanel {
         });
         jToolBar.add(btnCancelar);
 
+        btnExcel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/excel.png"))); // NOI18N
+        btnExcel.setText("Excel");
+        btnExcel.setFocusable(false);
+        btnExcel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnExcel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+        jToolBar.add(btnExcel);
+
+        btnImprimir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/impimir.png"))); // NOI18N
+        btnImprimir.setText("Impirmir");
+        btnImprimir.setFocusable(false);
+        btnImprimir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnImprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+        jToolBar.add(btnImprimir);
+
         btnSalir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/inicio.png"))); // NOI18N
         btnSalir.setText("Salir");
@@ -157,114 +184,149 @@ public class FormProducto extends javax.swing.JPanel {
         });
         jToolBar.add(btnSalir);
 
-        try {
-            jFormattedTextField9.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel1.setText("MASCARA DE TEXTO PARA RUC");
-
-        try {
-            jFormattedTextField10.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel2.setText("MASCARA DE TEXTO PARA TELEFONO");
-
-        jLabel3.setText("MASCARA DE TEXTO PARA CELULAR");
-
-        try {
-            jFormattedTextField11.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-###-###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel4.setText("MASCARA DE TEXTO PARA FECHA dd/mm/aa");
-
-        jFormattedTextField12.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yy"))));
-
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jToolBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-            .add(layout.createSequentialGroup()
-                .add(41, 41, 41)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel1)
-                            .add(jLabel2))
-                        .add(56, 56, 56)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(jFormattedTextField10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 156, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jFormattedTextField9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 156, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel3)
-                            .add(jLabel4))
-                        .add(24, 24, 24)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jFormattedTextField12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 156, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jFormattedTextField11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 156, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(45, 45, 45)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jFormattedTextField9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel1))
-                .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jFormattedTextField10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel2))
-                .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jFormattedTextField11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel3))
-                .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jFormattedTextField12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel4))
-                .add(0, 332, Short.MAX_VALUE))
+                .add(0, 511, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+       private void limpiartextos() {
+       /* txtCodigo.setText("");
+        txtNombre.setText("");
+        txtDireccion.setText("");
+        txtEmail.setText("");
+        txtCelular.setText("");
+        txtNroDocumento.setText("");
+        txtTelefono.setText("");
+        cboTipo.setSelectedIndex(0);*/
+    }
+    
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-
+        btnNuevo.setEnabled(false);
+        btnAgregar.setEnabled(true);
+        btnBuscar.setEnabled(false);
+        btnEditar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        btnGuardar.setEnabled(false);
+        btnListar.setEnabled(false);
+        limpiartextos();
+        activartextos(true);
+        txtCodigo.setText(getNuevoCodigo() + "");*/
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
+        if (txtNombre.getText().equals("") || txtNroDocumento.getText().equals("") || txtDireccion.getText().equals("") ||
+            txtTelefono.getText().equals("") || txtCelular.getText().equals("") || txtEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
+        }
+        if (cboTipo.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this, "SELECCIONE UN TIPO DE CLIENTE", "MENSAJE", 2, null);
+        }
+        else {
+            agregarCliente();
+            JOptionPane.showMessageDialog(this, "CLIENTE REGISTRADO", "MENSAJE", 1, null);
+            listarClientes();
+            activarBotones();
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (txtCodigo.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "INGRESE CÓDIGO", "MENSAJE", 2, null);
+        } else {
+            Cliente cliente = new Cliente();
+            cliente = getCliente(Integer.parseInt(txtCodigo.getText()));
+            if (cliente != null) {
 
+                txtNombre.setText(cliente.getNomCli());
+                txtDireccion.setText(cliente.getDirCli());
+                txtEmail.setText(cliente.getEmaCli());
+                txtCelular.setText(cliente.getCelCli());
+                txtNroDocumento.setText(cliente.getDocCli());
+                txtTelefono.setText(cliente.getTelCli());
+                cboTipo.setSelectedItem(cliente.getTipCli());
+            } else {
+                JOptionPane.showMessageDialog(this, "CLIENTE NO EXISTE", "MENSAJE", 0, null);
+            }
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-
+        activartextos(true);
+        btnNuevo.setEnabled(false);
+        btnEditar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        btnGuardar.setEnabled(true);
+        btnListar.setEnabled(false);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int confirmado = JOptionPane.showConfirmDialog(this, "¿LO CONFIRMAS?","MENSAJE", 1);
 
+        if (JOptionPane.OK_OPTION == confirmado) {
+            eliminarCliente();
+            listarClientes();
+            limpiartextos();
+            JOptionPane.showMessageDialog(this, "CLIENTE ELIMINADO", "MENSAJE", 1, null);
+        } else {
+            JOptionPane.showMessageDialog(this, "OPERACION CANCELADA", "MENSAJE", 1, null);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        if (txtNombre.getText().equals("") || txtNroDocumento.getText().equals("") || txtDireccion.getText().equals("") ||
+            txtTelefono.getText().equals("") || txtCelular.getText().equals("") || txtEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
+        } else {
+            modificarCliente();
+            JOptionPane.showMessageDialog(this, "CLIENTE MODIFICADO", "MENSAJE", 1, null);
+            listarClientes();
+            activarBotones();
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        listarClientes();
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
+        activarBotones();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        try {
+            Util exp = new Util();
+            String archivo="D:\\INFO-"+exp.getFecha()+".xls";
+            exp.exportarData(tblCliente, new File(archivo));
+            JOptionPane.showMessageDialog(null, "INFORMACIÓN EXPORTADA A :  " +
+                archivo, " MENSAJE",
+                JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnExcelActionPerformed
 
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        try {
+            tblCliente.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(FormCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -273,18 +335,12 @@ public class FormProducto extends javax.swing.JPanel {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnExcel;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField10;
-    private javax.swing.JFormattedTextField jFormattedTextField11;
-    private javax.swing.JFormattedTextField jFormattedTextField12;
-    private javax.swing.JFormattedTextField jFormattedTextField9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JToolBar jToolBar;
     // End of variables declaration//GEN-END:variables
 }

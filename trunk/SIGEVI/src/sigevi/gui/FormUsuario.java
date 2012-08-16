@@ -443,10 +443,10 @@ public class FormUsuario extends javax.swing.JPanel {
         }
     }
 
-    private void eliminarUsuario() {
+    private void eliminarUsuario(int codigo) {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
-            sqlMapClient.delete("removeUsuario", Integer.parseInt(txtCodigo.getText()));
+            sqlMapClient.delete("removeUsuario", codigo);
         } catch (SQLException ex) {
             Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -578,7 +578,7 @@ public class FormUsuario extends javax.swing.JPanel {
         int confirmado = JOptionPane.showConfirmDialog(this, "¿LO CONFIRMAS?","MENSAJE", 1);
 
         if (JOptionPane.OK_OPTION == confirmado) {
-            eliminarUsuario();
+            eliminarUsuario(Integer.parseInt(txtCodigo.getText()));
             listarUsuarios();
             limpiartextos();
              JOptionPane.showMessageDialog(this, "USUARIO ELIMINADO", "MENSAJE", 1, null);
