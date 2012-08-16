@@ -409,12 +409,12 @@ public class FormProveedor extends javax.swing.JPanel {
         Proveedor prv = new Proveedor();
         prv.setCodPrv(Integer.parseInt(txtCodigo.getText()));
         prv.setTipPrv((String)cboTipo.getSelectedItem());
-        prv.setNomPrv(txtNombre.getText());
+        prv.setNomPrv(txtNombre.getText().toUpperCase());
         prv.setDocPrv(txtNroDocumento.getText());
-        prv.setDirPrv(txtDireccion.getText());
+        prv.setDirPrv(txtDireccion.getText().toUpperCase());
         prv.setTelPrv(txtTelefono.getText());
         prv.setCelPrv(txtCelular.getText());
-        prv.setEmaPrv(txtEmail.getText());
+        prv.setEmaPrv(txtEmail.getText().toLowerCase());
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
@@ -429,12 +429,12 @@ public class FormProveedor extends javax.swing.JPanel {
         Proveedor prv = new Proveedor();
         prv=getProveedor(Integer.parseInt(txtCodigo.getText()));
         prv.setTipPrv((String)cboTipo.getSelectedItem());
-        prv.setNomPrv(txtNombre.getText());
+        prv.setNomPrv(txtNombre.getText().toUpperCase());
         prv.setDocPrv(txtNroDocumento.getText());
-        prv.setDirPrv(txtDireccion.getText());
+        prv.setDirPrv(txtDireccion.getText().toUpperCase());
         prv.setTelPrv(txtTelefono.getText());
         prv.setCelPrv(txtCelular.getText());
-        prv.setEmaPrv(txtEmail.getText());
+        prv.setEmaPrv(txtEmail.getText().toLowerCase());
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
