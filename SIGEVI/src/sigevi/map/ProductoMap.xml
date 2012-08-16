@@ -17,7 +17,7 @@
         nomPro =#nomPro#,
         desPro =#desPro#,
         stoPro =#stoPro#,
-        categoria_codCat =#categoria_codCat#
+        categoria_codCat =#categoria_codCat#,
         medida_codMed =#medida_codMed#
         WHERE codPro =#codPro#;
     </update>
