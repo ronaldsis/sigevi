@@ -19,10 +19,7 @@ import sigevi.bea.Producto;
 import sigevi.map.SqlMapConfig;
 import sigevi.uti.Util;
 
-/**
- *
- * @author SIMONETTA
- */
+
 public class FormProducto extends javax.swing.JPanel {
 
    DefaultTableModel Modelo;
@@ -153,6 +150,7 @@ public class FormProducto extends javax.swing.JPanel {
         btnEditar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/editar.png"))); // NOI18N
         btnEditar.setText("Editar");
+        btnEditar.setEnabled(false);
         btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -165,6 +163,7 @@ public class FormProducto extends javax.swing.JPanel {
         btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/eliminar.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.setEnabled(false);
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -269,8 +268,10 @@ public class FormProducto extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblProducto);
 
         cboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Elegir categoria" }));
+        cboCategoria.setEnabled(false);
 
         cboMedida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboMedida.setEnabled(false);
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -533,6 +534,8 @@ private void activarBotones() {
                 txtNombre.setText(producto.getNomPro());
                 txtDescripción.setText(producto.getDesPro());
                 txtStock.setText(producto.getStoPro().toString());
+                btnEliminar.setEnabled(true);
+                btnEditar.setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(this, "CATEGORIA NO EXISTE", "MENSAJE", 0, null);
             }
@@ -578,6 +581,8 @@ private void activarBotones() {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         activarBotones();
+         btnEliminar.setEnabled(false);
+         btnEditar.setEnabled(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
