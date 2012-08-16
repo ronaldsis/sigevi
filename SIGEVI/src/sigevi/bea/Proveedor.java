@@ -2,17 +2,12 @@ package sigevi.bea;
 
 public class Proveedor {
     private Integer codPrv;
-
+    private String tipPrv;
     private String nomPrv;
-
     private String docPrv;
-
     private String dirPrv;
-
     private String telPrv;
-
     private String celPrv;
-
     private String emaPrv;
 
     public Integer getCodPrv() {
@@ -21,6 +16,14 @@ public class Proveedor {
 
     public void setCodPrv(Integer codPrv) {
         this.codPrv = codPrv;
+    }
+    
+    public String getTipPrv() {
+        return tipPrv;
+    }
+
+    public void setTipPrv(String tipPrv) {
+        this.tipPrv = tipPrv;
     }
 
     public String getNomPrv() {

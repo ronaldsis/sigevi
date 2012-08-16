@@ -4,15 +4,30 @@
  */
 package sigevi.gui;
 
+import com.ibatis.sqlmap.client.SqlMapClient;
+import java.awt.print.PrinterException;
+import java.io.File;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import sigevi.bea.Proveedor;
+import sigevi.map.SqlMapConfig;
+import sigevi.uti.Util;
+
 /**
  *
  * @author SIMONETTA
  */
 public class FormProveedor extends javax.swing.JPanel {
 
-    /**
-     * Creates new form FormProveedor
-     */
+    DefaultTableModel Modelo;
+    String[] Titulo = {"CODIGO", "TIPO", "RAZÓN SOCIAL", "NRO DOC", "DIRECCIÓN", "TELEFONO", "CELULAR", "EMAIL"};
+    String[][] datos = {};
+    
     public FormProveedor() {
         initComponents();
     }
@@ -26,18 +41,100 @@ public class FormProveedor extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtDireccion = new javax.swing.JTextField();
+        lblEmail = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        lblDocumento = new javax.swing.JLabel();
+        lblCelular = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        txtCelular = new javax.swing.JTextField();
+        lblTelefono = new javax.swing.JLabel();
+        lblTitulo1 = new javax.swing.JLabel();
+        lblTipo = new javax.swing.JLabel();
+        lblTitulo2 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblProveedor = new javax.swing.JTable();
+        lblCodigo = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        lblDireccion = new javax.swing.JLabel();
+        txtNroDocumento = new javax.swing.JTextField();
+        cboTipo = new javax.swing.JComboBox();
         jToolBar = new javax.swing.JToolBar();
         btnNuevo = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         btnListar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnExcel = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        lblImagen = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
+
+        txtDireccion.setEnabled(false);
+
+        lblEmail.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblEmail.setText("EMAIL :");
+
+        txtTelefono.setEnabled(false);
+
+        txtEmail.setEnabled(false);
+
+        lblDocumento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblDocumento.setText("NRO DOCUMENTO :");
+
+        lblCelular.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblCelular.setText("CELULAR :");
+
+        txtNombre.setEnabled(false);
+
+        txtCelular.setEnabled(false);
+
+        lblTelefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblTelefono.setText("TELEFONO :");
+
+        lblTitulo1.setBackground(new java.awt.Color(35, 94, 141));
+        lblTitulo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitulo1.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo1.setText("MANTENIMIENTO DE PROVEEDORES");
+        lblTitulo1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblTitulo1.setOpaque(true);
+
+        lblTipo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblTipo.setText("TIPO PROVEEDOR :");
+
+        lblTitulo2.setBackground(new java.awt.Color(35, 94, 141));
+        lblTitulo2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitulo2.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo2.setText("LISTA DE PROVEEDORES");
+        lblTitulo2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblTitulo2.setOpaque(true);
+
+        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblNombre.setText("NOMBRE O RAZÓN SOCIAL :");
+
+        tblProveedor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane1.setViewportView(tblProveedor);
+
+        lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblCodigo.setText("CODIGO :");
+
+        lblDireccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblDireccion.setText("DIRECCION :");
+
+        txtNroDocumento.setEnabled(false);
+
+        cboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR TIPO", "PERSONA", "EMPRESA" }));
+        cboTipo.setEnabled(false);
 
         jToolBar.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar.setBorder(null);
@@ -61,6 +158,7 @@ public class FormProveedor extends javax.swing.JPanel {
         btnAgregar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/agregar.png"))); // NOI18N
         btnAgregar.setText("Agregar");
+        btnAgregar.setEnabled(false);
         btnAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAgregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -107,11 +205,17 @@ public class FormProveedor extends javax.swing.JPanel {
         });
         jToolBar.add(btnEliminar);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/grabar.png"))); // NOI18N
-        jButton1.setText("Grabar");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar.add(jButton1);
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/grabar.png"))); // NOI18N
+        btnGuardar.setText("Grabar");
+        btnGuardar.setEnabled(false);
+        btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jToolBar.add(btnGuardar);
 
         btnListar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.jpg"))); // NOI18N
@@ -137,6 +241,32 @@ public class FormProveedor extends javax.swing.JPanel {
         });
         jToolBar.add(btnCancelar);
 
+        btnExcel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/excel.png"))); // NOI18N
+        btnExcel.setText("Excel");
+        btnExcel.setFocusable(false);
+        btnExcel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnExcel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+        jToolBar.add(btnExcel);
+
+        btnImprimir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/impimir.png"))); // NOI18N
+        btnImprimir.setText("Impirmir");
+        btnImprimir.setFocusable(false);
+        btnImprimir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnImprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+        jToolBar.add(btnImprimir);
+
         btnSalir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/inicio.png"))); // NOI18N
         btnSalir.setText("Salir");
@@ -149,50 +279,348 @@ public class FormProveedor extends javax.swing.JPanel {
         });
         jToolBar.add(btnSalir);
 
+        lblImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/proveedores.png"))); // NOI18N
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jToolBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(lblNombre)
+                                    .add(lblTipo)
+                                    .add(lblCodigo))
+                                .add(18, 18, 18)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 318, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, txtCodigo)
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, cboTipo, 0, 123, Short.MAX_VALUE))))
+                            .add(layout.createSequentialGroup()
+                                .add(48, 48, 48)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(lblTelefono)
+                                    .add(lblDireccion)
+                                    .add(lblDocumento)
+                                    .add(lblEmail))
+                                .add(18, 18, 18)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                    .add(txtNroDocumento, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(layout.createSequentialGroup()
+                                        .add(txtTelefono, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(lblCelular)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(txtCelular, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(txtDireccion)
+                                    .add(txtEmail))))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(lblImagen))
+                    .add(lblTitulo2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jScrollPane1)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, lblTitulo1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jToolBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 511, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(lblTitulo1)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(23, 23, 23)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lblCodigo))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(lblTipo)
+                            .add(cboTipo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(8, 8, 8)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(lblNombre)
+                            .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(11, 11, 11)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(txtNroDocumento, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lblDocumento))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(lblDireccion)
+                            .add(txtDireccion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(lblTelefono)
+                            .add(txtTelefono, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lblCelular)
+                            .add(txtCelular, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(lblEmail)
+                            .add(txtEmail, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(layout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(lblImagen, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 209, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(lblTitulo2)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 200, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+     private int getNuevoCodigo() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        Object obj = null;
+        int cod = 0;
+        try {
+            obj = sqlMapClient.queryForObject("getMaxProveedor");
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (obj != null) {
+            cod = ((Integer) obj).intValue();
+        }
+        return cod + 1;
+    }
 
+    private Proveedor getProveedor(int codigo) {
+        Proveedor proveedor = new Proveedor();
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        Object obj = null;
+        try {
+            obj = sqlMapClient.queryForObject("getProveedor", codigo);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        proveedor = ((Proveedor) obj);
+        return proveedor;
+    }
+
+    private void agregarProveedor() {
+        Proveedor prv = new Proveedor();
+        prv.setCodPrv(Integer.parseInt(txtCodigo.getText()));
+        prv.setTipPrv((String)cboTipo.getSelectedItem());
+        prv.setNomPrv(txtNombre.getText());
+        prv.setDocPrv(txtNroDocumento.getText());
+        prv.setDirPrv(txtDireccion.getText());
+        prv.setTelPrv(txtTelefono.getText());
+        prv.setCelPrv(txtCelular.getText());
+        prv.setEmaPrv(txtEmail.getText());
+
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        try {
+
+            sqlMapClient.insert("insertProveedor", prv);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void modificarProveedor() {
+        Proveedor prv = new Proveedor();
+        prv=getProveedor(Integer.parseInt(txtCodigo.getText()));
+        prv.setTipPrv((String)cboTipo.getSelectedItem());
+        prv.setNomPrv(txtNombre.getText());
+        prv.setDocPrv(txtNroDocumento.getText());
+        prv.setDirPrv(txtDireccion.getText());
+        prv.setTelPrv(txtTelefono.getText());
+        prv.setCelPrv(txtCelular.getText());
+        prv.setEmaPrv(txtEmail.getText());
+
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        try {
+
+            sqlMapClient.update("updateProveedor", prv);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void eliminarProveedor() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        try {
+            sqlMapClient.delete("removeProveedor", Integer.parseInt(txtCodigo.getText()));
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void listarProveedors() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        List<Proveedor> proveedores = new ArrayList<>();
+        try {
+            proveedores = sqlMapClient.queryForList("listProveedor", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Modelo = new DefaultTableModel(datos, Titulo);
+        tblProveedor.setModel(Modelo);
+
+        for (int i = 0; i < proveedores.size(); i++) {
+            Proveedor prv = proveedores.get(i);
+            Object[] fila = {prv.getCodPrv(),prv.getTipPrv(),prv.getNomPrv(),prv.getDocPrv(),
+                             prv.getDirPrv(),prv.getTelPrv(),prv.getCelPrv(),prv.getEmaPrv()};
+            Modelo.addRow(fila);
+        }
+    }
+
+    private void limpiartextos() {
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        txtDireccion.setText("");
+        txtEmail.setText("");
+        txtCelular.setText("");
+        txtNroDocumento.setText("");
+        txtTelefono.setText("");
+        cboTipo.setSelectedItem("ELEGIR TIPO ");
+    }
+
+    private void activartextos(boolean b) {
+        txtCodigo.setEnabled(!b);
+        txtNombre.setEnabled(b);
+        txtDireccion.setEnabled(b);
+        txtEmail.setEnabled(b);
+        txtCelular.setEnabled(b);
+        txtNroDocumento.setEnabled(b);
+        txtTelefono.setEnabled(b);
+        cboTipo.setEnabled(b);
+    }
+
+    private void activarBotones() {
+        btnNuevo.setEnabled(true);
+        btnAgregar.setEnabled(false);
+        btnBuscar.setEnabled(true);
+        btnEditar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+        btnGuardar.setEnabled(false);
+        btnListar.setEnabled(true);
+        limpiartextos();
+        activartextos(false);
+    }
+    
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        btnNuevo.setEnabled(false);
+        btnAgregar.setEnabled(true);
+        btnBuscar.setEnabled(false);
+        btnEditar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        btnGuardar.setEnabled(true);
+        btnListar.setEnabled(false);
+        limpiartextos();
+        activartextos(true);
+        txtCodigo.setText(getNuevoCodigo() + "");
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
+        if (txtNombre.getText().equals("") || txtNroDocumento.getText().equals("") || txtDireccion.getText().equals("") ||
+            txtTelefono.getText().equals("") || txtCelular.getText().equals("") || txtEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
+        }
+        if (cboTipo.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this, "SELECCIONE UN TIPO DE CLIENTE", "MENSAJE", 2, null);
+        }
+        else {
+            agregarProveedor();
+            JOptionPane.showMessageDialog(this, "CLIENTE REGISTRADO", "MENSAJE", 1, null);
+            listarProveedors();
+            activarBotones();
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (txtCodigo.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "INGRESE CÓDIGO", "MENSAJE", 2, null);
+        } else {
+            Proveedor proveedor = new Proveedor();
+            proveedor = getProveedor(Integer.parseInt(txtCodigo.getText()));
+            if (proveedor != null) {
 
+                txtNombre.setText(proveedor.getNomPrv());
+                txtDireccion.setText(proveedor.getDirPrv());
+                txtEmail.setText(proveedor.getEmaPrv());
+                txtCelular.setText(proveedor.getCelPrv());
+                txtNroDocumento.setText(proveedor.getDocPrv());
+                txtTelefono.setText(proveedor.getTelPrv());
+                cboTipo.setSelectedItem(proveedor.getTipPrv());
+            } else {
+                JOptionPane.showMessageDialog(this, "PROVEEDOR NO EXISTE", "MENSAJE", 0, null);
+            }
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-
+        activartextos(true);
+        btnNuevo.setEnabled(false);
+        btnEditar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        btnGuardar.setEnabled(true);
+        btnListar.setEnabled(false);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int confirmado = JOptionPane.showConfirmDialog(this, "¿LO CONFIRMAS?","MENSAJE", 1);
 
+        if (JOptionPane.OK_OPTION == confirmado) {
+            eliminarProveedor();
+            listarProveedors();
+        } else {
+            JOptionPane.showMessageDialog(this, "OPERACION CANCELADA", "MENSAJE", 1, null);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        if (txtNombre.getText().equals("") || txtNroDocumento.getText().equals("") || txtDireccion.getText().equals("") ||
+            txtTelefono.getText().equals("") || txtCelular.getText().equals("") || txtEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
+        } else {
+            modificarProveedor();
+            JOptionPane.showMessageDialog(this, "PROVEEDOR MODIFICADO", "MENSAJE", 1, null);
+            listarProveedors();
+            activarBotones();
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        listarProveedors();
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
+        activarBotones();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        try {
+            Util exp = new Util();
+            String archivo="D:\\INFO-"+exp.getFecha()+".xls";
+            exp.exportarData(tblProveedor, new File(archivo));
+            JOptionPane.showMessageDialog(null, "INFORMACIÓN EXPORTADA A :  " +
+                archivo, " MENSAJE",
+                JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnExcelActionPerformed
 
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        try {
+            tblProveedor.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -201,10 +629,33 @@ public class FormProveedor extends javax.swing.JPanel {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnExcel;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox cboTipo;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar;
+    private javax.swing.JLabel lblCelular;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblDireccion;
+    private javax.swing.JLabel lblDocumento;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblImagen;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lblTipo;
+    private javax.swing.JLabel lblTitulo1;
+    private javax.swing.JLabel lblTitulo2;
+    private javax.swing.JTable tblProveedor;
+    private javax.swing.JTextField txtCelular;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNroDocumento;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
