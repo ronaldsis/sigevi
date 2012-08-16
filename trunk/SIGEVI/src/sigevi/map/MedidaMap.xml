@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+      "http://www.ibatis.com/dtd/sql-map-2.dtd">   
+ 
+<sqlMap namespace="Medida">
+    
+    <!-- INSERT -->
+    <insert id="insertMedida" parameterClass="sigevi.bea.Medida" >
+        INSERT INTO medida (codMed, nomMed,simMed, desMed)
+        VALUES (#codMed#, #nomMed#, #simMed#, #desMed#);
+    </insert>
+    
+    <!-- UPDATE -->
+    <update id="updateMedida" parameterClass="sigevi.bea.Medida" >
+        UPDATE medida SET
+        nomMed =#nomMed#,
+        simMed =#simMed#,
+        desMed =#desMed#
+        WHERE codMed =#codMed#;
+    </update>
+   
+    <!-- SELECT -->
+    <select id="getMedida" resultClass="sigevi.bea.Medida">
+        SELECT * 
+        FROM medida
+        WHERE codMed =#codMed#;
+    </select>
+    
+    <select id="listMedida" resultClass="sigevi.bea.Medida">
+        SELECT *
+        FROM medida 
+    </select>
+    
+    <select id="getMaxMedida" resultClass="int">
+        SELECT max(codMed)
+        FROM medida;
+    </select>
+    
+    <!-- DELETE -->
+    <delete id="removeMedida">
+        DELETE FROM medida
+        WHERE codMed=#codMed#;
+    </delete>
+   
+</sqlMap>
