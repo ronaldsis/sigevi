@@ -502,7 +502,7 @@ public class FormUsuario extends javax.swing.JPanel {
         txtApellido.setText("");
         txtPassU.setText("");
         txtPassU2.setText("");
-        cboPerfil.setSelectedItem("ELEGIR PERFIL");
+        cboPerfil.setSelectedIndex(0);
     }
 
     private void activartextos(boolean b) {
@@ -550,7 +550,7 @@ public class FormUsuario extends javax.swing.JPanel {
         btnBuscar.setEnabled(false);
         btnEditar.setEnabled(false);
         btnEliminar.setEnabled(false);
-        btnGuardar.setEnabled(true);
+        btnGuardar.setEnabled(false);
         btnListar.setEnabled(false);
         limpiartextos();
         activartextos(true);
@@ -580,6 +580,8 @@ public class FormUsuario extends javax.swing.JPanel {
         if (JOptionPane.OK_OPTION == confirmado) {
             eliminarUsuario();
             listarUsuarios();
+            limpiartextos();
+             JOptionPane.showMessageDialog(this, "USUARIO ELIMINADO", "MENSAJE", 1, null);
         } else {
             JOptionPane.showMessageDialog(this, "OPERACION CANCELADA", "MENSAJE", 1, null);
         }

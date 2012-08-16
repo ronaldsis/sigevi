@@ -20,4 +20,5 @@
     <sqlMap resource="sigevi/map/PerfilMap.xml" />
     <sqlMap resource="sigevi/map/ClienteMap.xml" />
     <sqlMap resource="sigevi/map/ProveedorMap.xml" />
+    <sqlMap resource="sigevi/map/CategoriaMap.xml" />
 </sqlMapConfig>

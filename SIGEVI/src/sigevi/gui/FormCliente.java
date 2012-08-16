@@ -480,7 +480,7 @@ public class FormCliente extends javax.swing.JPanel {
         txtCelular.setText("");
         txtNroDocumento.setText("");
         txtTelefono.setText("");
-        cboTipo.setSelectedItem("ELEGIR TIPO ");
+        cboTipo.setSelectedIndex(0);
     }
 
     private void activartextos(boolean b) {
@@ -513,7 +513,7 @@ public class FormCliente extends javax.swing.JPanel {
         btnBuscar.setEnabled(false);
         btnEditar.setEnabled(false);
         btnEliminar.setEnabled(false);
-        btnGuardar.setEnabled(true);
+        btnGuardar.setEnabled(false);
         btnListar.setEnabled(false);
         limpiartextos();
         activartextos(true);
@@ -572,6 +572,8 @@ public class FormCliente extends javax.swing.JPanel {
         if (JOptionPane.OK_OPTION == confirmado) {
             eliminarCliente();
             listarClientes();
+            limpiartextos();
+             JOptionPane.showMessageDialog(this, "CLIENTE ELIMINADO", "MENSAJE", 1, null);
         } else {
             JOptionPane.showMessageDialog(this, "OPERACION CANCELADA", "MENSAJE", 1, null);
         }
