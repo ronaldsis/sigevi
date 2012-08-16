@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig
+    PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+    
+<sqlMapConfig>
+    <transactionManager type="JDBC" commitRequired="false">
+        <dataSource type="SIMPLE">
+            <property name="SetAutoCommitAllowed" value="false" />
+            <property name="DefaultAutoCommit" value="false" />
+            <property name="JDBC.Driver" value="com.mysql.jdbc.Driver" />
+            <property name="JDBC.ConnectionURL" value="jdbc:mysql://localhost:3306/vidrieria" />
+            <property name="JDBC.Username" value="root" />
+            <property name="JDBC.Password" value="root" />
+        </dataSource>
+    </transactionManager>
+
+    <!-- dont forget to register your sql map configs -->
+    <sqlMap resource="sigevi/map/UsuarioMap.xml" />
+    <sqlMap resource="sigevi/map/PerfilMap.xml" />
+    <sqlMap resource="sigevi/map/ClienteMap.xml" />
+</sqlMapConfig>
