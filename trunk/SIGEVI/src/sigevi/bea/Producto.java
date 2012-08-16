@@ -7,7 +7,16 @@ public class Producto {
 
     private Double stoPro;
 
-    private String imagen;
+    private String desPro;
+
+    public String getDesPro() {
+        return desPro;
+    }
+
+    public void setDesPro(String desPro) {
+        this.desPro = desPro;
+    }
+
 
     private Integer categoria_codCat;
 
@@ -35,14 +44,6 @@ public class Producto {
 
     public void setStoPro(Double stoPro) {
         this.stoPro = stoPro;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
     }
 
     public Integer getCategoria_codCat() {
