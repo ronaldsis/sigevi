@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import sigevi.bea.Categoria;
 import sigevi.bea.Producto;
 import sigevi.map.SqlMapConfig;
 import sigevi.uti.Util;
@@ -30,6 +31,7 @@ public class FormProducto extends javax.swing.JPanel {
     
     public FormProducto() {
         initComponents();
+         cargarCategorias();
     }
 
     
@@ -81,6 +83,8 @@ public class FormProducto extends javax.swing.JPanel {
         lblTitulo2.setText("LISTA DE CATEGORIAS DE PRODUCTOS");
         lblTitulo2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lblTitulo2.setOpaque(true);
+
+        txtStock.setEnabled(false);
 
         lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblCodigo.setText("STOCK :");
@@ -264,7 +268,7 @@ public class FormProducto extends javax.swing.JPanel {
         tblProducto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane1.setViewportView(tblProducto);
 
-        cboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Elegir categoria" }));
 
         cboMedida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -450,8 +454,22 @@ public class FormProducto extends javax.swing.JPanel {
 
         for (int i = 0; i < productos.size(); i++) {
             Producto pro = productos.get(i);
-            Object[] fila = {pro.getCodPro(),pro.getNomPro(),pro.getDesPro(),pro.getStoPro(),pro.getCategoria_codCat(),pro.getMedida_codMed()};
+            Object[] fila = {pro.getCodPro(),pro.getNomPro(),pro.getDesPro(),pro.getStoPro(),pro.getNomCat(),pro.getMedida_codMed()};
             Modelo.addRow(fila);
+        }
+    }
+    private void cargarCategorias() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        List<Categoria> categorias = new ArrayList<>();
+        try {
+            categorias= sqlMapClient.queryForList("listCategoria", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (int i = 0; i < categorias.size(); i++) {
+            Categoria per = categorias.get(i);
+            cboCategoria.addItem(per.getNomCat());
         }
     }
 private void activarBotones() {
@@ -505,11 +523,11 @@ private void activarBotones() {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        if (txtStock.getText().equals("")) {
+        if (txtCodigo.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "INGRESE CÓDIGO", "MENSAJE", 2, null);
         } else {
             Producto producto = new Producto();
-            producto = getProducto(Integer.parseInt(txtStock.getText()));
+            producto = getProducto(Integer.parseInt(txtCodigo.getText()));
             if (producto != null) {
 
                 txtNombre.setText(producto.getNomPro());

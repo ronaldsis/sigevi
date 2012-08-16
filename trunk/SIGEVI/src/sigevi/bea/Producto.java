@@ -8,6 +8,16 @@ public class Producto {
     private Double stoPro;
 
     private String desPro;
+    
+    private String nomCat;
+
+    public void setNomCat(String nomCat) {
+        this.nomCat = nomCat;
+    }
+
+    public String getNomCat() {
+        return nomCat;
+    }
 
     public String getDesPro() {
         return desPro;
