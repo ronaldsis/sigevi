@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+      "http://www.ibatis.com/dtd/sql-map-2.dtd">   
+ 
+<sqlMap namespace="Usuario">
+    
+    <!-- INSERT -->
+    <insert id="insertUsuario" parameterClass="sigevi.bea.Usuario" >
+        INSERT INTO usuario (codUsu, logUsu, nomUsu,apeUsu, pasUsu, perfil_codPer)
+        VALUES (#codUsu#, #logUsu#, #nomUsu#, #apeUsu#, #pasUsu#, #perfil_codPer#);
+    </insert>
+    
+    <!-- UPDATE -->
+    <update id="updateUsuario" parameterClass="sigevi.bea.Usuario" >
+        UPDATE usuario SET
+        logUsu=#logUsu#,
+        nomUsu =#nomUsu#,
+        apeUsu =#apeUsu#,
+        pasUsu =#pasUsu#,
+        perfil_codPer =#perfil_codPer#
+        WHERE codUsu =#codUsu#;
+    </update>
+   
+    <!-- SELECT -->
+    <select id="getUsuario" resultClass="sigevi.bea.Usuario">
+        SELECT * 
+        FROM usuario
+        WHERE codUsu =#codUsu#;
+    </select>
+    
+    <select id="listUsuario" resultClass="sigevi.bea.Usuario">
+        SELECT codUsu, logUsu, nomUsu,apeUsu,nomPer
+        FROM usuario 
+        INNER JOIN perfil 
+        ON usuario.perfil_codPer=perfil.codPer
+        ORDER BY codUsu;
+    </select>
+    
+    <select id="getMaxUsuario" resultClass="int">
+        SELECT max(codUsu)
+        FROM usuario;
+    </select>
+    
+    <!-- DELETE -->
+    <delete id="removeUsuario">
+        DELETE FROM usuario
+        WHERE codUsu=#codUsu#;
+    </delete>
+   
+</sqlMap>
