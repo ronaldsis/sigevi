@@ -407,12 +407,12 @@ public class FormCliente extends javax.swing.JPanel {
         Cliente cli = new Cliente();
         cli.setCodCli(Integer.parseInt(txtCodigo.getText()));
         cli.setTipCli((String)cboTipo.getSelectedItem());
-        cli.setNomCli(txtNombre.getText());
+        cli.setNomCli(txtNombre.getText().toUpperCase());
         cli.setDocCli(txtNroDocumento.getText());
-        cli.setDirCli(txtDireccion.getText());
+        cli.setDirCli(txtDireccion.getText().toUpperCase());
         cli.setTelCli(txtTelefono.getText());
         cli.setCelCli(txtCelular.getText());
-        cli.setEmaCli(txtEmail.getText());
+        cli.setEmaCli(txtEmail.getText().toLowerCase());
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
@@ -427,12 +427,12 @@ public class FormCliente extends javax.swing.JPanel {
         Cliente cli = new Cliente();
         cli=getCliente(Integer.parseInt(txtCodigo.getText()));
         cli.setTipCli((String)cboTipo.getSelectedItem());
-        cli.setNomCli(txtNombre.getText());
+        cli.setNomCli(txtNombre.getText().toUpperCase());
         cli.setDocCli(txtNroDocumento.getText());
-        cli.setDirCli(txtDireccion.getText());
+        cli.setDirCli(txtDireccion.getText().toUpperCase());
         cli.setTelCli(txtTelefono.getText());
         cli.setCelCli(txtCelular.getText());
-        cli.setEmaCli(txtEmail.getText());
+        cli.setEmaCli(txtEmail.getText().toLowerCase());
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {

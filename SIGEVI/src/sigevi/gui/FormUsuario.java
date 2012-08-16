@@ -382,15 +382,15 @@ public class FormUsuario extends javax.swing.JPanel {
 
     private String getLogin() {
         if (txtApellido.getText().length() == 4) {
-            return txtNombre.getText().substring(0, 1) + txtApellido.getText().substring(0, 4);
+            return txtNombre.getText().substring(0, 1).toLowerCase()+ txtApellido.getText().substring(0, 4).toLowerCase();
         }
         if (txtApellido.getText().length() == 3) {
-            return txtNombre.getText().substring(0, 1) + txtApellido.getText().substring(0, 3);
+            return txtNombre.getText().substring(0, 1).toLowerCase() + txtApellido.getText().substring(0, 3).toLowerCase();
         }
         if (txtApellido.getText().length() == 2) {
-            return txtNombre.getText().substring(0, 1) + txtApellido.getText().substring(0, 2);
+            return txtNombre.getText().substring(0, 1).toLowerCase() + txtApellido.getText().substring(0, 2).toLowerCase();
         } else {
-            return txtNombre.getText().substring(0, 1) + txtApellido.getText().substring(0, 5);
+            return txtNombre.getText().substring(0, 1).toLowerCase() + txtApellido.getText().substring(0, 5).toLowerCase();
         }
     }
 
@@ -411,8 +411,8 @@ public class FormUsuario extends javax.swing.JPanel {
         Usuario usu = new Usuario();
         usu.setCodUsu(Integer.parseInt(txtCodigo.getText()));
         usu.setLogUsu(getLogin());
-        usu.setApeUsu(txtApellido.getText());
-        usu.setNomUsu(txtNombre.getText());
+        usu.setApeUsu(txtApellido.getText().toUpperCase());
+        usu.setNomUsu(txtNombre.getText().toUpperCase());
         usu.setPasUsu(txtPassU.getText());
         usu.setPerfil_codPer(cboPerfil.getSelectedIndex());
 
@@ -429,8 +429,8 @@ public class FormUsuario extends javax.swing.JPanel {
         Usuario usu = new Usuario();
         usu=getUsuario(Integer.parseInt(txtCodigo.getText()));
         usu.setLogUsu(getLogin());
-        usu.setApeUsu(txtApellido.getText());
-        usu.setNomUsu(txtNombre.getText());
+        usu.setApeUsu(txtApellido.getText().toUpperCase());
+        usu.setNomUsu(txtNombre.getText().toUpperCase());
         usu.setPasUsu(txtPassU.getText());
         usu.setPerfil_codPer(cboPerfil.getSelectedIndex());
 

@@ -62,6 +62,7 @@ public class FormCategoria extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescripción = new javax.swing.JTextArea();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
         lblTitulo2.setBackground(new java.awt.Color(35, 94, 141));
@@ -333,8 +334,8 @@ public class FormCategoria extends javax.swing.JPanel {
     private void agregarCategoria() {
         Categoria cat = new Categoria();
         cat.setCodCat(Integer.parseInt(txtCodigo.getText()));
-        cat.setNomCat(txtNombre.getText());
-        cat.setDesCat(txtDescripción.getText());
+        cat.setNomCat(txtNombre.getText().toUpperCase());
+        cat.setDesCat(txtDescripción.getText().toUpperCase());
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
@@ -348,8 +349,8 @@ public class FormCategoria extends javax.swing.JPanel {
     private void modificarCategoria() {
         Categoria cat = new Categoria();
         cat=getCategoria(Integer.parseInt(txtCodigo.getText()));
-        cat.setNomCat(txtNombre.getText());
-        cat.setDesCat(txtDescripción.getText());
+        cat.setNomCat(txtNombre.getText().toUpperCase());
+        cat.setDesCat(txtDescripción.getText().toUpperCase());
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
