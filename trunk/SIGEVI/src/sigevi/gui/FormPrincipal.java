@@ -22,7 +22,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private FormCompra compra;
     private FormProveedor proveedor;
     private FormInicio inicio;
-    private FormPrecio precio;
+    private FormDespacho precio;
     
 
     public FormPrincipal() {
@@ -60,7 +60,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         mProductos = new javax.swing.JMenuItem();
         mCategoria = new javax.swing.JMenuItem();
         mMedida = new javax.swing.JMenuItem();
-        mPrecios = new javax.swing.JMenuItem();
+        mDespacho = new javax.swing.JMenuItem();
         mVentas = new javax.swing.JMenu();
         mOventa = new javax.swing.JMenuItem();
         mCompras = new javax.swing.JMenu();
@@ -142,13 +142,13 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         mMantenimiento.add(mMedida);
 
-        mPrecios.setText("Precios");
-        mPrecios.addActionListener(new java.awt.event.ActionListener() {
+        mDespacho.setText("Forma Despacho");
+        mDespacho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mPreciosActionPerformed(evt);
+                mDespachoActionPerformed(evt);
             }
         });
-        mMantenimiento.add(mPrecios);
+        mMantenimiento.add(mDespacho);
 
         jMenuBar1.add(mMantenimiento);
 
@@ -251,12 +251,12 @@ public class FormPrincipal extends javax.swing.JFrame {
         this.pack();
     }//GEN-LAST:event_mMedidaActionPerformed
 
-    private void mPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mPreciosActionPerformed
-        precio = new FormPrecio();
+    private void mDespachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mDespachoActionPerformed
+        precio = new FormDespacho();
         this.getContentPane().removeAll();
         this.getContentPane().add(precio);
         this.pack();
-    }//GEN-LAST:event_mPreciosActionPerformed
+    }//GEN-LAST:event_mDespachoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,12 +299,12 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mCategoria;
     private javax.swing.JMenuItem mClientes;
     private javax.swing.JMenu mCompras;
+    private javax.swing.JMenuItem mDespacho;
     private javax.swing.JMenuItem mInicio;
     private javax.swing.JMenu mMantenimiento;
     private javax.swing.JMenuItem mMedida;
     private javax.swing.JMenuItem mOcompra;
     private javax.swing.JMenuItem mOventa;
-    private javax.swing.JMenuItem mPrecios;
     private javax.swing.JMenuItem mProductos;
     private javax.swing.JMenuItem mProveedores;
     private javax.swing.JMenu mReportes;

@@ -8,16 +8,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import sigevi.bea.Tipoprecio;
+import sigevi.bea.Despacho;
 import sigevi.map.SqlMapConfig;
 
-public class FormPrecio extends javax.swing.JPanel {
+public class FormDespacho extends javax.swing.JPanel {
     
     DefaultListModel modeloLista = new DefaultListModel();
     
-    public FormPrecio() {
+    public FormDespacho() {
         initComponents();
-        listarPrecios();
+        listarDespacho();
     }
     
     @SuppressWarnings("unchecked")
@@ -38,7 +38,7 @@ public class FormPrecio extends javax.swing.JPanel {
         txtCodigo = new javax.swing.JTextField();
         lblCodigo = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lstTipoPrecio = new javax.swing.JList();
+        lstDespachos = new javax.swing.JList();
 
         txtNombre.setEnabled(false);
 
@@ -46,7 +46,7 @@ public class FormPrecio extends javax.swing.JPanel {
         lblTitulo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblTitulo1.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo1.setText("MANTENIMIENTO DE TIPO DE PRECIOS");
+        lblTitulo1.setText("MANTENIMIENTO DE FORMAS DE DESPACHO DE PRODUCTOS");
         lblTitulo1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lblTitulo1.setOpaque(true);
 
@@ -148,12 +148,12 @@ public class FormPrecio extends javax.swing.JPanel {
         lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblCodigo.setText("CODIGO :");
 
-        lstTipoPrecio.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        lstDespachos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstTipoPrecioValueChanged(evt);
+                lstDespachosValueChanged(evt);
             }
         });
-        jScrollPane2.setViewportView(lstTipoPrecio);
+        jScrollPane2.setViewportView(lstDespachos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -206,9 +206,9 @@ public class FormPrecio extends javax.swing.JPanel {
         Object obj = null;
         int cod = 0;
         try {
-            obj = sqlMapClient.queryForObject("getMaxPrecio");
+            obj = sqlMapClient.queryForObject("getMaxDespacho");
         } catch (SQLException ex) {
-            Logger.getLogger(FormPrecio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormDespacho.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (obj != null) {
             cod = ((Integer) obj).intValue();
@@ -216,70 +216,70 @@ public class FormPrecio extends javax.swing.JPanel {
         return cod + 1;
     }
     
-    private Tipoprecio getPrecio(int codigo) {
-        Tipoprecio precio = new Tipoprecio();
+    private Despacho getDespacho(int codigo) {
+        Despacho precio = new Despacho();
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         Object obj = null;
         try {
-            obj = sqlMapClient.queryForObject("getPrecio", codigo);
+            obj = sqlMapClient.queryForObject("getDespacho", codigo);
         } catch (SQLException ex) {
-            Logger.getLogger(FormPrecio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormDespacho.class.getName()).log(Level.SEVERE, null, ex);
         }
-        precio = ((Tipoprecio) obj);
+        precio = ((Despacho) obj);
         return precio;
     }
     
-    private void agregarPrecio() {
-        Tipoprecio pre = new Tipoprecio();
-        pre.setCodPre(Integer.parseInt(txtCodigo.getText()));
-        pre.setDesPre(txtNombre.getText().toUpperCase());
+    private void agregarDespacho() {
+        Despacho des = new Despacho();
+        des.setCodDes(Integer.parseInt(txtCodigo.getText()));
+        des.setNomDes(txtNombre.getText().toUpperCase());
         
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
             
-            sqlMapClient.insert("insertPrecio", pre);
+            sqlMapClient.insert("insertDespacho", des);
         } catch (SQLException ex) {
-            Logger.getLogger(FormPrecio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormDespacho.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    private void modificarPrecio() {
-        Tipoprecio pre = new Tipoprecio();
-        pre = getPrecio(Integer.parseInt(txtCodigo.getText()));
-        pre.setDesPre(txtNombre.getText().toUpperCase());
+    private void modificarDespacho() {
+        Despacho des = new Despacho();
+        des = getDespacho(Integer.parseInt(txtCodigo.getText()));
+        des.setNomDes(txtNombre.getText().toUpperCase());
         
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
             
-            sqlMapClient.update("updatePrecio", pre);
+            sqlMapClient.update("updateDespacho", des);
         } catch (SQLException ex) {
-            Logger.getLogger(FormPrecio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormDespacho.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    private void eliminarPrecio() {
+    private void eliminarDespacho() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
-            sqlMapClient.delete("removePrecio", Integer.parseInt(txtCodigo.getText()));
+            sqlMapClient.delete("removeDespacho", Integer.parseInt(txtCodigo.getText()));
         } catch (SQLException ex) {
-            Logger.getLogger(FormPrecio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormDespacho.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    private void listarPrecios() {
+    private void listarDespacho() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
-        List<Tipoprecio> precios = new ArrayList<>();
+        List<Despacho> ventaTipos = new ArrayList<>();
         try {
-            precios = sqlMapClient.queryForList("listPrecio", null);
+            ventaTipos = sqlMapClient.queryForList("listDespacho", null);
         } catch (SQLException ex) {
-            Logger.getLogger(FormPrecio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormDespacho.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        lstTipoPrecio.setModel(modeloLista);
-        
-        for (int i = 0; i < precios.size(); i++) {
-            Tipoprecio pre = precios.get(i);
-            String s = pre.getDesPre();
+        lstDespachos.setModel(modeloLista);
+        this.modeloLista.clear();
+        for (int i = 0; i < ventaTipos.size(); i++) {
+            Despacho des = ventaTipos.get(i);
+            String s = des.getNomDes();
             modeloLista.addElement(s);
         }
     }
@@ -317,11 +317,11 @@ public class FormPrecio extends javax.swing.JPanel {
     
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (txtNombre.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "INGRESE NOMBRE DE PRECIO", "MENSAJE", 2, null);
+            JOptionPane.showMessageDialog(this, "INGRESE NOMBRE DE FORMA DE DESPACHO", "MENSAJE", 2, null);
         } else {
-            agregarPrecio();
-            JOptionPane.showMessageDialog(this, "PRECIO REGISTRADO", "MENSAJE", 1, null);
-            listarPrecios();
+            agregarDespacho();
+            JOptionPane.showMessageDialog(this, "FORMA DE DESPACHO REGISTRADA", "MENSAJE", 1, null);
+            listarDespacho();
             activarBotones();
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -338,10 +338,10 @@ public class FormPrecio extends javax.swing.JPanel {
         int confirmado = JOptionPane.showConfirmDialog(this, "¿LO CONFIRMAS?", "MENSAJE", 1);
         
         if (JOptionPane.OK_OPTION == confirmado) {
-            eliminarPrecio();
-            listarPrecios();
+            eliminarDespacho();
+            listarDespacho();
             limpiartextos();
-            JOptionPane.showMessageDialog(this, "PRECIO ELIMINADO", "MENSAJE", 1, null);
+            JOptionPane.showMessageDialog(this, "FORMA DE DESPACHO ELIMINADA", "MENSAJE", 1, null);
         } else {
             JOptionPane.showMessageDialog(this, "OPERACION CANCELADA", "MENSAJE", 1, null);
         }
@@ -351,9 +351,9 @@ public class FormPrecio extends javax.swing.JPanel {
         if (txtNombre.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         } else {
-            modificarPrecio();
-            JOptionPane.showMessageDialog(this, "PRECIO MODIFICADO", "MENSAJE", 1, null);
-            listarPrecios();
+            modificarDespacho();
+            JOptionPane.showMessageDialog(this, "FORMA DE DESPACHO MODIFICADA", "MENSAJE", 1, null);
+            listarDespacho();
             activarBotones();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -366,20 +366,20 @@ public class FormPrecio extends javax.swing.JPanel {
         this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
     
-    private void lstTipoPrecioValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTipoPrecioValueChanged
-        int indice = lstTipoPrecio.getSelectedIndex();
+    private void lstDespachosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstDespachosValueChanged
+        int indice = lstDespachos.getSelectedIndex();
         System.out.println(indice+"");
-        Tipoprecio pre = new Tipoprecio();
-        pre = getPrecio(indice+1);
+        Despacho des = new Despacho();
+        des = getDespacho(indice+1);
         if(indice!=-1){
-        txtCodigo.setText(""+pre.getCodPre());
-        txtNombre.setText(""+pre.getDesPre());
+        txtCodigo.setText(""+des.getCodDes());
+        txtNombre.setText(""+des.getNomDes());
         }
         else {
             this.modeloLista.clear();
         }
         
-    }//GEN-LAST:event_lstTipoPrecioValueChanged
+    }//GEN-LAST:event_lstDespachosValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -394,7 +394,7 @@ public class FormPrecio extends javax.swing.JPanel {
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTitulo1;
-    private javax.swing.JList lstTipoPrecio;
+    private javax.swing.JList lstDespachos;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
