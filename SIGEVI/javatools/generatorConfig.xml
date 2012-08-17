@@ -33,7 +33,7 @@
         </sqlMapGenerator>
                
         <!-- Generamos el código fuente de todas las tablas evitando la generación varios métodos -->
-        <table tableName="%" enableCountByExample="false" enableDeleteByExample="false"   
+        <table tableName="ventatipo" enableCountByExample="false" enableDeleteByExample="false"   
                enableUpdateByExample="false" selectByPrimaryKeyQueryId="false"   
                selectByExampleQueryId="false" enableSelectByExample="false" modelType="flat">  
             <property name="useActualColumnNames" value="true"/>  

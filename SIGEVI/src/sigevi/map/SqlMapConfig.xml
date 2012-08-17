@@ -23,5 +23,5 @@
     <sqlMap resource="sigevi/map/CategoriaMap.xml" />
     <sqlMap resource="sigevi/map/ProductoMap.xml" />
     <sqlMap resource="sigevi/map/MedidaMap.xml" />
-    <sqlMap resource="sigevi/map/PrecioMap.xml" />
+    <sqlMap resource="sigevi/map/DespachoMap.xml" />
 </sqlMapConfig>
