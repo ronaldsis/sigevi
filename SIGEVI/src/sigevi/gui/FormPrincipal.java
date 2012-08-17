@@ -22,6 +22,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private FormCompra compra;
     private FormProveedor proveedor;
     private FormInicio inicio;
+    private FormPrecio precio;
     
 
     public FormPrincipal() {
@@ -59,6 +60,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         mProductos = new javax.swing.JMenuItem();
         mCategoria = new javax.swing.JMenuItem();
         mMedida = new javax.swing.JMenuItem();
+        mPrecios = new javax.swing.JMenuItem();
         mVentas = new javax.swing.JMenu();
         mOventa = new javax.swing.JMenuItem();
         mCompras = new javax.swing.JMenu();
@@ -139,6 +141,14 @@ public class FormPrincipal extends javax.swing.JFrame {
             }
         });
         mMantenimiento.add(mMedida);
+
+        mPrecios.setText("Precios");
+        mPrecios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mPreciosActionPerformed(evt);
+            }
+        });
+        mMantenimiento.add(mPrecios);
 
         jMenuBar1.add(mMantenimiento);
 
@@ -241,6 +251,13 @@ public class FormPrincipal extends javax.swing.JFrame {
         this.pack();
     }//GEN-LAST:event_mMedidaActionPerformed
 
+    private void mPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mPreciosActionPerformed
+        precio = new FormPrecio();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(precio);
+        this.pack();
+    }//GEN-LAST:event_mPreciosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -287,6 +304,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mMedida;
     private javax.swing.JMenuItem mOcompra;
     private javax.swing.JMenuItem mOventa;
+    private javax.swing.JMenuItem mPrecios;
     private javax.swing.JMenuItem mProductos;
     private javax.swing.JMenuItem mProveedores;
     private javax.swing.JMenu mReportes;

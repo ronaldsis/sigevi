@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+      "http://www.ibatis.com/dtd/sql-map-2.dtd">   
+ 
+<sqlMap namespace="Tipoprecio">
+    
+    <!-- INSERT -->
+    <insert id="insertPrecio" parameterClass="sigevi.bea.Tipoprecio" >
+        INSERT INTO tipoprecio (codPre, desPre)
+        VALUES (#codPre#, #desPre#);
+    </insert>
+    
+    <!-- UPDATE -->
+    <update id="updatePrecio" parameterClass="sigevi.bea.Tipoprecio" >
+        UPDATE tipoprecio SET
+        desPre =#desPre#
+        WHERE codPre =#codPre#;
+    </update>
+   
+    <!-- SELECT -->
+    <select id="getPrecio" resultClass="sigevi.bea.Tipoprecio">
+        SELECT * 
+        FROM tipoprecio
+        WHERE codPre =#codPre#;
+    </select>
+    
+    <select id="listPrecio" resultClass="sigevi.bea.Tipoprecio">
+        SELECT *
+        FROM tipoprecio 
+    </select>
+    
+    <select id="getMaxPrecio" resultClass="int">
+        SELECT max(codPre)
+        FROM tipoprecio;
+    </select>
+    
+    <!-- DELETE -->
+    <delete id="removePrecio">
+        DELETE FROM tipoprecio
+        WHERE codPre=#codPre#;
+    </delete>
+   
+</sqlMap>
