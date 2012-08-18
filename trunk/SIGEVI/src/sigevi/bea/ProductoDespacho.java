@@ -5,7 +5,15 @@ public class ProductoDespacho {
     private String nomDes;
     private String nomPro;
     private long combinacion;
-    private Integer codProPre;
+    private Integer codProDes;
+
+    public Integer getCodProDes() {
+        return codProDes;
+    }
+
+    public void setCodProDes(Integer codProDes) {
+        this.codProDes = codProDes;
+    }
     private Double precio;
     private Integer producto_codPro;
     private Integer despacho_codDes;
@@ -32,14 +40,6 @@ public class ProductoDespacho {
 
     public void setNomPro(String nomPro) {
         this.nomPro = nomPro;
-    }
-
-    public Integer getCodProPre() {
-        return codProPre;
-    }
-
-    public void setCodProPre(Integer codProPre) {
-        this.codProPre = codProPre;
     }
 
     public Double getPrecio() {
