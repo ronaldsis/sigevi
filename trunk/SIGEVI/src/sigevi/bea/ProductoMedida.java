@@ -2,10 +2,26 @@ package sigevi.bea;
 
 public class ProductoMedida {
     private Integer codProMed;
-
     private Integer producto_codPro;
-
     private Integer medida_codMed;
+    private String nomMed;
+    private String simMed;
+
+    public String getNomMed() {
+        return nomMed;
+    }
+
+    public void setNomMed(String nomMed) {
+        this.nomMed = nomMed;
+    }
+
+    public String getSimMed() {
+        return simMed;
+    }
+
+    public void setSimMed(String simMed) {
+        this.simMed = simMed;
+    }
 
     public Integer getCodProMed() {
         return codProMed;
