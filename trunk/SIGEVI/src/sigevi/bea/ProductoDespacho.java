@@ -1,13 +1,38 @@
 package sigevi.bea;
 
 public class ProductoDespacho {
+
+    private String nomDes;
+    private String nomPro;
+    private long combinacion;
     private Integer codProPre;
-
     private Double precio;
-
     private Integer producto_codPro;
-
     private Integer despacho_codDes;
+
+    public long getCombinacion() {
+        return combinacion;
+    }
+
+    public void setCombinacion(long combinacion) {
+        this.combinacion = combinacion;
+    }
+
+    public String getNomDes() {
+        return nomDes;
+    }
+
+    public void setNomDes(String nomDes) {
+        this.nomDes = nomDes;
+    }
+
+    public String getNomPro() {
+        return nomPro;
+    }
+
+    public void setNomPro(String nomPro) {
+        this.nomPro = nomPro;
+    }
 
     public Integer getCodProPre() {
         return codProPre;
