@@ -76,7 +76,7 @@ public class NewJFrame extends javax.swing.JFrame {
         );
         jInternalFrame2Layout.setVerticalGroup(
             jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 185, Short.MAX_VALUE)
+            .addGap(0, 189, Short.MAX_VALUE)
         );
 
         jButton2.setText("jButton2");

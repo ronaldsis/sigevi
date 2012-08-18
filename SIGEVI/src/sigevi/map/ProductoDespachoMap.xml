@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+      "http://www.ibatis.com/dtd/sql-map-2.dtd">   
+ 
+<sqlMap namespace="ProductoDespacho">
+    
+    <!-- INSERT -->
+    <insert id="insertProductoDespacho" parameterClass="sigevi.bea.ProductoDespacho" >
+        INSERT INTO producto_despacho (codProPre, precio, producto_codPro, despacho_codDes) 
+        VALUES(#codProPre#, #precio#, #producto_codPro#, #despacho_codDes#);
+    </insert>
+    
+    <!-- UPDATE -->
+    <update id="updateProductoDespacho" parameterClass="sigevi.bea.ProductoDespacho" >
+        UPDATE producto_despacho SET
+        precio =#precio#,
+        producto_codPro =#producto_codPro#,
+        despacho_codDes =#despacho_codDes#
+        WHERE codProPre =#codProPre#;
+    </update>
+   
+    <!-- SELECT -->
+    <select id="getProductoDespacho" resultClass="sigevi.bea.ProductoDespacho">
+        SELECT * 
+        FROM producto_despacho
+        WHERE codProPre =#codProPre#;
+    </select>
+    
+    <select id="listProductoDespacho" resultClass="sigevi.bea.ProductoDespacho">
+        SELECT  nomPro, nomDes,precio
+        FROM producto_despacho
+        INNER JOIN producto 
+        ON producto_despacho.producto_codPro=producto.codPro
+        left join despacho
+        on producto_despacho.despacho_codDes=despacho.codDes
+        where producto_despacho.producto_codPro=#producto_despacho.producto_codPro#;
+    </select>
+    
+    <select  id="getCombinacion" resultClass="sigevi.bea.ProductoDespacho">
+        SELECT producto_codPro*100000+despacho_codDes as combinacion
+        FROM producto_despacho;
+    </select>
+    
+    <select id="getMaxProductoDespacho" resultClass="int">
+        SELECT max(codProPre)
+        FROM producto_despacho
+    </select>
+    
+    <!-- DELETE -->
+    <delete id="removeProductoDespacho">
+        DELETE FROM producto_despacho
+        WHERE codProPre=#codProPre#;
+    </delete>
+   
+</sqlMap>

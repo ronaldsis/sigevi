@@ -21,7 +21,7 @@ import sigevi.uti.Util;
 
 
 public class FormProducto extends javax.swing.JPanel {
-
+private FormProDes pxd;
    DefaultTableModel Modelo;
     String[] Titulo = {"CODIGO", "NOMBRE", "DESCRIPCIÓN","STOCK","CATEGORIA","MEDIDA"};
     String[][] datos = {};
@@ -62,11 +62,11 @@ public class FormProducto extends javax.swing.JPanel {
         lblCodigo1 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         lblCodigo2 = new javax.swing.JLabel();
-        lblCodigo3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProducto = new javax.swing.JTable();
         cboCategoria = new javax.swing.JComboBox();
-        cboMedida = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -261,17 +261,20 @@ public class FormProducto extends javax.swing.JPanel {
         lblCodigo2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblCodigo2.setText("CATEGORIA :");
 
-        lblCodigo3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblCodigo3.setText("MEDIDA :");
-
         tblProducto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane1.setViewportView(tblProducto);
 
         cboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Elegir categoria" }));
         cboCategoria.setEnabled(false);
 
-        cboMedida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboMedida.setEnabled(false);
+        jButton1.setText("PRODUCTO POR MEDIDA");
+
+        jButton2.setText("TIPO DE DESPACHO");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -281,28 +284,31 @@ public class FormProducto extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel1Layout.createSequentialGroup()
-                        .add(90, 90, 90)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(lblDireccion)
-                            .add(lblDocumento)
-                            .add(lblCodigo)
-                            .add(lblCodigo1)
-                            .add(lblCodigo2)
-                            .add(lblCodigo3))
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jPanel1Layout.createSequentialGroup()
-                                .add(18, 18, 18)
+                                .add(90, 90, 90)
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(lblDireccion)
+                                    .add(lblDocumento)
+                                    .add(lblCodigo)
+                                    .add(lblCodigo1)
+                                    .add(lblCodigo2))
                                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(txtStock, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 263, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                    .add(jPanel1Layout.createSequentialGroup()
+                                        .add(18, 18, 18)
+                                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                            .add(txtStock, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 263, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                    .add(jPanel1Layout.createSequentialGroup()
+                                        .add(28, 28, 28)
+                                        .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 113, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                             .add(jPanel1Layout.createSequentialGroup()
-                                .add(28, 28, 28)
-                                .add(cboMedida, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(jPanel1Layout.createSequentialGroup()
-                                .add(28, 28, 28)
-                                .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 113, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                .add(150, 150, 150)
+                                .add(jButton1)
+                                .add(26, 26, 26)
+                                .add(jButton2)))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(lblImagen)
                         .add(48, 48, 48))
@@ -341,12 +347,12 @@ public class FormProducto extends javax.swing.JPanel {
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(lblCodigo2)
                             .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(18, 18, 18)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 29, Short.MAX_VALUE)
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(lblCodigo3)
-                            .add(cboMedida, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(jButton1)
+                            .add(jButton2)))
                     .add(lblImagen, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 209, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(lblTitulo2)
                 .add(18, 18, 18)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 200, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -403,7 +409,7 @@ public class FormProducto extends javax.swing.JPanel {
         pro.setDesPro(txtDescripción.getText().toUpperCase());
         pro.setStoPro(Double.parseDouble(txtStock.getText()));
         pro.setCategoria_codCat(cboCategoria.getSelectedIndex());
-        pro.setMedida_codMed(cboMedida.getSelectedIndex());
+     
         
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
@@ -421,7 +427,7 @@ public class FormProducto extends javax.swing.JPanel {
         pro.setDesPro(txtDescripción.getText().toUpperCase());
         pro.setStoPro(Double.parseDouble(txtStock.getText()));
         pro.setCategoria_codCat(cboCategoria.getSelectedIndex());
-        pro.setMedida_codMed(cboMedida.getSelectedIndex());
+       
         
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
@@ -496,7 +502,7 @@ private void activarBotones() {
         txtDescripción.setText("");
         txtStock.setText("");     
         cboCategoria.setSelectedIndex(0);
-        cboMedida.setSelectedIndex(0);
+        
     }
     
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -609,6 +615,12 @@ private void activarBotones() {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        pxd = new FormProDes();
+        pxd.setVisible(true);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -624,7 +636,8 @@ private void activarBotones() {
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox cboCategoria;
-    private javax.swing.JComboBox cboMedida;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -632,7 +645,6 @@ private void activarBotones() {
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblCodigo1;
     private javax.swing.JLabel lblCodigo2;
-    private javax.swing.JLabel lblCodigo3;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblDocumento;
     private javax.swing.JLabel lblImagen;
