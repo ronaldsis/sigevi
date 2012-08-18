@@ -6,8 +6,8 @@
     
     <!-- INSERT -->
     <insert id="insertProductoDespacho" parameterClass="sigevi.bea.ProductoDespacho" >
-        INSERT INTO producto_despacho (codProPre, precio, producto_codPro, despacho_codDes) 
-        VALUES(#codProPre#, #precio#, #producto_codPro#, #despacho_codDes#);
+        INSERT INTO producto_despacho (codProDes, precio, producto_codPro, despacho_codDes) 
+        VALUES(#codProDes#, #precio#, #producto_codPro#, #despacho_codDes#);
     </insert>
     
     <!-- UPDATE -->
@@ -16,14 +16,14 @@
         precio =#precio#,
         producto_codPro =#producto_codPro#,
         despacho_codDes =#despacho_codDes#
-        WHERE codProPre =#codProPre#;
+        WHERE codProPre =#codProDes#;
     </update>
    
     <!-- SELECT -->
     <select id="getProductoDespacho" resultClass="sigevi.bea.ProductoDespacho">
         SELECT * 
         FROM producto_despacho
-        WHERE codProPre =#codProPre#;
+        WHERE codProPre =#codProDes#;
     </select>
     
     <select id="listProductoDespacho" resultClass="sigevi.bea.ProductoDespacho">
@@ -42,14 +42,14 @@
     </select>
     
     <select id="getMaxProductoDespacho" resultClass="int">
-        SELECT max(codProPre)
+        SELECT max(codProDes)
         FROM producto_despacho
     </select>
     
     <!-- DELETE -->
     <delete id="removeProductoDespacho">
         DELETE FROM producto_despacho
-        WHERE codProPre=#codProPre#;
+        WHERE codProPre=#codProDes#;
     </delete>
    
 </sqlMap>

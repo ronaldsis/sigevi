@@ -251,7 +251,7 @@ public class FormProDes extends javax.swing.JFrame {
 
     private void agregarProductoDespacho() {
             ProductoDespacho des = new ProductoDespacho();
-            des.setCodProPre(getNuevoCodigo());
+            des.setCodProDes(getNuevoCodigo());
             des.setProducto_codPro(Integer.parseInt(txtProducto.getText()));
             des.setDespacho_codDes(cboFormaDespacho.getSelectedIndex());
             des.setPrecio(Double.parseDouble(txtPrecio.getText()));
