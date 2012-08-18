@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+      "http://www.ibatis.com/dtd/sql-map-2.dtd">   
+ 
+<sqlMap namespace="ProductoMedida">
+    
+    <!-- INSERT -->
+    <insert id="insertProductoMedida" parameterClass="sigevi.bea.ProductoMedida" >
+        INSERT INTO producto_medida (codProMed, producto_codPro, medida_codMed)
+        VALUES (#codProMed#, #producto_codPro#, #medida_codMed#);
+    </insert>
+    
+    <!-- SELECT -->
+    <select id="getProductoMedida" resultClass="sigevi.bea.ProductoMedida">
+        SELECT * 
+        FROM producto_medida
+        WHERE producto_codPro =#producto_codPro#;
+    </select>
+    
+    <select id="listMedidasDeProducto" resultClass="sigevi.bea.ProductoMedida">
+        SELECT codProMed, nomMed, simMed
+        FROM producto_medida 
+        INNER JOIN medida 
+        ON producto_medida.medida_codMed=medida.codMed
+        where producto_medida.producto_codPro=#producto_medida.producto_codPro#;
+    </select>
+    
+    <select id="getMaxProductoMedida" resultClass="int">
+        SELECT max(codProMed)
+        FROM producto_medida;
+    </select>
+    
+    <!-- DELETE -->
+    <delete id="removeProductoMedida">
+        DELETE FROM producto_medida
+        WHERE codProMed=#codProMed#;
+    </delete>
+   
+</sqlMap>
