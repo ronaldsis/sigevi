@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+      "http://www.ibatis.com/dtd/sql-map-2.dtd">   
+ 
+<sqlMap namespace="Ventas">
+    
+    <!-- INSERT -->
+    <insert id="insertVentas" parameterClass="sigevi.bea.Ventas" >
+        INSERT INTO venta (nroVen, nroCom, tipCom, fecVen, usuario_codUsu, cliente_codCli)
+        VALUES(#nroVen#, #nroCom#, #tipCom#, #fecVen#, #usuario_codUsu#, #cliente_codCli#);
+    </insert>
+    
+    <!-- UPDATE -->
+    <update id="updateVentas" parameterClass="sigevi.bea.Ventas" >
+        UPDATE ventas SET
+        nroCom=#nroVen#, 
+        tipCom=#nroVen#, 
+        fecVen=#nroVen#,
+        usuario_codUsu=#usuario_codUsu#, 
+        cliente_codCli=#cliente_codCli#,
+        WHERE nroVen=#nroVen#;
+    </update>
+   
+    <!-- SELECT -->
+    <select id="listVentas" resultClass="sigevi.bea.Ventas">
+        SELECT nroVen, nroCom, tipCom, fecVen, usuario_codUsu, cliente_codCli
+        FROM ventas;
+    </select>
+    
+     <select id="getMaxVentas" resultClass="int">
+        SELECT max(codPer)
+        FROM ventas;
+    </select>
+    
+    <!-- DELETE -->
+    <delete id="removeVentas">
+        DELETE FROM ventas
+        WHERE nroVen=#nroVen#;
+    </delete>
+   
+</sqlMap>

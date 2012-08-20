@@ -62,7 +62,6 @@ public class FormProDes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -74,8 +73,6 @@ public class FormProDes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDxP = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
-
-        jButton1.setText("jButton1");
 
         jLabel1.setText("PRODUCTO :");
 
@@ -266,7 +263,6 @@ public class FormProDes extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXComboBox cboFormaDespacho;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
