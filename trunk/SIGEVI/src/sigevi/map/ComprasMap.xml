@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+      "http://www.ibatis.com/dtd/sql-map-2.dtd">   
+ 
+<sqlMap namespace="Compras">
+    
+    <!-- INSERT -->
+    <insert id="insertCompras" parameterClass="sigevi.bea.Compras" >
+      
+        INSERT INTO compra (nroCop, nroCom, tipCom, fecCom, usuario_codUsu, proveedor_codPrv)
+        VALUES             (#nroCop#, #nroCom#, #tipCom#, #fecCom#, #usuario_codUsu#, #cliente_codCli#);
+    </insert>
+    
+    <!-- UPDATE -->
+    <update id="updateCompras" parameterClass="sigevi.bea.Compras" >
+        UPDATE compras SET
+        nroCom=#nroCom#, 
+        tipCom=#tipCom#,
+        fecCom=#fecCom#,
+        usuario_codUsu=#usuario_codUsu#, 
+        proveedor_codPrv=#proveedor_codPrv#,
+        WHERE nroCop=#nroCop#;
+    </update>
+   
+    <!-- SELECT -->
+    <select id="listCompras" resultClass="sigevi.bea.Compras">
+        SELECT nroCop, nroCom, tipCom, fecCom, usuario_codUsu, proveedor_codPrv
+        FROM compras;
+    </select>
+    
+    <select id="getMaxCompras" resultClass="int">
+        SELECT max(nroCop)
+        FROM compras;
+    </select>
+    
+    <!-- DELETE -->
+    <delete id="removeCompras">
+        DELETE FROM compras
+        WHERE nroCop=#nroCop#;
+    </delete>
+   
+</sqlMap>

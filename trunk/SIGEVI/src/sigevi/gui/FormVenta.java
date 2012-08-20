@@ -1,7 +1,16 @@
 package sigevi.gui;
 
+import com.ibatis.sqlmap.client.SqlMapClient;
+import java.awt.Color;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import sigevi.bea.Venta;
+import sigevi.map.SqlMapConfig;
 
 public class FormVenta extends javax.swing.JPanel {
 
@@ -27,10 +36,10 @@ public class FormVenta extends javax.swing.JPanel {
         lblSubTotal = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDetalleVenta = new javax.swing.JTable();
-        cmbTComprobante = new javax.swing.JComboBox();
+        cboComprobante = new javax.swing.JComboBox();
         jLabel18 = new javax.swing.JLabel();
         btnVender = new javax.swing.JButton();
-        txtlFecha = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
@@ -82,10 +91,10 @@ public class FormVenta extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblDetalleVenta);
 
-        cmbTComprobante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Factura", "Boleta" }));
-        cmbTComprobante.addActionListener(new java.awt.event.ActionListener() {
+        cboComprobante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Factura", "Boleta" }));
+        cboComprobante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTComprobanteActionPerformed(evt);
+                cboComprobanteActionPerformed(evt);
             }
         });
 
@@ -101,8 +110,8 @@ public class FormVenta extends javax.swing.JPanel {
             }
         });
 
-        txtlFecha.setEditable(false);
-        txtlFecha.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+        txtFecha.setEditable(false);
+        txtFecha.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/eliminar.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -158,7 +167,7 @@ public class FormVenta extends javax.swing.JPanel {
                                     .add(layout.createSequentialGroup()
                                         .add(jLabel18)
                                         .add(18, 18, 18)
-                                        .add(cmbTComprobante, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 103, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(cboComprobante, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 103, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .add(54, 54, 54)
                                         .add(jLabel1)))
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -167,7 +176,7 @@ public class FormVenta extends javax.swing.JPanel {
                                         .add(txtUsuario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                         .add(30, 30, 30)
-                                        .add(txtlFecha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                                        .add(txtFecha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                             .add(layout.createSequentialGroup()
                                 .add(46, 46, 46)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -223,7 +232,7 @@ public class FormVenta extends javax.swing.JPanel {
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(txtlFecha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(txtFecha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(jLabel13))))
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
@@ -232,7 +241,7 @@ public class FormVenta extends javax.swing.JPanel {
                             .add(layout.createSequentialGroup()
                                 .add(2, 2, 2)
                                 .add(jLabel18))
-                            .add(cmbTComprobante, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(cboComprobante, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(layout.createSequentialGroup()
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -286,8 +295,20 @@ public class FormVenta extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbTComprobanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTComprobanteActionPerformed
-        if (cmbTComprobante.getSelectedIndex() == 0) {
+      private void limpiartextos() {
+        txtNombre.setText("");
+        txtDni.setText("");
+        txtDireccion.setText("");
+        txtNumVenta.setText("");
+        txtTotal.setText("");
+        txtSubTotal.setText("");
+        txtIgv.setText("");
+        cboComprobante.setSelectedIndex(0);
+        tblDetalleVenta.setModel(new DefaultTableModel());
+
+    }
+    private void cboComprobanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboComprobanteActionPerformed
+        if (cboComprobante.getSelectedIndex() == 0) {
             jComprobante1.setText("Razon Social");
             jComprobante2.setText("RUC");
             habilitarTextos(true);
@@ -296,12 +317,53 @@ public class FormVenta extends javax.swing.JPanel {
             jComprobante2.setText("DNI");
             habilitarTextos(false);
         }
-    }//GEN-LAST:event_cmbTComprobanteActionPerformed
-
+    }//GEN-LAST:event_cboComprobanteActionPerformed
+     private int getNuevoCodigo() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        Object obj = null;
+        int cod = 0;
+        try {
+            obj = sqlMapClient.queryForObject("getMaxProducto");
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (obj != null) {
+            cod = ((Integer) obj).intValue();
+        }
+        return cod + 1;
+    }
     private void txtAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgregarProductoActionPerformed
-        // TODO add your handling code here:
+                                                  
+        int Fila_Adicionar = tblDetalleVenta.getSelectedRow();
+          if (Fila_Adicionar >= 0) {
+            campo_Xcodigo.setText(String.valueOf(TablaProductos.getValueAt(Fila_Adicionar, 0)));
+            campo_Xnombre.setText(String.valueOf(TablaProductos.getValueAt(Fila_Adicionar, 1)));
+            campo_Xstock.setText(String.valueOf(TablaProductos.getValueAt(Fila_Adicionar, 3)));
+            campo_Xpreciounit.setText(String.valueOf(TablaProductos.getValueAt(Fila_Adicionar, 2)));
+            campo_Xcantidad.setEditable(true);
+            campo_Xcantidad.setBackground(Color.white);
+        } else {
+            JOptionPane.showMessageDialog(null, "SELECCIONE UNA FILA!");
+        }
+       
     }//GEN-LAST:event_txtAgregarProductoActionPerformed
+private void agregarVenta() {
+        Venta vnt = new Venta();
+        vnt.setNroVen(Integer.parseInt(txtNumVenta.getText()));
+        vnt.setTipCom((String)cboComprobante.getSelectedItem());
+        vnt.setFecVen(txtFecha.getText());
+        vnt.setUsuario_codUsu(txtDireccion.getText());
+        vnt.setCliente_codCli(txtTelefono.getText());
+        
 
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        try {
+
+            sqlMapClient.insert("insertVentas", vnt);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void txtConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtConsultarActionPerformed
@@ -322,7 +384,7 @@ public class FormVenta extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnVender;
-    private javax.swing.JComboBox cmbTComprobante;
+    private javax.swing.JComboBox cboComprobante;
     private javax.swing.JLabel jComprobante1;
     private javax.swing.JLabel jComprobante2;
     private javax.swing.JLabel jLabel1;
@@ -340,12 +402,12 @@ public class FormVenta extends javax.swing.JPanel {
     private javax.swing.JButton txtConsultar;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtDni;
+    private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtIgv;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNumVenta;
     private javax.swing.JTextField txtSubTotal;
     private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtUsuario;
-    private javax.swing.JTextField txtlFecha;
     // End of variables declaration//GEN-END:variables
 }
