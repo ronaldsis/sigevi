@@ -68,17 +68,13 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jButton1" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtNombre" alignment="0" min="-2" pref="123" max="-2" attributes="1"/>
-                                  <Component id="jScrollPane2" max="32767" attributes="0"/>
-                                  <Component id="txtCodigo" min="-2" pref="123" max="-2" attributes="1"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="cboCategoria" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtStock" alignment="0" pref="123" max="32767" attributes="1"/>
-                                  </Group>
-                                  <Component id="btnMedidas" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnDespacho" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="txtNombre" alignment="0" min="-2" pref="123" max="-2" attributes="1"/>
+                              <Component id="jScrollPane2" max="32767" attributes="0"/>
+                              <Component id="txtCodigo" min="-2" pref="123" max="-2" attributes="1"/>
+                              <Component id="cboCategoria" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtStock" alignment="0" max="32767" attributes="1"/>
+                              <Component id="btnMedidas" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnDespacho" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="lblImagen" min="-2" max="-2" attributes="0"/>
@@ -511,6 +507,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="INGRESAR PRECIO DEL PRODUCTO"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
