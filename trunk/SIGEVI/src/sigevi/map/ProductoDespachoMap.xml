@@ -17,12 +17,19 @@
         despacho_codDes =#despacho_codDes#
         WHERE codProPre =#codProDes#;
     </update>
-   
+    
     <!-- SELECT -->
     <select id="getProductoDespacho" resultClass="sigevi.bea.ProductoDespacho">
         SELECT * 
         FROM producto_despacho
         WHERE codProPre =#codProDes#;
+    </select>
+    
+    <select  id="listTipoXProductoDespacho" resultClass="sigevi.bea.ProductoDespacho" >
+        SELECT nomDes FROM producto_despacho
+        INNER JOIN despacho
+        ON producto_despacho.despacho_codDes=despacho.codDes
+        WHERE producto_codPro=#producto_codPro#;
     </select>
     
     <select id="listProductoDespacho" resultClass="sigevi.bea.ProductoDespacho">

@@ -39,6 +39,12 @@
         ORDER BY codPro;
     </select>
     
+    <select id="listProductoXCategoria" resultClass="sigevi.bea.Producto">
+       SELECT * 
+       FROM producto
+       WHERE categoria_codCat=#categoria_codCat#;
+    </select>
+    
     <select id="getMaxProducto" resultClass="int">
         SELECT max(codPro)
         FROM producto;
