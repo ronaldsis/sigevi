@@ -16,7 +16,17 @@
         FROM producto_precio
         WHERE codProPre =#codProPre#;
     </select>
-       
+    
+    <select id="listPreciosDeProducto" resultClass="sigevi.bea.ProductoPrecio">
+        SELECT codProPre, nomMed, nomDes, precio
+        FROM producto_precio
+        INNER JOIN medida 
+        ON producto_medida_codProMed=medida.codMed
+        INNER JOIN despacho
+        ON producto_despacho_codProDes=despacho.codDes
+        where producto_precio.producto_codPro=#producto_precio.producto_codPro#;
+    </select>
+          
     <select id="getMaxProductoPrecio" resultClass="int">
         SELECT max(codProPre)
         FROM producto_precio;
