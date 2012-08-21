@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigevi.gui;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -25,7 +21,7 @@ public class FormProducto extends javax.swing.JPanel {
     private FormProMed pxm;
     private FormProPre pxp;
     DefaultTableModel Modelo;
-    String[] Titulo = {"CODIGO", "NOMBRE", "DESCRIPCIÓN", "STOCK", "CATEGORIA", "MEDIDA"};
+    String[] Titulo = {"CODIGO", "NOMBRE", "DESCRIPCIÓN", "STOCK", "CATEGORIA"};
     String[][] datos = {};
 
     public FormProducto() {
@@ -39,7 +35,6 @@ public class FormProducto extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         lblTitulo2 = new javax.swing.JLabel();
-        txtStock = new javax.swing.JTextField();
         lblCodigo = new javax.swing.JLabel();
         lblDocumento = new javax.swing.JLabel();
         lblTitulo1 = new javax.swing.JLabel();
@@ -65,9 +60,13 @@ public class FormProducto extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProducto = new javax.swing.JTable();
         cboCategoria = new javax.swing.JComboBox();
+        pnlContenor = new javax.swing.JPanel();
+        pnlTareas = new org.jdesktop.swingx.JXTaskPane();
         btnMedidas = new javax.swing.JButton();
         btnDespacho = new javax.swing.JButton();
         btnPrecio = new javax.swing.JButton();
+        btnFinalizar = new javax.swing.JButton();
+        txtStock = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -81,8 +80,6 @@ public class FormProducto extends javax.swing.JPanel {
         lblTitulo2.setText("LISTA DE PRODUCTOS");
         lblTitulo2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lblTitulo2.setOpaque(true);
-
-        txtStock.setEnabled(false);
 
         lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblCodigo.setText("STOCK :");
@@ -249,7 +246,10 @@ public class FormProducto extends javax.swing.JPanel {
         jToolBar.add(btnSalir);
 
         txtDescripción.setColumns(20);
-        txtDescripción.setRows(5);
+        txtDescripción.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        txtDescripción.setRows(10);
+        txtDescripción.setWrapStyleWord(true);
+        txtDescripción.setAutoscrolls(false);
         txtDescripción.setEnabled(false);
         jScrollPane2.setViewportView(txtDescripción);
 
@@ -265,29 +265,60 @@ public class FormProducto extends javax.swing.JPanel {
         cboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR CATEGORIA" }));
         cboCategoria.setEnabled(false);
 
-        btnMedidas.setText("INGRESAR MEDIDAS DEL PRODUCTO");
+        pnlContenor.setBackground(new java.awt.Color(255, 255, 255));
+        pnlContenor.setEnabled(false);
+
+        pnlTareas.setScrollOnExpand(true);
+        pnlTareas.setSpecial(true);
+        pnlTareas.setTitle("PROCESAR PRODUCTO");
+        pnlTareas.setEnabled(false);
+        org.jdesktop.swingx.VerticalLayout verticalLayout2 = new org.jdesktop.swingx.VerticalLayout();
+        verticalLayout2.setGap(2);
+        pnlTareas.getContentPane().setLayout(verticalLayout2);
+
+        btnMedidas.setText("INGRESAR MEDIDAS");
         btnMedidas.setEnabled(false);
         btnMedidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMedidasActionPerformed(evt);
             }
         });
+        pnlTareas.getContentPane().add(btnMedidas);
 
-        btnDespacho.setText("INGRESAR FORMA DE DESPACHO DEL PRODUCTO");
+        btnDespacho.setText("INGRESA DESPACHOS");
         btnDespacho.setEnabled(false);
         btnDespacho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDespachoActionPerformed(evt);
             }
         });
+        pnlTareas.getContentPane().add(btnDespacho);
 
-        btnPrecio.setText("INGRESAR PRECIO DEL PRODUCTO");
+        btnPrecio.setText("INGRESAR PRECIOS");
         btnPrecio.setEnabled(false);
         btnPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrecioActionPerformed(evt);
             }
         });
+        pnlTareas.getContentPane().add(btnPrecio);
+
+        btnFinalizar.setText("FINALIZAR");
+        btnFinalizar.setEnabled(false);
+        pnlTareas.getContentPane().add(btnFinalizar);
+
+        org.jdesktop.layout.GroupLayout pnlContenorLayout = new org.jdesktop.layout.GroupLayout(pnlContenor);
+        pnlContenor.setLayout(pnlContenorLayout);
+        pnlContenorLayout.setHorizontalGroup(
+            pnlContenorLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(pnlTareas, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+        );
+        pnlContenorLayout.setVerticalGroup(
+            pnlContenorLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(pnlContenorLayout.createSequentialGroup()
+                .add(pnlTareas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, Short.MAX_VALUE))
+        );
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -308,15 +339,16 @@ public class FormProducto extends javax.swing.JPanel {
                             .add(lblCodigo1)
                             .add(lblCodigo2))
                         .add(18, 18, 18)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(btnPrecio, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jScrollPane2)
-                            .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(cboCategoria, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(txtStock)
-                            .add(btnMedidas, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(btnDespacho))
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jPanel1Layout.createSequentialGroup()
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                    .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 60, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .add(txtNombre))
+                                .add(18, 18, 18)
+                                .add(pnlContenor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(txtStock, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 60, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -327,36 +359,32 @@ public class FormProducto extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(lblTitulo1)
                 .add(26, 26, 26)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(lblCodigo1)
-                    .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(lblDocumento))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(lblDireccion)
                     .add(jPanel1Layout.createSequentialGroup()
-                        .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 53, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(lblCodigo1)
+                            .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(lblDocumento)
+                            .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(lblDireccion)
+                            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(txtStock, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(lblCodigo))))
+                            .add(lblCodigo)
+                            .add(txtStock, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(8, 8, 8)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lblCodigo2)))
+                    .add(pnlContenor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(lblCodigo2)
-                    .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(btnMedidas)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(btnDespacho)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(btnPrecio)
-                .add(18, 18, 18)
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 178, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -364,9 +392,7 @@ public class FormProducto extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
-                .addContainerGap())
+            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -376,7 +402,7 @@ public class FormProducto extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public static int getNuevoCodigo() {
+    private int getNuevoCodigo() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         Object obj = null;
         int cod = 0;
@@ -463,7 +489,7 @@ public class FormProducto extends javax.swing.JPanel {
 
         for (int i = 0; i < productos.size(); i++) {
             Producto pro = productos.get(i);
-            Object[] fila = {pro.getCodPro(), pro.getNomPro(), pro.getDesPro(), pro.getStoPro(), pro.getNomCat(), pro.getMedida_codMed()};
+            Object[] fila = {pro.getCodPro(), pro.getNomPro(), pro.getDesPro(), pro.getStoPro(), pro.getNomCat()};
             Modelo.addRow(fila);
         }
     }
@@ -500,6 +526,25 @@ public class FormProducto extends javax.swing.JPanel {
         txtNombre.setEnabled(b);
         txtDescripción.setEnabled(b);
         txtStock.setEnabled(b);
+        cboCategoria.setEnabled(b);
+    }
+
+    private void activarTareas(boolean b) {
+        int seleccion = JOptionPane.showConfirmDialog(this, "¿DESEA PROCESAR LA INFORMACIÓN DEL PRODUCTO?", "MENSAJE", 0);
+        if (seleccion != -1) {
+            
+            if (seleccion == 0) {
+                activartextos(!b);
+                txtCodigo.setEnabled(!b);
+                btnMedidas.setEnabled(b);
+                btnDespacho.setEnabled(b);
+                btnPrecio.setEnabled(b);
+                btnFinalizar.setEnabled(b);
+            } else {
+                listarProductos();
+                activarBotones();
+            }
+        }
     }
 
     private void limpiartextos() {
@@ -508,7 +553,6 @@ public class FormProducto extends javax.swing.JPanel {
         txtDescripción.setText("");
         txtStock.setText("");
         cboCategoria.setSelectedIndex(0);
-
     }
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -519,9 +563,6 @@ public class FormProducto extends javax.swing.JPanel {
         btnEliminar.setEnabled(false);
         btnGuardar.setEnabled(false);
         btnListar.setEnabled(false);
-        btnMedidas.setEnabled(true);
-        btnDespacho.setEnabled(true);
-        btnPrecio.setEnabled(true);
         limpiartextos();
         activartextos(true);
         txtCodigo.setText(getNuevoCodigo() + "");
@@ -532,9 +573,8 @@ public class FormProducto extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "INGRESE NOMBRE DE PRODUCTO", "MENSAJE", 2, null);
         } else {
             agregarProducto();
-            JOptionPane.showMessageDialog(this, "PRODUCTO REGISTRADA", "MENSAJE", 1, null);
-            listarProductos();
-            activarBotones();
+            JOptionPane.showMessageDialog(this, "PRODUCTO REGISTRADO", "MENSAJE", 1, null);
+           activarTareas(true);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -552,7 +592,7 @@ public class FormProducto extends javax.swing.JPanel {
                 btnEliminar.setEnabled(true);
                 btnEditar.setEnabled(true);
             } else {
-                JOptionPane.showMessageDialog(this, "CATEGORIA NO EXISTE", "MENSAJE", 0, null);
+                JOptionPane.showMessageDialog(this, "PRODUCTO NO EXISTE", "MENSAJE", 0, null);
             }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -573,7 +613,7 @@ public class FormProducto extends javax.swing.JPanel {
             eliminarProducto();
             listarProductos();
             limpiartextos();
-            JOptionPane.showMessageDialog(this, "CATEGORIA ELIMINADA", "MENSAJE", 1, null);
+            JOptionPane.showMessageDialog(this, "PRODUCTO ELIMINADO", "MENSAJE", 1, null);
         } else {
             JOptionPane.showMessageDialog(this, "OPERACION CANCELADA", "MENSAJE", 1, null);
         }
@@ -584,9 +624,7 @@ public class FormProducto extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         } else {
             modificarProducto();
-            JOptionPane.showMessageDialog(this, "CATEGORIA MODIFICADA", "MENSAJE", 1, null);
-            listarProductos();
-            activarBotones();
+            JOptionPane.showMessageDialog(this, "PRODUCTO MODIFICADO", "MENSAJE", 1, null);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -637,7 +675,7 @@ public class FormProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMedidasActionPerformed
 
     private void btnPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrecioActionPerformed
-              pxp = new FormProPre();
+        pxp = new FormProPre();
         pxp.setVisible(true);
     }//GEN-LAST:event_btnPrecioActionPerformed
 
@@ -649,6 +687,7 @@ public class FormProducto extends javax.swing.JPanel {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnExcel;
+    private javax.swing.JButton btnFinalizar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnListar;
@@ -668,8 +707,10 @@ public class FormProducto extends javax.swing.JPanel {
     private javax.swing.JLabel lblDocumento;
     private javax.swing.JLabel lblTitulo1;
     private javax.swing.JLabel lblTitulo2;
+    private javax.swing.JPanel pnlContenor;
+    private org.jdesktop.swingx.JXTaskPane pnlTareas;
     private javax.swing.JTable tblProducto;
-    private javax.swing.JTextField txtCodigo;
+    public static javax.swing.JTextField txtCodigo;
     private javax.swing.JTextArea txtDescripción;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtStock;

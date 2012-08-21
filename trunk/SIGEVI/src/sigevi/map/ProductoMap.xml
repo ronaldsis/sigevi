@@ -6,8 +6,8 @@
     
     <!-- INSERT -->
     <insert id="insertProducto" parameterClass="sigevi.bea.Producto" >
-        INSERT INTO producto (codPro, nomPro, desPro, stoPro, categoria_codCat, medida_codMed) 
-        VALUES (#codPro#, #nomPro#, #desPro#, #stoPro#, #categoria_codCat#, #medida_codMed#);
+        INSERT INTO producto (codPro, nomPro, desPro, stoPro, categoria_codCat) 
+        VALUES (#codPro#, #nomPro#, #desPro#, #stoPro#, #categoria_codCat#);
     </insert>
     
     <!-- UPDATE -->
@@ -17,8 +17,7 @@
         nomPro =#nomPro#,
         desPro =#desPro#,
         stoPro =#stoPro#,
-        categoria_codCat =#categoria_codCat#,
-        medida_codMed =#medida_codMed#
+        categoria_codCat =#categoria_codCat#
         WHERE codPro =#codPro#;
     </update>
    
@@ -30,12 +29,10 @@
     </select>
     
     <select id="listProducto" resultClass="sigevi.bea.Producto">
-        SELECT codPro, nomPro, desPro, stoPro, nomCat, desMed
+        SELECT codPro, nomPro, desPro, stoPro, nomCat
         FROM producto 
         INNER JOIN categoria
         ON producto.categoria_codCat=categoria.codCat
-        LEFT JOIN medida
-        ON producto.medida_codMed=medida.codMed
         ORDER BY codPro;
     </select>
     
