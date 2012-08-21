@@ -5,15 +5,15 @@
 <sqlMap namespace="Compras">
     
     <!-- INSERT -->
-    <insert id="insertCompras" parameterClass="sigevi.bea.Compras" >
+    <insert id="insertCompra" parameterClass="sigevi.bea.Compra" >
       
         INSERT INTO compra (nroCop, nroCom, tipCom, fecCom, usuario_codUsu, proveedor_codPrv)
-        VALUES             (#nroCop#, #nroCom#, #tipCom#, #fecCom#, #usuario_codUsu#, #cliente_codCli#);
+        VALUES             (#nroCop#, #nroCom#, #tipCom#, #fecCom#, #usuario_codUsu#, #proveedor_codPrv#);
     </insert>
     
     <!-- UPDATE -->
-    <update id="updateCompras" parameterClass="sigevi.bea.Compras" >
-        UPDATE compras SET
+    <update id="updateCompra" parameterClass="sigevi.bea.Compra" >
+        UPDATE compra SET
         nroCom=#nroCom#, 
         tipCom=#tipCom#,
         fecCom=#fecCom#,
@@ -23,19 +23,19 @@
     </update>
    
     <!-- SELECT -->
-    <select id="listCompras" resultClass="sigevi.bea.Compras">
+    <select id="listCompra" resultClass="sigevi.bea.Compra">
         SELECT nroCop, nroCom, tipCom, fecCom, usuario_codUsu, proveedor_codPrv
-        FROM compras;
+        FROM compra;
     </select>
     
-    <select id="getMaxCompras" resultClass="int">
+    <select id="getMaxCompra" resultClass="int">
         SELECT max(nroCop)
-        FROM compras;
+        FROM compra;
     </select>
     
     <!-- DELETE -->
-    <delete id="removeCompras">
-        DELETE FROM compras
+    <delete id="removeCompra">
+        DELETE FROM compra
         WHERE nroCop=#nroCop#;
     </delete>
    
