@@ -13,6 +13,7 @@ import sigevi.bea.Venta;
 import sigevi.map.SqlMapConfig;
 
 public class FormVenta extends javax.swing.JPanel {
+    private FormDetalleVenta dp;
 
     public FormVenta() {
         initComponents();
@@ -44,7 +45,7 @@ public class FormVenta extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         txtConsultar = new javax.swing.JButton();
-        txtAgregarProducto = new javax.swing.JButton();
+        btnAgregarProducto = new javax.swing.JButton();
         lblIgv = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
         txtIgv = new javax.swing.JTextField();
@@ -132,10 +133,10 @@ public class FormVenta extends javax.swing.JPanel {
             }
         });
 
-        txtAgregarProducto.setText("Agregar Producto");
-        txtAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarProducto.setText("Agregar Producto");
+        btnAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAgregarProductoActionPerformed(evt);
+                btnAgregarProductoActionPerformed(evt);
             }
         });
 
@@ -198,7 +199,7 @@ public class FormVenta extends javax.swing.JPanel {
                         .add(38, 38, 38)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 475, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(txtAgregarProducto, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 467, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(btnAgregarProducto, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 467, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 467, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(42, 42, 42)
@@ -269,7 +270,7 @@ public class FormVenta extends javax.swing.JPanel {
                     .add(jLabel11)
                     .add(txtDireccion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(23, 23, 23)
-                .add(txtAgregarProducto)
+                .add(btnAgregarProducto)
                 .add(28, 28, 28)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -332,28 +333,29 @@ public class FormVenta extends javax.swing.JPanel {
         }
         return cod + 1;
     }
-    private void txtAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgregarProductoActionPerformed
+    private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
                                                   
-        int Fila_Adicionar = tblDetalleVenta.getSelectedRow();
-          if (Fila_Adicionar >= 0) {
-            campo_Xcodigo.setText(String.valueOf(TablaProductos.getValueAt(Fila_Adicionar, 0)));
-            campo_Xnombre.setText(String.valueOf(TablaProductos.getValueAt(Fila_Adicionar, 1)));
-            campo_Xstock.setText(String.valueOf(TablaProductos.getValueAt(Fila_Adicionar, 3)));
-            campo_Xpreciounit.setText(String.valueOf(TablaProductos.getValueAt(Fila_Adicionar, 2)));
-            campo_Xcantidad.setEditable(true);
-            campo_Xcantidad.setBackground(Color.white);
-        } else {
-            JOptionPane.showMessageDialog(null, "SELECCIONE UNA FILA!");
-        }
-       
-    }//GEN-LAST:event_txtAgregarProductoActionPerformed
+//        int Fila_Adicionar = tblDetalleVenta.getSelectedRow();
+//          if (Fila_Adicionar >= 0) {
+//            campo_Xcodigo.setText(String.valueOf(TablaProductos.getValueAt(Fila_Adicionar, 0)));
+//            campo_Xnombre.setText(String.valueOf(TablaProductos.getValueAt(Fila_Adicionar, 1)));
+//            campo_Xstock.setText(String.valueOf(TablaProductos.getValueAt(Fila_Adicionar, 3)));
+//            campo_Xpreciounit.setText(String.valueOf(TablaProductos.getValueAt(Fila_Adicionar, 2)));
+//            campo_Xcantidad.setEditable(true);
+//            campo_Xcantidad.setBackground(Color.white);
+//        } else {
+//            JOptionPane.showMessageDialog(null, "SELECCIONE UNA FILA!");
+//        }
+       dp=new FormDetalleVenta();
+       dp.setVisible(true);
+    }//GEN-LAST:event_btnAgregarProductoActionPerformed
 private void agregarVenta() {
         Venta vnt = new Venta();
         vnt.setNroVen(Integer.parseInt(txtNumVenta.getText()));
         vnt.setTipCom((String)cboComprobante.getSelectedItem());
-        vnt.setFecVen(txtFecha.getText());
+    /*    vnt.setFecVen(txtFecha.getText());
         vnt.setUsuario_codUsu(txtDireccion.getText());
-        vnt.setCliente_codCli(txtTelefono.getText());
+        vnt.setCliente_codCli(txtTelefono.getText());*/
         
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
@@ -382,6 +384,7 @@ private void agregarVenta() {
         txtIgv.setVisible(b);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnVender;
     private javax.swing.JComboBox cboComprobante;
@@ -398,7 +401,6 @@ private void agregarVenta() {
     private javax.swing.JLabel lblSubTotal;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JTable tblDetalleVenta;
-    private javax.swing.JButton txtAgregarProducto;
     private javax.swing.JButton txtConsultar;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtDni;
