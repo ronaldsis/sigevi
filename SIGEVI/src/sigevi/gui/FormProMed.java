@@ -103,7 +103,7 @@ public class FormProMed extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProductoMedidas = new javax.swing.JTable();
         lblTitulo1 = new javax.swing.JLabel();
-        lblTitulo3 = new javax.swing.JLabel();
+        lblTitulo2 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
 
@@ -147,13 +147,13 @@ public class FormProMed extends javax.swing.JFrame {
         lblTitulo1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lblTitulo1.setOpaque(true);
 
-        lblTitulo3.setBackground(new java.awt.Color(35, 94, 141));
-        lblTitulo3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblTitulo3.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo3.setText("LISTA");
-        lblTitulo3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        lblTitulo3.setOpaque(true);
+        lblTitulo2.setBackground(new java.awt.Color(35, 94, 141));
+        lblTitulo2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitulo2.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo2.setText("LISTA");
+        lblTitulo2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblTitulo2.setOpaque(true);
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -177,7 +177,7 @@ public class FormProMed extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(lblTitulo3, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+            .addComponent(lblTitulo2, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +215,7 @@ public class FormProMed extends javax.swing.JFrame {
                     .addComponent(btnEliminar)
                     .addComponent(btnCerrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTitulo3)
+                .addComponent(lblTitulo2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -245,7 +245,7 @@ public class FormProMed extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblProducto;
     private javax.swing.JLabel lblTitulo1;
-    private javax.swing.JLabel lblTitulo3;
+    private javax.swing.JLabel lblTitulo2;
     private javax.swing.JTable tblProductoMedidas;
     private javax.swing.JTextField txtProducto;
     // End of variables declaration//GEN-END:variables
