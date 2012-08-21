@@ -32,7 +32,9 @@ public class FormProDes extends javax.swing.JFrame {
         Modelo = new DefaultTableModel(datos, Titulo);
         tblDxP.setModel(Modelo);
         cargarFormaDespacho();
-       AutoCompleteDecorator.decorate(this.cboFormaDespacho);
+        txtCodPro.setText(""+FormProducto.getNuevoCodigo());
+        txtNomPro.setText(""+FormProducto.getProducto(FormProducto.getNuevoCodigo()).getNomPro());
+        AutoCompleteDecorator.decorate(this.cboFormaDespacho);
     }
 
     private void cargarFormaDespacho() {
@@ -61,7 +63,7 @@ public class FormProDes extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtProducto = new javax.swing.JTextField();
+        txtCodPro = new javax.swing.JTextField();
         cboFormaDespacho = new org.jdesktop.swingx.JXComboBox();
         lblTitulo1 = new javax.swing.JLabel();
         lblTitulo3 = new javax.swing.JLabel();
@@ -69,14 +71,21 @@ public class FormProDes extends javax.swing.JFrame {
         tblDxP = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        txtNomPro = new javax.swing.JTextField();
+
+        setTitle("SIGEVI");
+        setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("PRODUCTO :");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("FORMA DE DESPACHO :");
+        jLabel2.setText("DESPACHO :");
+
+        txtCodPro.setEnabled(false);
 
         cboFormaDespacho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELIJA DESPACHO" }));
+        cboFormaDespacho.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         lblTitulo1.setBackground(new java.awt.Color(35, 94, 141));
         lblTitulo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -97,83 +106,86 @@ public class FormProDes extends javax.swing.JFrame {
         tblDxP.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane1.setViewportView(tblDxP);
 
-        jButton2.setText("AGREGAR");
+        jButton2.setText("A");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("ELIMINAR");
+        jButton3.setText("E");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
+        txtNomPro.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblTitulo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblTitulo3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboFormaDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNomPro))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboFormaDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3)
+                        .addGap(0, 37, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblTitulo1)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGap(6, 6, 6)
+                    .addComponent(txtCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cboFormaDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2)
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitulo3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (txtProducto.getText().equals("")) {
+        if (txtCodPro.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         }
         if (cboFormaDespacho.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "SELECCIONE UN TIPO DE DESPACHO", "MENSAJE", 2, null);
-        } 
-        if (getCombinacion(Integer.parseInt(txtProducto.getText()), cboFormaDespacho.getSelectedIndex())){
-            JOptionPane.showMessageDialog(this, "DESPACHO DEL PRODUCTO YA REGISTRADO", "MENSAJE", 0, null);
-            
         }
-        else {
+        if (getCombinacion(Integer.parseInt(txtCodPro.getText()), cboFormaDespacho.getSelectedIndex())) {
+            JOptionPane.showMessageDialog(this, "DESPACHO DEL PRODUCTO YA REGISTRADO", "MENSAJE", 0, null);
+
+        } else {
             agregarProductoDespacho();
             JOptionPane.showMessageDialog(this, "TIPO DE DESPACHO REGISTRADO", "MENSAJE", 1, null);
-            listarDespachosDeProducto(Integer.parseInt(txtProducto.getText()));
+            listarDespachosDeProducto(Integer.parseInt(txtCodPro.getText()));
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -184,7 +196,7 @@ public class FormProDes extends javax.swing.JFrame {
     private boolean getCombinacion(int cod1, int cod2) {
         boolean rsta = false;
         long cmb = cod1 * 100000 + cod2;
-        System.out.println("combinacion entrante  "+cmb);
+        System.out.println("combinacion entrante  " + cmb);
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<ProductoDespacho> combinaciones = new ArrayList<>();
 
@@ -197,11 +209,11 @@ public class FormProDes extends javax.swing.JFrame {
         for (int i = 0; i < combinaciones.size(); i++) {
             ProductoDespacho com = combinaciones.get(i);
             if (com.getCombinacion() == cmb) {
-                 System.out.println("combinacion encontrada  "+com.getCombinacion());
+                System.out.println("combinacion encontrada  " + com.getCombinacion());
                 rsta = true;
             }
         }
-        System.out.println("holaaaaaaa   "+rsta);
+        System.out.println("holaaaaaaa   " + rsta);
         return rsta;
     }
 
@@ -240,18 +252,18 @@ public class FormProDes extends javax.swing.JFrame {
     }
 
     private void agregarProductoDespacho() {
-            ProductoDespacho des = new ProductoDespacho();
-            des.setCodProDes(getNuevoCodigo());
-            des.setProducto_codPro(Integer.parseInt(txtProducto.getText()));
-            des.setDespacho_codDes(cboFormaDespacho.getSelectedIndex());
+        ProductoDespacho des = new ProductoDespacho();
+        des.setCodProDes(getNuevoCodigo());
+        des.setProducto_codPro(Integer.parseInt(txtCodPro.getText()));
+        des.setDespacho_codDes(cboFormaDespacho.getSelectedIndex());
 
-            SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
-            try {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        try {
 
-                sqlMapClient.insert("insertProductoDespacho", des);
-            } catch (SQLException ex) {
-                Logger.getLogger(FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            sqlMapClient.insert("insertProductoDespacho", des);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXComboBox cboFormaDespacho;
@@ -263,6 +275,7 @@ public class FormProDes extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo1;
     private javax.swing.JLabel lblTitulo3;
     private javax.swing.JTable tblDxP;
-    private javax.swing.JTextField txtProducto;
+    private javax.swing.JTextField txtCodPro;
+    private javax.swing.JTextField txtNomPro;
     // End of variables declaration//GEN-END:variables
 }
