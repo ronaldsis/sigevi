@@ -2,17 +2,17 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
       "http://www.ibatis.com/dtd/sql-map-2.dtd">   
  
-<sqlMap namespace="Ventas">
+<sqlMap namespace="Venta">
     
     <!-- INSERT -->
-    <insert id="insertVentas" parameterClass="sigevi.bea.Ventas" >
+    <insert id="insertVenta" parameterClass="sigevi.bea.Venta" >
         INSERT INTO venta (nroVen, nroCom, tipCom, fecVen, usuario_codUsu, cliente_codCli)
         VALUES(#nroVen#, #nroCom#, #tipCom#, #fecVen#, #usuario_codUsu#, #cliente_codCli#);
     </insert>
     
     <!-- UPDATE -->
-    <update id="updateVentas" parameterClass="sigevi.bea.Ventas" >
-        UPDATE ventas SET
+    <update id="updateVenta" parameterClass="sigevi.bea.Venta" >
+        UPDATE venta SET
         nroCom=#nroVen#, 
         tipCom=#nroVen#, 
         fecVen=#nroVen#,
@@ -22,19 +22,19 @@
     </update>
    
     <!-- SELECT -->
-    <select id="listVentas" resultClass="sigevi.bea.Ventas">
+    <select id="listVenta" resultClass="sigevi.bea.Venta">
         SELECT nroVen, nroCom, tipCom, fecVen, usuario_codUsu, cliente_codCli
-        FROM ventas;
+        FROM venta;
     </select>
     
-     <select id="getMaxVentas" resultClass="int">
+     <select id="getMaxVenta" resultClass="int">
         SELECT max(codPer)
-        FROM ventas;
+        FROM venta;
     </select>
     
     <!-- DELETE -->
-    <delete id="removeVentas">
-        DELETE FROM ventas
+    <delete id="removeVenta">
+        DELETE FROM venta
         WHERE nroVen=#nroVen#;
     </delete>
    
