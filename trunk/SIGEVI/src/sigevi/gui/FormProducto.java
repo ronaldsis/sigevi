@@ -68,7 +68,7 @@ public class FormProducto extends javax.swing.JPanel {
         cboCategoria = new javax.swing.JComboBox();
         btnMedidas = new javax.swing.JButton();
         btnDespacho = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnPrecio = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -283,10 +283,10 @@ public class FormProducto extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("INGRESAR PRECIO DEL PRODUCTO");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPrecio.setText("INGRESAR PRECIO DEL PRODUCTO");
+        btnPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPrecioActionPerformed(evt);
             }
         });
 
@@ -310,7 +310,7 @@ public class FormProducto extends javax.swing.JPanel {
                             .add(lblCodigo2))
                         .add(18, 18, 18)
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(btnPrecio, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(jScrollPane2)
                             .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -358,7 +358,7 @@ public class FormProducto extends javax.swing.JPanel {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(btnDespacho)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButton1))
+                        .add(btnPrecio))
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(lblImagen, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 209, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(0, 0, Short.MAX_VALUE)))
@@ -642,10 +642,10 @@ public class FormProducto extends javax.swing.JPanel {
         pxm.setVisible(true);
     }//GEN-LAST:event_btnMedidasActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrecioActionPerformed
               pxp = new FormProPre();
         pxp.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnPrecioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -660,9 +660,9 @@ public class FormProducto extends javax.swing.JPanel {
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnMedidas;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnPrecio;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox cboCategoria;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

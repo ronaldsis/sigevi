@@ -255,7 +255,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<ProductoDespacho> pd = new ArrayList<>();
         try {
-            pd = sqlMapClient.queryForList("listTipoXProductoDespacho", codPro);
+            pd = sqlMapClient.queryForList("listDespachosDeProducto", codPro);
         } catch (SQLException ex) {
             Logger.getLogger(FormDetalleVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -269,7 +269,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<ProductoMedida> pm = new ArrayList<>();
         try {
-            pm = sqlMapClient.queryForList("listMedidaXProductoMedida", codPro);
+            pm = sqlMapClient.queryForList("listMedidasDeProducto", codPro);
         } catch (SQLException ex) {
             Logger.getLogger(FormDetalleVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
