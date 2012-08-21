@@ -225,7 +225,7 @@ public class FormProDes extends javax.swing.JFrame {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<ProductoDespacho> despachos = new ArrayList<>();
         try {
-            despachos = sqlMapClient.queryForList("listProductoDespacho", codigo);
+            despachos = sqlMapClient.queryForList("listDespachosDeProducto", codigo);
         } catch (SQLException ex) {
             Logger.getLogger(FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
