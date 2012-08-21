@@ -22,6 +22,7 @@ public class FormProMed extends javax.swing.JFrame {
         cargarMedidas();
         Modelo = new DefaultTableModel(datos, Titulo);
         tblProductoMedidas.setModel(Modelo);
+        cboCodMed.setVisible(false);
     }
 
     private int getNuevoCodigo() {
@@ -85,6 +86,7 @@ public class FormProMed extends javax.swing.JFrame {
         for (int i = 0; i < medidas.size(); i++) {
             Medida med = medidas.get(i);
             cboMedida.addItem(med.getNomMed());
+            cboCodMed.addItem(med.getCodMed());
         }
     }
 
@@ -99,6 +101,8 @@ public class FormProMed extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProductoMedidas = new javax.swing.JTable();
+        cboCodMed = new javax.swing.JComboBox();
+        lblCodigo = new javax.swing.JLabel();
 
         lblProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblProducto.setText("PRODUCTO :");
@@ -106,6 +110,11 @@ public class FormProMed extends javax.swing.JFrame {
         jLabel1.setText("MEDIDA :");
 
         cboMedida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELIJA MEDIDA" }));
+        cboMedida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboMedidaActionPerformed(evt);
+            }
+        });
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -127,24 +136,33 @@ public class FormProMed extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblProductoMedidas);
 
+        cboCodMed.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "EJEGIR COD" }));
+        cboCodMed.setEnabled(false);
+
+        lblCodigo.setText("CODIGO DE MEDIDA");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblProducto)
-                            .addComponent(jLabel1))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtProducto)
-                            .addComponent(cboMedida, 0, 131, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgregar)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblProducto)
+                                .addComponent(jLabel1))
+                            .addGap(27, 27, 27)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtProducto)
+                                .addComponent(cboMedida, 0, 131, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addComponent(btnAgregar)
+                            .addGap(18, 18, 18)
+                            .addComponent(cboCodMed, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -158,10 +176,13 @@ public class FormProMed extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(cboMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar))
+                    .addComponent(btnAgregar)
+                    .addComponent(cboCodMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addComponent(lblCodigo)
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         pack();
@@ -171,11 +192,19 @@ public class FormProMed extends javax.swing.JFrame {
         agregarProductoMedida();
         listarMedidasDeProducto(Integer.parseInt(txtProducto.getText()));
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void cboMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedidaActionPerformed
+        cboCodMed.setSelectedIndex(cboMedida.getSelectedIndex());
+        lblCodigo.setText("ES CODIGO DE MEDIDA ES    " + cboCodMed.getSelectedItem() );
+    }//GEN-LAST:event_cboMedidaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JComboBox cboCodMed;
     private javax.swing.JComboBox cboMedida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblProducto;
     private javax.swing.JTable tblProductoMedidas;
     private javax.swing.JTextField txtProducto;
