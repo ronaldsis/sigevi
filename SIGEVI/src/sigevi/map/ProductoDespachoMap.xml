@@ -32,7 +32,7 @@
         WHERE producto_codPro=#producto_codPro#;
     </select>
     
-    <select id="listProductoDespacho" resultClass="sigevi.bea.ProductoDespacho">
+    <select id="listDespachosDeProducto" resultClass="sigevi.bea.ProductoDespacho">
         SELECT  nomPro, nomDes
         FROM producto_despacho
         INNER JOIN producto 
