@@ -6,14 +6,13 @@
     
     <!-- INSERT -->
     <insert id="insertProductoDespacho" parameterClass="sigevi.bea.ProductoDespacho" >
-        INSERT INTO producto_despacho (codProDes, precio, producto_codPro, despacho_codDes) 
-        VALUES(#codProDes#, #precio#, #producto_codPro#, #despacho_codDes#);
+        INSERT INTO producto_despacho (codProDes, producto_codPro, despacho_codDes) 
+        VALUES(#codProDes#,#producto_codPro#, #despacho_codDes#);
     </insert>
     
     <!-- UPDATE -->
     <update id="updateProductoDespacho" parameterClass="sigevi.bea.ProductoDespacho" >
         UPDATE producto_despacho SET
-        precio =#precio#,
         producto_codPro =#producto_codPro#,
         despacho_codDes =#despacho_codDes#
         WHERE codProPre =#codProDes#;
@@ -27,7 +26,7 @@
     </select>
     
     <select id="listProductoDespacho" resultClass="sigevi.bea.ProductoDespacho">
-        SELECT  nomPro, nomDes,precio
+        SELECT  nomPro, nomDes
         FROM producto_despacho
         INNER JOIN producto 
         ON producto_despacho.producto_codPro=producto.codPro
