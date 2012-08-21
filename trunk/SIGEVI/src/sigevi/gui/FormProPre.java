@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sigevi.bea.ProductoDespacho;
 import sigevi.bea.ProductoMedida;
@@ -30,6 +31,8 @@ public class FormProPre extends javax.swing.JFrame {
         listarMedidasDeProducto(codPro);
         listarDespachosDeProducto(codPro);
         listarPreciosDeProducto(codPro);
+        cboCodDes.setVisible(false);
+        cboCodMed.setVisible(false);
     }
 
     private void listarMedidasDeProducto(int cod) {
@@ -278,7 +281,13 @@ public class FormProPre extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
+        if(txtPrecio.getText().equals("")){
+             JOptionPane.showMessageDialog(this, "INGRESE PRECIO", "MENSAJE", 2, null);
+        }
+        else{
+            agregarProductoPrecio();
+            listarPreciosDeProducto(codPro);
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
