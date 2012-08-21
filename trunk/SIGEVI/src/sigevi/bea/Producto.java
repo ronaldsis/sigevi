@@ -11,23 +11,6 @@ public class Producto {
     
     private String nomCat;
 
-    public void setNomCat(String nomCat) {
-        this.nomCat = nomCat;
-    }
-
-    public String getNomCat() {
-        return nomCat;
-    }
-
-    public String getDesPro() {
-        return desPro;
-    }
-
-    public void setDesPro(String desPro) {
-        this.desPro = desPro;
-    }
-
-
     private Integer categoria_codCat;
 
     private Integer medida_codMed;
@@ -70,5 +53,21 @@ public class Producto {
 
     public void setMedida_codMed(Integer medida_codMed) {
         this.medida_codMed = medida_codMed;
+    }
+    
+     public void setNomCat(String nomCat) {
+        this.nomCat = nomCat;
+    }
+
+    public String getNomCat() {
+        return nomCat;
+    }
+
+    public String getDesPro() {
+        return desPro;
+    }
+
+    public void setDesPro(String desPro) {
+        this.desPro = desPro;
     }
 }
