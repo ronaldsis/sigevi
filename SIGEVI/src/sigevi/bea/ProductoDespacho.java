@@ -4,6 +4,7 @@ public class ProductoDespacho {
 
 
     private Integer codProDes;
+    private Integer codDes;
     private String nomDes;
     private String nomPro;
     private long combinacion;
@@ -16,6 +17,14 @@ public class ProductoDespacho {
 
     public void setCodProDes(Integer codProDes) {
         this.codProDes = codProDes;
+    }
+
+    public Integer getCodDes() {
+        return codDes;
+    }
+
+    public void setCodDes(Integer codDes) {
+        this.codDes = codDes;
     }
 
     public String getNomDes() {
@@ -58,5 +67,4 @@ public class ProductoDespacho {
         this.despacho_codDes = despacho_codDes;
     }
 
-   
 }

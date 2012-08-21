@@ -43,7 +43,8 @@ public class FormProPre extends javax.swing.JFrame {
 
         for (int i = 0; i < productoMedidas.size(); i++) {
             ProductoMedida med = productoMedidas.get(i);
-            cboMedida.addItem(med.getNomMed());
+            cboMedida.addItem(med.getNomMed());  
+            cboCodMed.addItem(med.getCodMed());
         }
     }
 
@@ -59,6 +60,7 @@ public class FormProPre extends javax.swing.JFrame {
         for (int i = 0; i < productoDespachos.size(); i++) {
             ProductoDespacho des = productoDespachos.get(i);
             cboDespacho.addItem(des.getNomDes());
+            cboCodDes.addItem(des.getCodDes());
         }
     }
 
@@ -81,6 +83,36 @@ public class FormProPre extends javax.swing.JFrame {
         }
     }
 
+    private void agregarProductoPrecio() {
+        ProductoPrecio pre = new ProductoPrecio();
+        pre.setCodProPre(getNuevoCodigo());
+        pre.setProducto_codPro(codPro);
+        pre.setProducto_despacho_codProDes(((Integer) cboCodDes.getSelectedItem()).intValue());
+        pre.setProducto_medida_codProMed(((Integer) cboCodMed.getSelectedItem()).intValue());
+        pre.setPrecio(Double.parseDouble(txtPrecio.getText()));
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        try {
+            sqlMapClient.insert("insertProductoPrecio", pre);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+      private int getNuevoCodigo() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        Object obj = null;
+        int cod = 0;
+        try {
+            obj = sqlMapClient.queryForObject("getMaxProductoPrecio");
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProPre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (obj != null) {
+            cod = ((Integer) obj).intValue();
+        }
+        return cod + 1;
+    }
+        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,6 +132,8 @@ public class FormProPre extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         lblTitulo3 = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
+        cboCodMed = new javax.swing.JComboBox();
+        cboCodDes = new javax.swing.JComboBox();
 
         setTitle("SIGEVI");
         setBackground(new java.awt.Color(0, 0, 0));
@@ -119,10 +153,20 @@ public class FormProPre extends javax.swing.JFrame {
         jLabel2.setText("DESPACHO :");
 
         cboDespacho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR DESPACHO" }));
+        cboDespacho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboDespachoActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("MEDIDA :");
 
         cboMedida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR MEDIDA" }));
+        cboMedida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboMedidaActionPerformed(evt);
+            }
+        });
 
         tblPreciosDeProducto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane1.setViewportView(tblPreciosDeProducto);
@@ -161,6 +205,10 @@ public class FormProPre extends javax.swing.JFrame {
             }
         });
 
+        cboCodMed.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MED" }));
+
+        cboCodDes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DES" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -188,7 +236,11 @@ public class FormProPre extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cboCodMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cboCodDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -198,7 +250,9 @@ public class FormProPre extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,10 +289,24 @@ public class FormProPre extends javax.swing.JFrame {
          this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
+    private void cboMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedidaActionPerformed
+        if(cboMedida.getSelectedIndex()!=-1){
+            cboCodMed.setSelectedIndex(cboMedida.getSelectedIndex());
+        }
+    }//GEN-LAST:event_cboMedidaActionPerformed
+
+    private void cboDespachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDespachoActionPerformed
+        if(cboDespacho.getSelectedIndex()!=-1){
+            cboCodDes.setSelectedIndex(cboDespacho.getSelectedIndex());
+        }
+    }//GEN-LAST:event_cboDespachoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JComboBox cboCodDes;
+    private javax.swing.JComboBox cboCodMed;
     private org.jdesktop.swingx.JXComboBox cboDespacho;
     private javax.swing.JComboBox cboMedida;
     private javax.swing.JLabel jLabel1;

@@ -532,7 +532,7 @@ public class FormProducto extends javax.swing.JPanel {
     private void activarTareas(boolean b) {
         int seleccion = JOptionPane.showConfirmDialog(this, "¿DESEA PROCESAR LA INFORMACIÓN DEL PRODUCTO?", "MENSAJE", 0);
         if (seleccion != -1) {
-            
+
             if (seleccion == 0) {
                 activartextos(!b);
                 txtCodigo.setEnabled(!b);
@@ -571,10 +571,13 @@ public class FormProducto extends javax.swing.JPanel {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (txtNombre.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "INGRESE NOMBRE DE PRODUCTO", "MENSAJE", 2, null);
+            if (cboCategoria.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(this, "SELECCIONE UNA CATEGORIA", "MENSAJE", 2, null);
+            }
         } else {
             agregarProducto();
             JOptionPane.showMessageDialog(this, "PRODUCTO REGISTRADO", "MENSAJE", 1, null);
-           activarTareas(true);
+            activarTareas(true);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -678,7 +681,6 @@ public class FormProducto extends javax.swing.JPanel {
         pxp = new FormProPre();
         pxp.setVisible(true);
     }//GEN-LAST:event_btnPrecioActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
