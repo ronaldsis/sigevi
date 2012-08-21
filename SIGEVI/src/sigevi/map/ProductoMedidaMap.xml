@@ -16,14 +16,7 @@
         FROM producto_medida
         WHERE producto_codPro =#producto_codPro#;
     </select>
-    
-    <select  id="listMedidaXProductoMedida" resultClass="sigevi.bea.ProductoMedida" >
-        SELECT nomMed FROM producto_medida
-        INNER JOIN medida
-        ON producto_medida.medida_codMed=medida.codMed
-        WHERE producto_codPro=#producto_codPro#
-    </select>
-    
+       
     <select id="listMedidasDeProducto" resultClass="sigevi.bea.ProductoMedida">
         SELECT codProMed, nomMed, simMed
         FROM producto_medida 

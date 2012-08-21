@@ -10,8 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import sigevi.bea.Producto;
 import sigevi.bea.ProductoDespacho;
 import sigevi.bea.ProductoMedida;
+import sigevi.bea.ProductoPrecio;
 import sigevi.map.SqlMapConfig;
 
 /**
@@ -20,13 +23,15 @@ import sigevi.map.SqlMapConfig;
  */
 public class FormProPre extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormProPre
-     */
+    DefaultTableModel Modelo;
+    String[] Titulo = {"CODIGO", "MEDIDA", "FORMA DE DESPACHO", "PRECIO"};
+    String[][] datos = {};
+
     public FormProPre() {
         initComponents();
         listarMedidasDeProducto(1);
         listarDespachosDeProducto(1);
+        listarPreciosDeProducto(1);
     }
 
     private void listarMedidasDeProducto(int cod) {
@@ -43,8 +48,8 @@ public class FormProPre extends javax.swing.JFrame {
             cboMedida.addItem(med.getNomMed());
         }
     }
-    
-        private void listarDespachosDeProducto(int cod) {
+
+    private void listarDespachosDeProducto(int cod) {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<ProductoDespacho> productoDespachos = new ArrayList<>();
         try {
@@ -55,10 +60,29 @@ public class FormProPre extends javax.swing.JFrame {
 
         for (int i = 0; i < productoDespachos.size(); i++) {
             ProductoDespacho des = productoDespachos.get(i);
-            cboMedida.addItem(des.getNomDes());
+            cboDespacho.addItem(des.getNomDes());
         }
     }
-    
+
+    private void listarPreciosDeProducto(int cod) {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        List<ProductoPrecio> productoPrecios = new ArrayList<>();
+        try {
+            productoPrecios = sqlMapClient.queryForList("listProducto", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Modelo = new DefaultTableModel(datos, Titulo);
+        tblPreciosDeProducto.setModel(Modelo);
+
+        for (int i = 0; i < productoPrecios.size(); i++) {
+            ProductoPrecio pre = productoPrecios.get(i);
+            Object[] fila = {pre.getCodProPre()};
+            Modelo.addRow(fila);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -67,11 +91,11 @@ public class FormProPre extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtProducto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        cboFormaDespacho = new org.jdesktop.swingx.JXComboBox();
+        cboDespacho = new org.jdesktop.swingx.JXComboBox();
         jLabel3 = new javax.swing.JLabel();
         cboMedida = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDxP = new javax.swing.JTable();
+        tblPreciosDeProducto = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         txtProducto1 = new javax.swing.JTextField();
 
@@ -93,8 +117,8 @@ public class FormProPre extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel2.setText("FORMA DE DESPACHO :");
 
-        cboFormaDespacho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR DESPACHO" }));
-        cboFormaDespacho.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        cboDespacho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR DESPACHO" }));
+        cboDespacho.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel3.setText("MEDIDA :");
@@ -102,8 +126,8 @@ public class FormProPre extends javax.swing.JFrame {
         cboMedida.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         cboMedida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR MEDIDA" }));
 
-        tblDxP.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jScrollPane1.setViewportView(tblDxP);
+        tblPreciosDeProducto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane1.setViewportView(tblPreciosDeProducto);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel4.setText("PRECIO :");
@@ -130,7 +154,7 @@ public class FormProPre extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cboMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboFormaDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -152,7 +176,7 @@ public class FormProPre extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cboFormaDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -165,7 +189,7 @@ public class FormProPre extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.jdesktop.swingx.JXComboBox cboFormaDespacho;
+    private org.jdesktop.swingx.JXComboBox cboDespacho;
     private javax.swing.JComboBox cboMedida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -173,7 +197,7 @@ public class FormProPre extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo1;
-    private javax.swing.JTable tblDxP;
+    private javax.swing.JTable tblPreciosDeProducto;
     private javax.swing.JTextField txtProducto;
     private javax.swing.JTextField txtProducto1;
     // End of variables declaration//GEN-END:variables

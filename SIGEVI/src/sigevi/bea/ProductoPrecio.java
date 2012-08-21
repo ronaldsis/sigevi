@@ -6,6 +6,8 @@ public class ProductoPrecio {
     private Integer producto_codPro;
     private Integer producto_medida_codProMed;
     private Integer producto_despacho_codProDes;
+    private String nomMed;
+    private String nomDes;
     private Double precio;
 
     public Integer getCodProPre() {
@@ -40,6 +42,22 @@ public class ProductoPrecio {
         this.producto_despacho_codProDes = producto_despacho_codProDes;
     }
 
+    public String getNomMed() {
+        return nomMed;
+    }
+
+    public void setNomMed(String nomMed) {
+        this.nomMed = nomMed;
+    }
+
+    public String getNomDes() {
+        return nomDes;
+    }
+
+    public void setNomDes(String nomDes) {
+        this.nomDes = nomDes;
+    }
+
     public Double getPrecio() {
         return precio;
     }
@@ -47,4 +65,5 @@ public class ProductoPrecio {
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
+
 }
