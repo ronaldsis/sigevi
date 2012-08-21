@@ -26,7 +26,7 @@
     </select>
         
     <select id="listDespachosDeProducto" resultClass="sigevi.bea.ProductoDespacho">
-        SELECT  nomPro, nomDes
+        SELECT  nomPro, codDes, nomDes
         FROM producto_despacho
         INNER JOIN producto 
         ON producto_despacho.producto_codPro=producto.codPro

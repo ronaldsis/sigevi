@@ -18,7 +18,7 @@
     </select>
        
     <select id="listMedidasDeProducto" resultClass="sigevi.bea.ProductoMedida">
-        SELECT codProMed, nomMed, simMed
+        SELECT codProMed, codMed, nomMed, simMed
         FROM producto_medida 
         INNER JOIN medida 
         ON producto_medida.medida_codMed=medida.codMed
