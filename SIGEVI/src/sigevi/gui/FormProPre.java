@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigevi.gui;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -11,7 +7,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import sigevi.bea.Producto;
 import sigevi.bea.ProductoDespacho;
 import sigevi.bea.ProductoMedida;
 import sigevi.bea.ProductoPrecio;
@@ -68,7 +63,7 @@ public class FormProPre extends javax.swing.JFrame {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<ProductoPrecio> productoPrecios = new ArrayList<>();
         try {
-            productoPrecios = sqlMapClient.queryForList("listProducto", null);
+            productoPrecios = sqlMapClient.queryForList("listPreciosDeProducto", cod);
         } catch (SQLException ex) {
             Logger.getLogger(FormProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,7 +73,7 @@ public class FormProPre extends javax.swing.JFrame {
 
         for (int i = 0; i < productoPrecios.size(); i++) {
             ProductoPrecio pre = productoPrecios.get(i);
-            Object[] fila = {pre.getCodProPre()};
+            Object[] fila = {pre.getCodProPre(), pre.getNomMed(),pre.getNomDes(),pre.getPrecio()};
             Modelo.addRow(fila);
         }
     }
