@@ -8,12 +8,12 @@ package sigevi.gui;
  *
  * @author SIMONETTA
  */
-public class FormPrecio extends javax.swing.JFrame {
+public class FormProPre extends javax.swing.JFrame {
 
     /**
-     * Creates new form FormPrecio
+     * Creates new form FormProPre
      */
-    public FormPrecio() {
+    public FormProPre() {
         initComponents();
     }
 
