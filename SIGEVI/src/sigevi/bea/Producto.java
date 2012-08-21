@@ -2,18 +2,11 @@ package sigevi.bea;
 
 public class Producto {
     private Integer codPro;
-
     private String nomPro;
-
     private Double stoPro;
-
     private String desPro;
-    
     private String nomCat;
-
     private Integer categoria_codCat;
-
-    private Integer medida_codMed;
 
     public Integer getCodPro() {
         return codPro;
@@ -47,15 +40,7 @@ public class Producto {
         this.categoria_codCat = categoria_codCat;
     }
 
-    public Integer getMedida_codMed() {
-        return medida_codMed;
-    }
-
-    public void setMedida_codMed(Integer medida_codMed) {
-        this.medida_codMed = medida_codMed;
-    }
-    
-     public void setNomCat(String nomCat) {
+    public void setNomCat(String nomCat) {
         this.nomCat = nomCat;
     }
 
