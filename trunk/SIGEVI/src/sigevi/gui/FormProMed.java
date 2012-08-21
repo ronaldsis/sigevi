@@ -19,6 +19,7 @@ public class FormProMed extends javax.swing.JFrame {
 
     public FormProMed() {
         initComponents();
+        this.setLocationRelativeTo(null);
         cargarMedidas();
         Modelo = new DefaultTableModel(datos, Titulo);
         tblProductoMedidas.setModel(Modelo);
@@ -99,6 +100,7 @@ public class FormProMed extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProductoMedidas = new javax.swing.JTable();
+        lblTitulo1 = new javax.swing.JLabel();
 
         lblProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblProducto.setText("PRODUCTO :");
@@ -127,6 +129,14 @@ public class FormProMed extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblProductoMedidas);
 
+        lblTitulo1.setBackground(new java.awt.Color(35, 94, 141));
+        lblTitulo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitulo1.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo1.setText("MEDIDAS DEL PRODUCTO");
+        lblTitulo1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblTitulo1.setOpaque(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,25 +144,26 @@ public class FormProMed extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblProducto)
-                            .addComponent(jLabel1))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtProducto)
-                            .addComponent(cboMedida, 0, 131, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgregar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(lblProducto)
+                    .addComponent(jLabel1))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtProducto)
+                    .addComponent(cboMedida, 0, 131, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnAgregar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addComponent(lblTitulo1)
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProducto)
                     .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,9 +172,8 @@ public class FormProMed extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(cboMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregar))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -180,6 +190,7 @@ public class FormProMed extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblProducto;
+    private javax.swing.JLabel lblTitulo1;
     private javax.swing.JTable tblProductoMedidas;
     private javax.swing.JTextField txtProducto;
     // End of variables declaration//GEN-END:variables
