@@ -13,10 +13,6 @@ import sigevi.bea.ProductoMedida;
 import sigevi.bea.ProductoPrecio;
 import sigevi.map.SqlMapConfig;
 
-/**
- *
- * @author SIMONETTA
- */
 public class FormProPre extends javax.swing.JFrame {
 
     DefaultTableModel Modelo;
@@ -125,6 +121,28 @@ public class FormProPre extends javax.swing.JFrame {
         return cod + 1;
     }
 
+     private boolean getCombinacion(int cod1, int cod2, int cod3) {
+        boolean rsta = false;
+        long cmb = cod1*100000 + cod2*1000 + cod3;
+         System.out.println("combinacion::::   " + cmb);
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        List<ProductoPrecio> combinaciones = new ArrayList<>();
+
+        try {
+            combinaciones = sqlMapClient.queryForList("getCombinacionPrecio");
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProDes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (int i = 0; i < combinaciones.size(); i++) {
+            ProductoPrecio com = combinaciones.get(i);
+            if (com.getCombinacion() == cmb) {
+                rsta = true;
+            }
+        }
+        return rsta;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -318,7 +336,11 @@ public class FormProPre extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (txtPrecio.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "INGRESE PRECIO", "MENSAJE", 2, null);
-        } else {
+        }
+        if (getCombinacion(Integer.parseInt(txtProducto.getText()), cboMedida.getSelectedIndex(),cboDespacho.getSelectedIndex())) {
+            JOptionPane.showMessageDialog(this, "PRECIO DEL PRODUCTO YA REGISTRADO", "MENSAJE", 0, null);
+        }        
+        else {
             agregarProductoPrecio();
             listarPreciosDeProducto(codPro);
         }
@@ -329,6 +351,7 @@ public class FormProPre extends javax.swing.JFrame {
         if (fila != -1) {
             String dato = String.valueOf(this.tblPreciosDeProducto.getValueAt(fila, 0));
             eliminaProductoPrecio(dato);
+            listarPreciosDeProducto(codPro);
         } else {
             JOptionPane.showMessageDialog(this, "SELECCIONE UN REGISTRO DE LA LISTA", "MENSAJE", 0, null);
         }

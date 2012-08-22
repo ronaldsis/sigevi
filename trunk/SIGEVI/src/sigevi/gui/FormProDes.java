@@ -15,7 +15,7 @@ import sigevi.map.SqlMapConfig;
 public class FormProDes extends javax.swing.JFrame {
 
     DefaultTableModel Modelo;
-    String[] Titulo = {"PRODUCTO", "FORMA DE PAGO"};
+    String[] Titulo = {"CODIGO","PRODUCTO", "FORMA DE DESPACHO"};
     String[][] datos = {};
     int codPro = Integer.parseInt(FormProducto.txtCodigo.getText());
 
@@ -81,7 +81,7 @@ public class FormProDes extends javax.swing.JFrame {
 
         for (int i = 0; i < despachos.size(); i++) {
             ProductoDespacho des = despachos.get(i);
-            Object[] fila = {des.getNomPro(), des.getNomDes()};
+            Object[] fila = {des.getCodProDes(),des.getNomPro(), des.getNomDes()};
             Modelo.addRow(fila);
         }
     }
@@ -133,7 +133,7 @@ public class FormProDes extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtCodPro = new javax.swing.JTextField();
         lblTitulo1 = new javax.swing.JLabel();
-        lblTitulo3 = new javax.swing.JLabel();
+        lblTitulo2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProductoDespacho = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
@@ -159,13 +159,13 @@ public class FormProDes extends javax.swing.JFrame {
         lblTitulo1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lblTitulo1.setOpaque(true);
 
-        lblTitulo3.setBackground(new java.awt.Color(35, 94, 141));
-        lblTitulo3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblTitulo3.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo3.setText("LISTA");
-        lblTitulo3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        lblTitulo3.setOpaque(true);
+        lblTitulo2.setBackground(new java.awt.Color(35, 94, 141));
+        lblTitulo2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitulo2.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo2.setText("LISTA");
+        lblTitulo2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblTitulo2.setOpaque(true);
 
         tblProductoDespacho.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane1.setViewportView(tblProductoDespacho);
@@ -203,7 +203,7 @@ public class FormProDes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblTitulo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblTitulo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -227,7 +227,7 @@ public class FormProDes extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(22, 22, 22))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +248,7 @@ public class FormProDes extends javax.swing.JFrame {
                     .addComponent(btnCerrar)
                     .addComponent(btnAgregar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(lblTitulo3)
+                .addComponent(lblTitulo2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -274,6 +274,7 @@ public class FormProDes extends javax.swing.JFrame {
         if (fila != -1) {
             String dato = String.valueOf(this.tblProductoDespacho.getValueAt(fila, 0));
             eliminarProductoDespacho(Integer.parseInt(dato));
+            listarDespachosDeProducto(codPro);
         } else {
             JOptionPane.showMessageDialog(this, "SELECCIONE UN REGISTRO DE LA LISTA", "MENSAJE", 0, null);
         }
@@ -291,7 +292,7 @@ public class FormProDes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo1;
-    private javax.swing.JLabel lblTitulo3;
+    private javax.swing.JLabel lblTitulo2;
     private javax.swing.JTable tblProductoDespacho;
     private javax.swing.JTextField txtCodPro;
     private javax.swing.JTextField txtNomPro;
