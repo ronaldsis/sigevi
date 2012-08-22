@@ -23,6 +23,7 @@ public class FormProMed extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         txtProducto.setText(codPro + "");
+        txtNomPro.setText(FormProducto.getProducto(codPro).getNomPro());
         Modelo = new DefaultTableModel(datos, Titulo);
         tblProductoMedidas.setModel(Modelo);
         cargarMedidas();
@@ -45,7 +46,6 @@ public class FormProMed extends javax.swing.JFrame {
     }
 
     private void listarMedidasDeProducto(int cod) {
-        System.out.println("entro al metodo lista medidas de producto");
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<ProductoMedida> productoMedidas = new ArrayList<>();
         try {
@@ -139,6 +139,7 @@ public class FormProMed extends javax.swing.JFrame {
         lblTitulo2 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
+        txtNomPro = new javax.swing.JTextField();
 
         setTitle("SIGEVI");
         setBackground(new java.awt.Color(0, 0, 0));
@@ -204,13 +205,15 @@ public class FormProMed extends javax.swing.JFrame {
             }
         });
 
+        txtNomPro.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(lblTitulo2, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+            .addComponent(lblTitulo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,8 +229,11 @@ public class FormProMed extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cboMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNomPro, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -237,7 +243,8 @@ public class FormProMed extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProducto)
-                    .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -262,7 +269,6 @@ public class FormProMed extends javax.swing.JFrame {
         }
         if (getCombinacion(Integer.parseInt(txtProducto.getText()), cboMedida.getSelectedIndex())) {
             JOptionPane.showMessageDialog(this, "MEDIDA DEL PRODUCTO YA REGISTRADA", "MENSAJE", 0, null);
-
         } else {
             agregarProductoMedida();
             listarMedidasDeProducto(Integer.parseInt(txtProducto.getText()));
@@ -274,6 +280,7 @@ public class FormProMed extends javax.swing.JFrame {
         if (fila != -1) {
             String dato = String.valueOf(this.tblProductoMedidas.getValueAt(fila, 0));
             eliminarProductoMedida(Integer.parseInt(dato));
+            listarMedidasDeProducto(codPro);
         } else {
             JOptionPane.showMessageDialog(this, "SELECCIONE UN REGISTRO DE LA LISTA", "MENSAJE", 0, null);
         }
@@ -293,6 +300,7 @@ public class FormProMed extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo1;
     private javax.swing.JLabel lblTitulo2;
     private javax.swing.JTable tblProductoMedidas;
+    private javax.swing.JTextField txtNomPro;
     private javax.swing.JTextField txtProducto;
     // End of variables declaration//GEN-END:variables
 }

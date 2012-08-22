@@ -31,6 +31,12 @@
         SELECT max(codProPre)
         FROM producto_precio;
     </select>
+    
+    <select  id="getCombinacionPrecio" resultClass="sigevi.bea.ProductoPrecio">
+        SELECT producto_codPro*100000 + producto_medida_codProMed*1000 + producto_despacho_codProDes 
+        AS combinacion
+        FROM producto_precio;
+    </select>
         
     <!-- DELETE -->
     <delete id="removeProductoPrecio">

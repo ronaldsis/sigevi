@@ -6,6 +6,7 @@ public class ProductoPrecio {
     private Integer producto_codPro;
     private Integer producto_medida_codProMed;
     private Integer producto_despacho_codProDes;
+    private long combinacion;
     private String nomMed;
     private String nomDes;
     private Double precio;
@@ -42,6 +43,14 @@ public class ProductoPrecio {
         this.producto_despacho_codProDes = producto_despacho_codProDes;
     }
 
+    public long getCombinacion() {
+        return combinacion;
+    }
+
+    public void setCombinacion(long combinacion) {
+        this.combinacion = combinacion;
+    }
+
     public String getNomMed() {
         return nomMed;
     }
@@ -66,4 +75,4 @@ public class ProductoPrecio {
         this.precio = precio;
     }
 
-}
+   }
