@@ -326,12 +326,11 @@ public class FormProPre extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int fila = this.tblPreciosDeProducto.getSelectedRow();
-        System.out.println("fila::::::::::::::>>>  " + fila);
         if (fila != -1) {
             String dato = String.valueOf(this.tblPreciosDeProducto.getValueAt(fila, 0));
             eliminaProductoPrecio(dato);
         } else {
-            JOptionPane.showMessageDialog(this, "ISELECCIONE UN REGISTRO DE LA LISTA", "MENSAJE", 0, null);
+            JOptionPane.showMessageDialog(this, "SELECCIONE UN REGISTRO DE LA LISTA", "MENSAJE", 0, null);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 

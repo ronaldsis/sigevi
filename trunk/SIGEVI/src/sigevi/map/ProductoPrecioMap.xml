@@ -31,7 +31,7 @@
         SELECT max(codProPre)
         FROM producto_precio;
     </select>
-    
+        
     <!-- DELETE -->
     <delete id="removeProductoPrecio">
         DELETE FROM producto_precio

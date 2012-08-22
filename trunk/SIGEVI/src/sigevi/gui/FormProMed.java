@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sigevi.bea.Medida;
 import sigevi.bea.ProductoMedida;
@@ -16,15 +17,16 @@ public class FormProMed extends javax.swing.JFrame {
     DefaultTableModel Modelo;
     String[] Titulo = {"CODIGO", "MEDIDA", "SIMBOLO"};
     String[][] datos = {};
-    int codPro=Integer.parseInt(FormProducto.txtCodigo.getText());
+    int codPro = Integer.parseInt(FormProducto.txtCodigo.getText());
 
     public FormProMed() {
         initComponents();
         this.setLocationRelativeTo(null);
-        cargarMedidas();
-        txtProducto.setText(codPro+"");
+        txtProducto.setText(codPro + "");
         Modelo = new DefaultTableModel(datos, Titulo);
         tblProductoMedidas.setModel(Modelo);
+        cargarMedidas();
+        listarMedidasDeProducto(codPro);
     }
 
     private int getNuevoCodigo() {
@@ -43,6 +45,7 @@ public class FormProMed extends javax.swing.JFrame {
     }
 
     private void listarMedidasDeProducto(int cod) {
+        System.out.println("entro al metodo lista medidas de producto");
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<ProductoMedida> productoMedidas = new ArrayList<>();
         try {
@@ -56,7 +59,7 @@ public class FormProMed extends javax.swing.JFrame {
 
         for (int i = 0; i < productoMedidas.size(); i++) {
             ProductoMedida mxp = productoMedidas.get(i);
-            Object[] fila = {mxp.getCodProMed(), mxp.getNomMed(),mxp.getSimMed()};
+            Object[] fila = {mxp.getCodProMed(), mxp.getNomMed(), mxp.getSimMed()};
             Modelo.addRow(fila);
         }
     }
@@ -89,6 +92,36 @@ public class FormProMed extends javax.swing.JFrame {
             Medida med = medidas.get(i);
             cboMedida.addItem(med.getNomMed());
         }
+    }
+
+    private void eliminarProductoMedida(int dato) {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        try {
+            sqlMapClient.delete("removeProductoMedida", dato);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProPre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private boolean getCombinacion(int cod1, int cod2) {
+        boolean rsta = false;
+        long cmb = cod1 * 100000 + cod2;
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        List<ProductoMedida> combinaciones = new ArrayList<>();
+
+        try {
+            combinaciones = sqlMapClient.queryForList("getCombinacionMedida");
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProDes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (int i = 0; i < combinaciones.size(); i++) {
+            ProductoMedida com = combinaciones.get(i);
+            if (com.getCombinacion() == cmb) {
+                rsta = true;
+            }
+        }
+        return rsta;
     }
 
     @SuppressWarnings("unchecked")
@@ -224,18 +257,31 @@ public class FormProMed extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        agregarProductoMedida();
-        listarMedidasDeProducto(Integer.parseInt(txtProducto.getText()));
+        if (cboMedida.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "SELECCIONE UN TIPO DE MEDIDA", "MENSAJE", 2, null);
+        }
+        if (getCombinacion(Integer.parseInt(txtProducto.getText()), cboMedida.getSelectedIndex())) {
+            JOptionPane.showMessageDialog(this, "MEDIDA DEL PRODUCTO YA REGISTRADA", "MENSAJE", 0, null);
+
+        } else {
+            agregarProductoMedida();
+            listarMedidasDeProducto(Integer.parseInt(txtProducto.getText()));
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        int fila = this.tblProductoMedidas.getSelectedRow();
+        if (fila != -1) {
+            String dato = String.valueOf(this.tblProductoMedidas.getValueAt(fila, 0));
+            eliminarProductoMedida(Integer.parseInt(dato));
+        } else {
+            JOptionPane.showMessageDialog(this, "SELECCIONE UN REGISTRO DE LA LISTA", "MENSAJE", 0, null);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCerrar;
