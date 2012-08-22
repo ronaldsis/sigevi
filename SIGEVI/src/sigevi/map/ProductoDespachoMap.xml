@@ -35,7 +35,7 @@
         where producto_despacho.producto_codPro=#producto_despacho.producto_codPro#;
     </select>
     
-    <select  id="getCombinacion" resultClass="sigevi.bea.ProductoDespacho">
+    <select  id="getCombinacionDespacho" resultClass="sigevi.bea.ProductoDespacho">
         SELECT producto_codPro*100000+despacho_codDes as combinacion
         FROM producto_despacho;
     </select>

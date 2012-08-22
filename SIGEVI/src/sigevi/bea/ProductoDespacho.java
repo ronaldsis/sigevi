@@ -2,7 +2,6 @@ package sigevi.bea;
 
 public class ProductoDespacho {
 
-
     private Integer codProDes;
     private Integer codDes;
     private String nomDes;

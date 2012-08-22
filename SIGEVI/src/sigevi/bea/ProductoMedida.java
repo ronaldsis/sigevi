@@ -7,6 +7,7 @@ public class ProductoMedida {
     private Integer codMed;
     private String nomMed;
     private String simMed;
+    private long combinacion;
 
     public Integer getCodProMed() {
         return codProMed;
@@ -56,4 +57,11 @@ public class ProductoMedida {
         this.simMed = simMed;
     }
 
+    public long getCombinacion() {
+        return combinacion;
+    }
+
+    public void setCombinacion(long combinacion) {
+        this.combinacion = combinacion;
+    }
 }

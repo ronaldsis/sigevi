@@ -25,6 +25,11 @@
         where producto_medida.producto_codPro=#producto_medida.producto_codPro#;
     </select>
     
+    <select  id="getCombinacionMedida" resultClass="sigevi.bea.ProductoMedida">
+        SELECT producto_codPro*100000+medida_codMed as combinacion
+        FROM producto_medida;
+    </select>
+    
     <select id="getMaxProductoMedida" resultClass="int">
         SELECT max(codProMed)
         FROM producto_medida;
