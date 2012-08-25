@@ -29,6 +29,11 @@
         FROM cliente
         WHERE codCli =#codCli#;
     </select>
+    <select id="listClienteVenta" resultClass="sigevi.bea.Cliente">
+        SELECT codCli, nomCli, docCli, dirCli
+        FROM cliente
+        WHERE nomCli = #nomCli#;
+    </select>
     
     <select id="listCliente" resultClass="sigevi.bea.Cliente">
         SELECT codCli, tipCli, nomCli, docCli, dirCli, telCli, celCli, emaCli
