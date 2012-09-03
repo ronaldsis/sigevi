@@ -19,16 +19,16 @@ import sigevi.map.SqlMapConfig;
  *
  * @author SIMONETTA
  */
-public class FormDetalleCliente extends javax.swing.JFrame {
+public class FormBuscarCliente extends javax.swing.JFrame {
 
     DefaultTableModel Modelo;
     String[] Titulo = {"CODIGO", "NOMBRE/RAZÓN SOCIAL", "NRO DOC", "DIRECCIÓN"};
     String[][] datos = {};
 
     /**
-     * Creates new form FormDetalleCliente
+     * Creates new form FormBuscarCliente
      */
-    public FormDetalleCliente() {
+    public FormBuscarCliente() {
         initComponents();
     }
 
@@ -135,7 +135,7 @@ public class FormDetalleCliente extends javax.swing.JFrame {
          if (txtNombreCliente.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "INGRESE CÓDIGO", "MENSAJE", 2, null);
         } else {
-            listarClientes(txtNombreCliente.getText());
+            listarClientes(txtNombreCliente.getText()+'%');
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

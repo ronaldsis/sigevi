@@ -20,7 +20,7 @@ import sigevi.map.SqlMapConfig;
 
 public class FormVenta extends javax.swing.JPanel {
     private FormDetalleVenta dp;
-    private FormDetalleCliente dcli;
+    private FormBuscarCliente dcli;
 
     public FormVenta() {
         initComponents();
@@ -401,7 +401,7 @@ private void agregarVenta() {
         }
     }
     private void txtConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultarActionPerformed
-dcli=new FormDetalleCliente();
+dcli=new FormBuscarCliente();
 dcli.setVisible(true);
 //          if (txtCodigo.getText().equals("")) {
 //            JOptionPane.showMessageDialog(this, "INGRESE CÓDIGO", "MENSAJE", 2, null);
