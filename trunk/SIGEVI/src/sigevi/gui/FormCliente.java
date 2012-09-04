@@ -30,7 +30,6 @@ public class FormCliente extends javax.swing.JPanel {
     
     public FormCliente() {
         initComponents();
-        listarClientes();
     }
 
     /**

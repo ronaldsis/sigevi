@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 import javax.swing.*;
 import javax.swing.table.*;
 import jxl.*;
@@ -49,19 +48,4 @@ public class Util {
         annio = Integer.toString(c.get(Calendar.YEAR));
         return hora+min+dia + mes + annio;
     }
-
-    public String autoComplete(String cadena, List<String> data) {
-            String hit = null;
-            for (String o : data) {
-                if (o.startsWith(cadena)) {
-                    if (hit == null) {
-                        hit = o;
-                    } else {
-                        hit = null;
-                        break;
-                    }
-                }
-            }
-            return hit;
-        }
 }
