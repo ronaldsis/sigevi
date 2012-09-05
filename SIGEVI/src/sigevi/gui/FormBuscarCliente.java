@@ -37,6 +37,8 @@ public class FormBuscarCliente extends javax.swing.JFrame {
         tblBusquedaCliente = new javax.swing.JTable();
         btnSeleccionar = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(500, 200));
+
         lblTitulo.setBackground(new java.awt.Color(35, 94, 141));
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));

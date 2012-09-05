@@ -35,7 +35,7 @@ public class FormInicio extends javax.swing.JPanel {
         jButton7 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/cliente.png"))); // NOI18N
 

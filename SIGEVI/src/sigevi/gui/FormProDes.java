@@ -144,6 +144,7 @@ public class FormProDes extends javax.swing.JFrame {
 
         setTitle("SIGEVI");
         setBackground(new java.awt.Color(0, 0, 0));
+        setPreferredSize(new java.awt.Dimension(350, 300));
 
         jLabel1.setText("PRODUCTO :");
 

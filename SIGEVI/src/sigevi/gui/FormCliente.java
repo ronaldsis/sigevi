@@ -66,7 +66,7 @@ public class FormCliente extends javax.swing.JPanel {
         btnSalir = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
         lblCodigo.setText("CODIGO :");
 

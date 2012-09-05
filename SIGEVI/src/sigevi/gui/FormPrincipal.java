@@ -34,7 +34,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         }*/
         initComponents();
         inicio = new FormInicio();
-        this.setSize(800, 600);
+        this.setSize(800, 500);
         this.setLocationRelativeTo(null);
         this.add(inicio);
         this.pack();
