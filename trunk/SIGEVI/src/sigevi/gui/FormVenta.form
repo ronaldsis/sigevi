@@ -56,13 +56,11 @@
                                   <Component id="txtNombre" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtConsultar" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtUsuario" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="txtFecha" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="txtCodigoCliente" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtUsuario" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtFecha" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtCodigoCliente" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="txtConsultar" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
