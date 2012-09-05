@@ -30,9 +30,9 @@
                   <Component id="lblTitulo2" alignment="0" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblTitulo1" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jToolBar" alignment="0" pref="780" max="32767" attributes="0"/>
+                  <Component id="jToolBar" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
                           <Component id="lblCodigo" min="-2" max="-2" attributes="0"/>
@@ -43,12 +43,12 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="txtCodigo" min="-2" pref="123" max="-2" attributes="1"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="lblTipo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="cboTipo" pref="98" max="32767" attributes="0"/>
+                              <Component id="cboTipo" max="32767" attributes="0"/>
                           </Group>
                           <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtDireccion" alignment="0" max="32767" attributes="0"/>
@@ -59,7 +59,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="lblCelular" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtCelular" max="32767" attributes="0"/>
+                              <Component id="txtCelular" min="-2" pref="122" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -112,7 +112,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblTitulo2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="299" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="315" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
