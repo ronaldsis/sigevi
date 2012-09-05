@@ -93,7 +93,7 @@ public class FormCategoria extends javax.swing.JPanel {
         jToolBar.setName(""); // NOI18N
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/new.jpg"))); // NOI18N
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/nuevo.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
         btnNuevo.setToolTipText("");
         btnNuevo.setFocusable(false);
@@ -169,7 +169,7 @@ public class FormCategoria extends javax.swing.JPanel {
         jToolBar.add(btnGuardar);
 
         btnListar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.jpg"))); // NOI18N
+        btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
         btnListar.setText("Listar");
         btnListar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnListar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

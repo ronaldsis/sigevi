@@ -96,7 +96,7 @@ public class FormMedida extends javax.swing.JPanel {
         jToolBar.setName(""); // NOI18N
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/new.jpg"))); // NOI18N
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/nuevo.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
         btnNuevo.setToolTipText("");
         btnNuevo.setFocusable(false);
@@ -172,7 +172,7 @@ public class FormMedida extends javax.swing.JPanel {
         jToolBar.add(btnGuardar);
 
         btnListar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.jpg"))); // NOI18N
+        btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
         btnListar.setText("Listar");
         btnListar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnListar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -282,7 +282,7 @@ public class FormMedida extends javax.swing.JPanel {
                 .addComponent(jToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitulo1)
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCodigo)
@@ -297,11 +297,11 @@ public class FormMedida extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtSimbolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblSimbolo)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblTitulo2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

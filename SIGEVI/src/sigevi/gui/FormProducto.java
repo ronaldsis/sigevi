@@ -98,7 +98,7 @@ public class FormProducto extends javax.swing.JPanel {
         jToolBar.setName(""); // NOI18N
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/new.jpg"))); // NOI18N
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/nuevo.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
         btnNuevo.setToolTipText("");
         btnNuevo.setFocusable(false);
@@ -176,7 +176,7 @@ public class FormProducto extends javax.swing.JPanel {
         jToolBar.add(btnGuardar);
 
         btnListar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.jpg"))); // NOI18N
+        btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
         btnListar.setText("Listar");
         btnListar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnListar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -302,6 +302,11 @@ public class FormProducto extends javax.swing.JPanel {
                                 .add(10, 10, 10)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(layout.createSequentialGroup()
+                                        .add(28, 28, 28)
+                                        .add(lblCodigo1)
+                                        .add(18, 18, 18)
+                                        .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 60, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(layout.createSequentialGroup()
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                                             .add(lblDireccion)
                                             .add(lblDocumento)
@@ -315,20 +320,15 @@ public class FormProducto extends javax.swing.JPanel {
                                                 .add(lblCodigo2)
                                                 .add(1, 1, 1)
                                                 .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                            .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 243, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                                    .add(layout.createSequentialGroup()
-                                        .add(28, 28, 28)
-                                        .add(lblCodigo1)
-                                        .add(18, 18, 18)
-                                        .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 60, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                                .add(54, 54, 54)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(btnDespacho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 140, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(btnPrecio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 140, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, lblTitulo3)
-                                    .add(btnMedidas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 142, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                            .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 243, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                        .add(55, 55, 55)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                            .add(btnDespacho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 140, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(btnPrecio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 140, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, lblTitulo3)
+                                            .add(btnMedidas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 142, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
                             .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(0, 0, Short.MAX_VALUE))
+                        .add(0, 175, Short.MAX_VALUE))
                     .add(lblTitulo2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -338,13 +338,13 @@ public class FormProducto extends javax.swing.JPanel {
                 .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(lblTitulo1)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(lblCodigo1)
+                    .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(20, 20, 20)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(lblCodigo1)
-                            .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(lblDocumento)
                             .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -359,7 +359,6 @@ public class FormProducto extends javax.swing.JPanel {
                             .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(lblCodigo2)))
                     .add(layout.createSequentialGroup()
-                        .add(22, 22, 22)
                         .add(lblTitulo3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(btnMedidas)
@@ -367,7 +366,7 @@ public class FormProducto extends javax.swing.JPanel {
                         .add(btnDespacho)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(btnPrecio)))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(15, 15, 15)
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))

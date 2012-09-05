@@ -286,7 +286,7 @@
               <Font name="Tahoma" size="12" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/sigevi/img/new.jpg"/>
+              <Image iconType="3" name="/sigevi/img/nuevo.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nuevo"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -338,7 +338,7 @@
               <Font name="Tahoma" size="12" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/sigevi/img/edita.png"/>
+              <Image iconType="3" name="/sigevi/img/editar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Editar"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -384,7 +384,7 @@
               <Font name="Tahoma" size="12" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/sigevi/img/listar.jpg"/>
+              <Image iconType="3" name="/sigevi/img/listar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Listar"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
