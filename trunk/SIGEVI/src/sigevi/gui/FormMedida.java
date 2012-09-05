@@ -64,6 +64,7 @@ public class FormMedida extends javax.swing.JPanel {
         txtNombre = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);

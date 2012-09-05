@@ -59,6 +59,8 @@ public class FormVenta extends javax.swing.JPanel {
         lblTitulo1 = new javax.swing.JLabel();
         lblTitulo3 = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(800, 500));
+
         lblCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCliente.setText("RAZON SOCIAL :");
 

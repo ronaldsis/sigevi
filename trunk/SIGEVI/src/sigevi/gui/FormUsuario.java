@@ -71,7 +71,7 @@ public class FormUsuario extends javax.swing.JPanel {
         lblTitulo1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 500));
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
 

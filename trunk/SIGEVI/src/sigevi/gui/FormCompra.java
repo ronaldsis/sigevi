@@ -66,6 +66,8 @@ public class FormCompra extends javax.swing.JPanel {
         lblTitulo3 = new javax.swing.JLabel();
         lblTitulo2 = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(800, 500));
+
         lblNroCompra.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblNroCompra.setText("COMPRA N° :");
 

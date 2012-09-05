@@ -18,7 +18,7 @@ public class FormLogin extends javax.swing.JFrame {
     public FormLogin() {
         super();
         initComponents();
-        this.setSize(800, 600);
+        this.setSize(800, 500);
         this.setLocationRelativeTo(null);
         this.pack();
     }

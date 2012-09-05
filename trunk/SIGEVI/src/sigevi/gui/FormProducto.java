@@ -66,7 +66,7 @@ public class FormProducto extends javax.swing.JPanel {
         lblTitulo3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
         lblTitulo2.setBackground(new java.awt.Color(35, 94, 141));
         lblTitulo2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
