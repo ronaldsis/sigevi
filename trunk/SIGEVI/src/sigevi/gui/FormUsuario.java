@@ -28,8 +28,6 @@ public class FormUsuario extends javax.swing.JPanel {
     public FormUsuario() {
         initComponents();
         cargarPerfiles();
-        Modelo = new DefaultTableModel(datos, Titulo);
-        tblUsuario.setModel(Modelo);
     }
 
     /**
@@ -80,13 +78,10 @@ public class FormUsuario extends javax.swing.JPanel {
         txtPassU.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtPassU.setEnabled(false);
 
-        lblPerfil.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblPerfil.setText("PERFIL :");
 
-        lblContrasena.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblContrasena.setText("PASSWORD :");
 
-        lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblCodigo.setText("CODIGO :");
 
         cboPerfil.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -95,7 +90,6 @@ public class FormUsuario extends javax.swing.JPanel {
 
         txtPassU2.setEnabled(false);
 
-        lblContrasena2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblContrasena2.setText("CONFIRMAR PASS :");
 
         jToolBar.setBackground(new java.awt.Color(255, 255, 255));
@@ -244,13 +238,19 @@ public class FormUsuario extends javax.swing.JPanel {
 
         txtNombre.setEnabled(false);
 
-        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblNombre.setText("NOMBRE :");
 
         tblUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jScrollPane1.setViewportView(tblUsuario);
 
-        lblApellido.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblApellido.setText("APELLIDOS :");
 
         txtApellido.setEnabled(false);
@@ -263,7 +263,6 @@ public class FormUsuario extends javax.swing.JPanel {
         lblTitulo2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lblTitulo2.setOpaque(true);
 
-        lblLogin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblLogin.setText("LOGIN :");
 
         txtLogin.setEnabled(false);
@@ -312,7 +311,7 @@ public class FormUsuario extends javax.swing.JPanel {
                                     .add(txtApellido)
                                     .add(txtPassU2)))
                             .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(0, 0, Short.MAX_VALUE)))
+                        .add(0, 175, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -347,8 +346,8 @@ public class FormUsuario extends javax.swing.JPanel {
                     .add(cboPerfil, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(lblTitulo2)
-                .add(17, 17, 17)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 174, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
