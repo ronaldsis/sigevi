@@ -142,10 +142,8 @@ public class FormDespacho extends javax.swing.JPanel {
         });
         jToolBar.add(btnSalir);
 
-        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblNombre.setText("NOMBRE :");
 
-        lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblCodigo.setText("CODIGO :");
 
         lstDespachos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -172,7 +170,7 @@ public class FormDespacho extends javax.swing.JPanel {
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(78, 78, 78)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 68, Short.MAX_VALUE))
+                .addGap(0, 74, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
