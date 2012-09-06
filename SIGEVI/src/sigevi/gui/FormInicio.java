@@ -34,7 +34,7 @@ public class FormInicio extends javax.swing.JPanel {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(0, 0, 0));
+        setBackground(new java.awt.Color(35, 94, 141));
         setPreferredSize(new java.awt.Dimension(800, 500));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/cliente.png"))); // NOI18N
@@ -90,7 +90,7 @@ public class FormInicio extends javax.swing.JPanel {
                     .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 128, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 128, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jButton6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
