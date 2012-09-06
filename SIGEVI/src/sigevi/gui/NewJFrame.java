@@ -4,10 +4,21 @@
  */
 package sigevi.gui;
 
+import com.ibatis.sqlmap.client.SqlMapClient;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import sigevi.bea.Categoria;
+import sigevi.bea.Producto;
+import sigevi.map.SqlMapConfig;
 import sigevi.uti.ButtonService;
 import sigevi.uti.TableService;
 
@@ -17,44 +28,80 @@ import sigevi.uti.TableService;
  */
 public class NewJFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewJFrame
-     */
+                   JComboBox categorias = new JComboBox(cargarProductos());
     public NewJFrame() {
         initComponents();
-        MyTable();
+AutoCompleteDecorator.decorate(categorias);
+         MyTable();
     }
-
-    public void MyTable() {
+    
+    private void MyTable() {
 
         tabla.setRowHeight(30);
 
-        JComboBox states = new JComboBox(new String[]{"España","Argentina","EEUU"});
-
-        String[] columnNames = new String[]{"Nombre", "email", "Fumador", "Nacionalidad", ""};
+       
+        
+        String[] columnNames = new String[]{ "Nombre", "CANTIDAD", "Fumador", "Nacionalidad", "" };
         Object[][] data = new Object[][]{
-            {"Angel", "angelarcosheredia@gmail.com", false, "Click para elegir", new JButton("Reset")},
-            {"Juan", "juan@gmail.com", false, "Click para elegir", new JButton("Reset")},
-            {"Ana", "ana@hotmail.com", false, "Click para elegir", new JButton("Reset")}
+            {"PIEDRA", "", false, "Click para elegir", new JButton("Reset")},
+            {"PAPEL", "", false, "Click para elegir", new JButton("Reset")},
+            {"TIJERA", "", false, "Click para elegir", new JButton("Reset")}
         };
 
-        TableService model = new TableService(columnNames, data) {};
+        TableService model = new TableService(columnNames, data) {
+        };
 
         // Establecemos el modelo
         tabla.setModel(model);
 
         // Establecemos el renderer y editor que usaremos para el boton
-        //ButtonCellRenderer
-        //ButtonCellEditor
         tabla.setDefaultRenderer(JButton.class, new ButtonService());
         tabla.setDefaultEditor(JButton.class, new ButtonService());
 
         // Editores para cada tipo de objeto, estos nos permitirán darles el comportamiento adecuado
-        tabla.getColumn("Nacionalidad").setCellEditor(new DefaultCellEditor(states));
+        tabla.getColumn("Nacionalidad").setCellEditor(new DefaultCellEditor(categorias));
         tabla.setDefaultEditor(JCheckBox.class, new DefaultCellEditor(new JCheckBox()));
+    }
 
+    private Vector cargarCategorias() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        List<Categoria> categorias = new ArrayList<>();
+        Vector vector=new Vector();
+        try {
+            categorias = sqlMapClient.queryForList("listCategoria", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (int i = 0; i < categorias.size(); i++) {
+            Categoria per = categorias.get(i);
+            vector.add(per.getNomCat());
+        }
+        return vector;
     }
     
+        private Vector cargarProductos() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        List<Producto> categorias = new ArrayList<>();
+        Vector vector=new Vector();
+        try {
+            categorias = sqlMapClient.queryForList("listProducto", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (int i = 0; i < categorias.size(); i++) {
+            Producto per = categorias.get(i);
+            vector.add(per.getNomPro());
+        }
+        return vector;
+    }
+
+    static Vector toArrayList(ArrayList al) {
+        return new Vector(al);
+
+    }
+
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -62,6 +109,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,27 +124,49 @@ public class NewJFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabla.setColumnSelectionAllowed(true);
         jScrollPane2.setViewportView(tabla);
+        tabla.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        jButton1.setText("OBTENER PRECIO");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(234, 234, 234)
+                        .addComponent(jButton1)))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jButton1)
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int fila = this.tabla.getSelectedRow();
+        String dato = String.valueOf(this.tabla.getValueAt(fila, 1));
+        System.out.println("dato:::::::::::"+dato);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,6 +203,7 @@ public class NewJFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
