@@ -93,7 +93,7 @@ public class FormUsuario extends javax.swing.JPanel {
         lblContrasena2.setText("CONFIRMAR PASS :");
 
         jToolBar.setBackground(new java.awt.Color(255, 255, 255));
-        jToolBar.setBorder(null);
+        jToolBar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jToolBar.setFloatable(false);
         jToolBar.setName(""); // NOI18N
         jToolBar.setNextFocusableComponent(this);
@@ -298,8 +298,8 @@ public class FormUsuario extends javax.swing.JPanel {
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                     .add(txtPassU)
                                     .add(txtNombre)
-                                    .add(cboPerfil, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 119, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(cboPerfil, 0, 119, Short.MAX_VALUE)
+                                    .add(txtCodigo))
                                 .add(46, 46, 46)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                                     .add(lblApellido)
@@ -311,7 +311,7 @@ public class FormUsuario extends javax.swing.JPanel {
                                     .add(txtApellido)
                                     .add(txtPassU2)))
                             .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(0, 175, Short.MAX_VALUE)))
+                        .add(0, 171, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -353,7 +353,7 @@ public class FormUsuario extends javax.swing.JPanel {
                 .add(11, 11, 11)
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
