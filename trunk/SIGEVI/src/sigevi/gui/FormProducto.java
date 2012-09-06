@@ -60,10 +60,12 @@ public class FormProducto extends javax.swing.JPanel {
         tblProducto = new javax.swing.JTable();
         cboCategoria = new javax.swing.JComboBox();
         txtStock = new javax.swing.JTextField();
+        tabProcesar = new javax.swing.JTabbedPane();
+        pnlProcesarProducto = new javax.swing.JPanel();
         btnMedidas = new javax.swing.JButton();
         btnDespacho = new javax.swing.JButton();
         btnPrecio = new javax.swing.JButton();
-        lblTitulo3 = new javax.swing.JLabel();
+        btnFinalizar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 500));
@@ -255,37 +257,49 @@ public class FormProducto extends javax.swing.JPanel {
         cboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR CATEGORIA" }));
         cboCategoria.setEnabled(false);
 
+        pnlProcesarProducto.setLayout(new org.jdesktop.swingx.VerticalLayout());
+
         btnMedidas.setText("INGRESAR MEDIDAS");
         btnMedidas.setEnabled(false);
+        btnMedidas.setPreferredSize(new java.awt.Dimension(100, 23));
         btnMedidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMedidasActionPerformed(evt);
             }
         });
+        pnlProcesarProducto.add(btnMedidas);
 
         btnDespacho.setText("INGRESA DESPACHOS");
         btnDespacho.setEnabled(false);
+        btnDespacho.setPreferredSize(new java.awt.Dimension(100, 23));
         btnDespacho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDespachoActionPerformed(evt);
             }
         });
+        pnlProcesarProducto.add(btnDespacho);
 
         btnPrecio.setText("INGRESAR PRECIOS");
         btnPrecio.setEnabled(false);
+        btnPrecio.setPreferredSize(new java.awt.Dimension(100, 23));
         btnPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrecioActionPerformed(evt);
             }
         });
+        pnlProcesarProducto.add(btnPrecio);
 
-        lblTitulo3.setBackground(new java.awt.Color(35, 94, 141));
-        lblTitulo3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblTitulo3.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo3.setText("PROCESAR PRODUCTO");
-        lblTitulo3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        lblTitulo3.setOpaque(true);
+        btnFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ok.png"))); // NOI18N
+        btnFinalizar.setText("FINALIZAR");
+        btnFinalizar.setEnabled(false);
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarActionPerformed(evt);
+            }
+        });
+        pnlProcesarProducto.add(btnFinalizar);
+
+        tabProcesar.addTab("PROCESAR PRODUCTO", pnlProcesarProducto);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -294,43 +308,36 @@ public class FormProducto extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(lblTitulo1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jScrollPane1)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(lblTitulo1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(jScrollPane1)
                             .add(layout.createSequentialGroup()
-                                .add(10, 10, 10)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(layout.createSequentialGroup()
-                                        .add(28, 28, 28)
-                                        .add(lblCodigo1)
-                                        .add(18, 18, 18)
-                                        .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                    .add(layout.createSequentialGroup()
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                            .add(lblDireccion)
-                                            .add(lblDocumento)
-                                            .add(lblCodigo))
-                                        .add(18, 18, 18)
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane2)
-                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                                .add(txtStock, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                                .add(lblCodigo2)
-                                                .add(1, 1, 1)
-                                                .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                            .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 243, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                        .add(55, 55, 55)
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                            .add(btnDespacho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 140, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                            .add(btnPrecio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 140, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, lblTitulo3)
-                                            .add(btnMedidas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 142, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
-                            .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(0, 175, Short.MAX_VALUE))
-                    .add(lblTitulo2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                                .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(0, 175, Short.MAX_VALUE))
+                            .add(lblTitulo2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .add(layout.createSequentialGroup()
+                        .add(10, 10, 10)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(lblDireccion)
+                            .add(lblDocumento)
+                            .add(lblCodigo)
+                            .add(lblCodigo1))
+                        .add(18, 18, 18)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(layout.createSequentialGroup()
+                                .add(txtStock, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 60, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(lblCodigo2)
+                                .add(18, 18, 18)
+                                .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(jScrollPane2)
+                            .add(txtNombre)
+                            .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 60, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(tabProcesar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 199, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(146, 146, 146))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -339,37 +346,30 @@ public class FormProducto extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(lblTitulo1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(lblCodigo1)
-                    .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(lblDocumento)
-                            .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(lblCodigo1)
+                            .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(txtNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lblDocumento))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(lblDireccion)
-                            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 58, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(10, 10, 10)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(lblCodigo)
-                            .add(txtStock, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(lblCodigo2)))
-                    .add(layout.createSequentialGroup()
-                        .add(lblTitulo3)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(btnMedidas)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(btnDespacho)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(btnPrecio)))
+                            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 58, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(tabProcesar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(lblCodigo)
+                    .add(txtStock, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(lblCodigo2))
                 .add(15, 15, 15)
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -507,9 +507,7 @@ public class FormProducto extends javax.swing.JPanel {
             if (seleccion == 0) {
                 activartextos(!b);
                 txtCodigo.setEnabled(!b);
-                btnMedidas.setEnabled(b);
-                btnDespacho.setEnabled(b);
-                btnPrecio.setEnabled(b);
+                activarTab(b);
             } else {
                 listarProductos();
                 activarBotones();
@@ -562,6 +560,8 @@ public class FormProducto extends javax.swing.JPanel {
                 txtNombre.setText(producto.getNomPro());
                 txtDescripción.setText(producto.getDesPro());
                 txtStock.setText(producto.getStoPro().toString());
+                System.out.println("categoria:::::::::"+producto.getNomCat());
+                cboCategoria.setSelectedIndex(producto.getCategoria_codCat());
                 btnEliminar.setEnabled(true);
                 btnEditar.setEnabled(true);
             } else {
@@ -570,6 +570,13 @@ public class FormProducto extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void activarTab(boolean b){
+        btnMedidas.setEnabled(b);
+        btnDespacho.setEnabled(b);
+        btnPrecio.setEnabled(b);
+        btnFinalizar.setEnabled(b);
+    }
+    
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         activartextos(true);
         btnNuevo.setEnabled(false);
@@ -577,6 +584,7 @@ public class FormProducto extends javax.swing.JPanel {
         btnEliminar.setEnabled(false);
         btnGuardar.setEnabled(true);
         btnListar.setEnabled(false);
+        activarTab(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -607,6 +615,7 @@ public class FormProducto extends javax.swing.JPanel {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         activarBotones();
+        activarTab(false);
         btnEliminar.setEnabled(false);
         btnEditar.setEnabled(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -651,6 +660,11 @@ public class FormProducto extends javax.swing.JPanel {
         pxp = new FormProPre();
         pxp.setVisible(true);
     }//GEN-LAST:event_btnPrecioActionPerformed
+
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+     activarTab(false);
+    }//GEN-LAST:event_btnFinalizarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
@@ -659,6 +673,7 @@ public class FormProducto extends javax.swing.JPanel {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnExcel;
+    private javax.swing.JButton btnFinalizar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnListar;
@@ -677,7 +692,8 @@ public class FormProducto extends javax.swing.JPanel {
     private javax.swing.JLabel lblDocumento;
     private javax.swing.JLabel lblTitulo1;
     private javax.swing.JLabel lblTitulo2;
-    private javax.swing.JLabel lblTitulo3;
+    private javax.swing.JPanel pnlProcesarProducto;
+    private javax.swing.JTabbedPane tabProcesar;
     private javax.swing.JTable tblProducto;
     public static javax.swing.JTextField txtCodigo;
     private javax.swing.JTextArea txtDescripción;

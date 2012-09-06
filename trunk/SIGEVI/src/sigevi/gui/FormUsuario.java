@@ -93,12 +93,13 @@ public class FormUsuario extends javax.swing.JPanel {
         lblContrasena2.setText("CONFIRMAR PASS :");
 
         jToolBar.setBackground(new java.awt.Color(255, 255, 255));
-        jToolBar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jToolBar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jToolBar.setFloatable(false);
+        jToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jToolBar.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jToolBar.setName(""); // NOI18N
         jToolBar.setNextFocusableComponent(this);
 
-        btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/nuevo.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
         btnNuevo.setToolTipText("");
@@ -112,7 +113,6 @@ public class FormUsuario extends javax.swing.JPanel {
         });
         jToolBar.add(btnNuevo);
 
-        btnAgregar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/agregar.png"))); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.setEnabled(false);
@@ -125,7 +125,6 @@ public class FormUsuario extends javax.swing.JPanel {
         });
         jToolBar.add(btnAgregar);
 
-        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/buscar.png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.setToolTipText("");
@@ -138,7 +137,6 @@ public class FormUsuario extends javax.swing.JPanel {
         });
         jToolBar.add(btnBuscar);
 
-        btnEditar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/editar.png"))); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -150,7 +148,6 @@ public class FormUsuario extends javax.swing.JPanel {
         });
         jToolBar.add(btnEditar);
 
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/eliminar.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -174,7 +171,6 @@ public class FormUsuario extends javax.swing.JPanel {
         });
         jToolBar.add(btnGuardar);
 
-        btnListar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
         btnListar.setText("Listar");
         btnListar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -186,7 +182,6 @@ public class FormUsuario extends javax.swing.JPanel {
         });
         jToolBar.add(btnListar);
 
-        btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -198,7 +193,6 @@ public class FormUsuario extends javax.swing.JPanel {
         });
         jToolBar.add(btnCancelar);
 
-        btnExcel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/excel.png"))); // NOI18N
         btnExcel.setText("Excel");
         btnExcel.setFocusable(false);
@@ -211,7 +205,6 @@ public class FormUsuario extends javax.swing.JPanel {
         });
         jToolBar.add(btnExcel);
 
-        btnImprimir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/impimir.png"))); // NOI18N
         btnImprimir.setText("Impirmir");
         btnImprimir.setFocusable(false);
@@ -224,10 +217,10 @@ public class FormUsuario extends javax.swing.JPanel {
         });
         jToolBar.add(btnImprimir);
 
-        btnSalir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/inicio.png"))); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalir.setOpaque(false);
         btnSalir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -311,7 +304,7 @@ public class FormUsuario extends javax.swing.JPanel {
                                     .add(txtApellido)
                                     .add(txtPassU2)))
                             .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(0, 171, Short.MAX_VALUE)))
+                        .add(0, 169, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -353,7 +346,7 @@ public class FormUsuario extends javax.swing.JPanel {
                 .add(11, 11, 11)
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
