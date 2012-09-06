@@ -27,6 +27,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
      * Creates new form FormDetalleVenta
      */
     public FormDetalleVenta() {
+        this.setLocationRelativeTo(null);
         initComponents();
         cargarCategorias();
         autocompletarBox();
@@ -289,6 +290,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             cboCategoria.addItem(per.getNomCat());
         }
     }
+        
     private void cboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCategoriaActionPerformed
         cboProducto.removeAllItems();
         cboProducto.addItem("ELEJIR");
