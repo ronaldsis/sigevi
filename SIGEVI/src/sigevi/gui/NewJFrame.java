@@ -16,7 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-import sigevi.bea.Categoria;
 import sigevi.bea.Producto;
 import sigevi.map.SqlMapConfig;
 import sigevi.uti.ButtonService;
@@ -62,24 +61,7 @@ AutoCompleteDecorator.decorate(categorias);
         tabla.getColumn("Nacionalidad").setCellEditor(new DefaultCellEditor(categorias));
         tabla.setDefaultEditor(JCheckBox.class, new DefaultCellEditor(new JCheckBox()));
     }
-
-    private Vector cargarCategorias() {
-        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
-        List<Categoria> categorias = new ArrayList<>();
-        Vector vector=new Vector();
-        try {
-            categorias = sqlMapClient.queryForList("listCategoria", null);
-        } catch (SQLException ex) {
-            Logger.getLogger(FormProducto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        for (int i = 0; i < categorias.size(); i++) {
-            Categoria per = categorias.get(i);
-            vector.add(per.getNomCat());
-        }
-        return vector;
-    }
-    
+  
         private Vector cargarProductos() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<Producto> categorias = new ArrayList<>();
@@ -110,6 +92,8 @@ AutoCompleteDecorator.decorate(categorias);
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,7 +107,15 @@ AutoCompleteDecorator.decorate(categorias);
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tabla.setColumnSelectionAllowed(true);
         jScrollPane2.setViewportView(tabla);
         tabla.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -135,6 +127,27 @@ AutoCompleteDecorator.decorate(categorias);
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,20 +156,24 @@ AutoCompleteDecorator.decorate(categorias);
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(68, 68, 68)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(234, 234, 234)
-                        .addComponent(jButton1)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addGap(87, 87, 87)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addContainerGap()
                 .addComponent(jButton1)
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addGap(8, 8, 8)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(279, 279, 279))
         );
 
         pack();
@@ -205,6 +222,8 @@ AutoCompleteDecorator.decorate(categorias);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }
