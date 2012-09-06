@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import sigevi.bea.Categoria;
 import sigevi.bea.Producto;
 import sigevi.map.SqlMapConfig;
@@ -27,6 +28,7 @@ public class FormProducto extends javax.swing.JPanel {
     public FormProducto() {
         initComponents();
         cargarCategorias();
+        AutoCompleteDecorator.decorate(this.cboCategoria);
     }
 
     @SuppressWarnings("unchecked")
