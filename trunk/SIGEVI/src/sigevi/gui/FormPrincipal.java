@@ -2,7 +2,6 @@ package sigevi.gui;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.metal.MetalLookAndFeel;
 
 public class FormPrincipal extends javax.swing.JFrame {
 
@@ -16,32 +15,19 @@ public class FormPrincipal extends javax.swing.JFrame {
     private FormProveedor proveedor;
     private FormInicio inicio;
     private FormDespacho precio;
-    
 
     public FormPrincipal() {
         super();
-        
-                  UIManager.LookAndFeelInfo[] lista = UIManager.getInstalledLookAndFeels();
-        for (int i = 0; i < lista.length; i++) {
-                System.out.println("::::::"+lista[i].getClassName());
+
+        try {
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+            //UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            //UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
         }
-
-	try {
-		//UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-               // UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-              //  UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-                UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
-               // UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
-                //UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-                    //UIManager.setLookAndFeel("com.sun.java.swing.plaf.mac.MacLookAndFeel");
-	} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-		e.printStackTrace();
-	}
-        
-        
-        
-    
-
         initComponents();
         inicio = new FormInicio();
         this.setSize(800, 500);
@@ -79,6 +65,7 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         mArchivo.setText("Archivo");
 
+        mInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ico.png"))); // NOI18N
         mInicio.setText("Inicio");
         mInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,6 +74,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         mArchivo.add(mInicio);
 
+        mSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ico.png"))); // NOI18N
         mSalir.setText("Salir");
         mSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +87,7 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         mMantenimiento.setText("Mantenimientos");
 
+        mUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ico.png"))); // NOI18N
         mUsuarios.setText("Usuarios");
         mUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +96,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         mMantenimiento.add(mUsuarios);
 
+        mClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ico.png"))); // NOI18N
         mClientes.setText("Clientes");
         mClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,6 +105,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         mMantenimiento.add(mClientes);
 
+        mProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ico.png"))); // NOI18N
         mProveedores.setText("Proveedores");
         mProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,6 +114,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         mMantenimiento.add(mProveedores);
 
+        mProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ico.png"))); // NOI18N
         mProductos.setText("Productos");
         mProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +123,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         mMantenimiento.add(mProductos);
 
+        mCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ico.png"))); // NOI18N
         mCategoria.setText("Categoria");
         mCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +132,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         mMantenimiento.add(mCategoria);
 
+        mMedida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ico.png"))); // NOI18N
         mMedida.setText("Medidas");
         mMedida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +141,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         mMantenimiento.add(mMedida);
 
+        mDespacho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ico.png"))); // NOI18N
         mDespacho.setText("Forma Despacho");
         mDespacho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +154,7 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         mVentas.setText("Ventas");
 
+        mOventa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ico.png"))); // NOI18N
         mOventa.setText("Vender");
         mOventa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +167,7 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         mCompras.setText("Compras");
 
+        mOcompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ico.png"))); // NOI18N
         mOcompra.setText("Compras");
         mOcompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
