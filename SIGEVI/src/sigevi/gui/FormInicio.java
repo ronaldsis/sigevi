@@ -26,6 +26,8 @@ public class FormInicio extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
+        jFileChooser1 = new javax.swing.JFileChooser();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -101,5 +103,7 @@ public class FormInicio extends javax.swing.JPanel {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JOptionPane jOptionPane1;
     // End of variables declaration//GEN-END:variables
 }
