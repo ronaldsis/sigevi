@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import sigevi.bea.Categoria;
+import sigevi.bea.Medida;
 import sigevi.bea.Producto;
 import sigevi.bea.ProductoDespacho;
 import sigevi.bea.ProductoMedida;
@@ -20,6 +21,10 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         initComponents();
         listarCategorias();
         autocompletarBox();
+        cboCodDes.setVisible(false);
+        cboCodMed.setVisible(false);
+        cboCodPro.setVisible(false);
+        txtCodPre.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -51,26 +56,21 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         cboCodPro = new javax.swing.JComboBox();
         cboCodMed = new javax.swing.JComboBox();
         cboCodDes = new javax.swing.JComboBox();
-        txtPrecio = new javax.swing.JTextField();
+        txtCodPre = new javax.swing.JTextField();
 
         jButton4.setText("jButton4");
 
-        btnAgregarDetalle.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        btnAgregarDetalle.setText("AGREGAR A LA VENTA");
+        btnAgregarDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/add.png"))); // NOI18N
+        btnAgregarDetalle.setText("AGREGAR");
 
-        lblCategoria.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         lblCategoria.setText("CATEGORIA:");
 
-        lblProducto.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         lblProducto.setText("PRODUCTO:");
 
-        lblMedida.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         lblMedida.setText("MEDIDA:");
 
-        lblStock.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         lblStock.setText("STOCK:");
 
-        cboCategoria.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         cboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR" }));
         cboCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,16 +78,12 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             }
         });
 
-        lblTipoVenta.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         lblTipoVenta.setText("TIPO DE VENTA:");
 
-        lblAncho.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         lblAncho.setText("ANCHO:");
 
-        lblLargo.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         lblLargo.setText("LARGO:");
 
-        cboProducto.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         cboProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR" }));
         cboProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +91,6 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             }
         });
 
-        cboDespacho.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         cboDespacho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR" }));
         cboDespacho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,9 +98,6 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             }
         });
 
-        txtStock.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-
-        cboMedida.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         cboMedida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR" }));
         cboMedida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,24 +105,11 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             }
         });
 
-        txtPies.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         txtPies.setText("PIE CUADRADO:");
 
-        txtSugerido.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         txtSugerido.setText("PRECIO SUGERIDO:");
 
-        txtPrecioVenta.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         txtPrecioVenta.setText("PRECIO VENTA:");
-
-        txtAncho.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-
-        txtLargo.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-
-        txtPie.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-
-        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
 
         cboCodPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "pro" }));
 
@@ -179,7 +158,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cboCodDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCodPre, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -233,7 +212,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cboCodDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodPre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -274,6 +253,20 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         producto = ((Producto) obj);
         return producto.getStoPro();
     }
+    
+    private Medida getMedida(int codigo) {
+        Medida medida = new Medida();
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        Object obj = null;
+        try {
+            obj = sqlMapClient.queryForObject("getMedida", codigo);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormMedida.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        medida = ((Medida) obj);
+        return medida;
+    }
+    
     private void listarProductosDeCategoria(int codCat) {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<Producto> productos = new ArrayList<>();
@@ -354,11 +347,13 @@ public class FormDetalleVenta extends javax.swing.JFrame {
     private void cboDespachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDespachoActionPerformed
         if (cboDespacho.getSelectedIndex() != -1) {
             cboCodDes.setSelectedIndex(cboDespacho.getSelectedIndex());
+                   if (cboDespacho.getSelectedItem().toString().equals("1 PLANCHA")){
+            int cod = ((Integer) cboCodMed.getSelectedItem()).intValue();
+            txtAncho.setText(getMedida(cod).getAncMed()+"");
+            txtLargo.setText(getMedida(cod).getLarMed()+"");
         }
-        if (cboDespacho.getSelectedItem().toString().equals("PEDAZO")){
-            String medida=cboMedida.getSelectedItem().toString();
-            String largo =medida.substring(WIDTH, WIDTH);
         }
+ 
     }//GEN-LAST:event_cboDespachoActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarDetalle;
@@ -380,10 +375,10 @@ public class FormDetalleVenta extends javax.swing.JFrame {
     private javax.swing.JLabel lblStock;
     private javax.swing.JLabel lblTipoVenta;
     private javax.swing.JTextField txtAncho;
+    private javax.swing.JTextField txtCodPre;
     private javax.swing.JTextField txtLargo;
     private javax.swing.JTextField txtPie;
     private javax.swing.JLabel txtPies;
-    private javax.swing.JTextField txtPrecio;
     private javax.swing.JLabel txtPrecioVenta;
     private javax.swing.JTextField txtStock;
     private javax.swing.JLabel txtSugerido;

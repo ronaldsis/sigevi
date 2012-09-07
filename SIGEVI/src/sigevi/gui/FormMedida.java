@@ -21,7 +21,7 @@ import sigevi.uti.Util;
 public class FormMedida extends javax.swing.JPanel {
 
     DefaultTableModel Modelo;
-    String[] Titulo = {"CODIGO", "NOMBRE", "SIMBOLO","DESCRIPCIÓN"};
+    String[] Titulo = {"CODIGO", "NOMBRE", "UNIDAD DE MEDIDA","ANCHO", "LARGO"};
     String[][] datos = {};
     
     public FormMedida() {
@@ -37,13 +37,10 @@ public class FormMedida extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtDescripcion = new javax.swing.JTextArea();
         txtCodigo = new javax.swing.JTextField();
         lblCodigo = new javax.swing.JLabel();
         lblSimbolo = new javax.swing.JLabel();
         lblTitulo2 = new javax.swing.JLabel();
-        lblDescripcion = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         txtSimbolo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -62,13 +59,13 @@ public class FormMedida extends javax.swing.JPanel {
         btnSalir = new javax.swing.JButton();
         lblTitulo1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
+        lblAncho = new javax.swing.JLabel();
+        lblLargo = new javax.swing.JLabel();
+        txtLargo = new javax.swing.JTextField();
+        txtAncho = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 500));
-
-        txtDescripcion.setColumns(20);
-        txtDescripcion.setRows(5);
-        jScrollPane2.setViewportView(txtDescripcion);
 
         lblCodigo.setText("CODIGO :");
 
@@ -81,8 +78,6 @@ public class FormMedida extends javax.swing.JPanel {
         lblTitulo2.setText("LISTA DE MEDIDAS");
         lblTitulo2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lblTitulo2.setOpaque(true);
-
-        lblDescripcion.setText("DESCRIPCIÓN :");
 
         lblNombre.setText("NOMBRE :");
 
@@ -244,6 +239,14 @@ public class FormMedida extends javax.swing.JPanel {
 
         txtNombre.setEnabled(false);
 
+        lblAncho.setText("ANCHO :");
+
+        lblLargo.setText("LARGO :");
+
+        txtLargo.setEnabled(false);
+
+        txtAncho.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -252,7 +255,7 @@ public class FormMedida extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 77, Short.MAX_VALUE)
+                        .addGap(0, 109, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblNombre)
@@ -266,11 +269,17 @@ public class FormMedida extends javax.swing.JPanel {
                                 .addComponent(lblCodigo)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDescripcion)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(125, 125, 125))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblAncho)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtAncho, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblLargo)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtLargo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(254, 254, 254))
                     .addComponent(lblTitulo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addComponent(lblTitulo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -286,23 +295,25 @@ public class FormMedida extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCodigo)
-                    .addComponent(lblDescripcion))
+                    .addComponent(lblCodigo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNombre))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtSimbolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSimbolo)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtAncho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblAncho)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblSimbolo)
+                    .addComponent(txtSimbolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtLargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblLargo)))
+                .addGap(16, 16, 16)
                 .addComponent(lblTitulo2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -339,7 +350,16 @@ public class FormMedida extends javax.swing.JPanel {
         med.setCodMed(Integer.parseInt(txtCodigo.getText()));
         med.setNomMed(txtNombre.getText().toUpperCase());
         med.setSimMed(txtSimbolo.getText().toUpperCase());
-        med.setDesMed(txtDescripcion.getText().toUpperCase());
+        
+        if(txtLargo.getText().equals("")||txtAncho.getText().equals("")){
+           med.setLarMed(0);
+            med.setAncMed(0); 
+        }
+        else{
+            med.setLarMed(Integer.parseInt(txtLargo.getText()));
+            med.setAncMed(Integer.parseInt(txtAncho.getText()));
+        }
+            
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
@@ -355,8 +375,9 @@ public class FormMedida extends javax.swing.JPanel {
         med=getMedida(Integer.parseInt(txtCodigo.getText()));
         med.setNomMed(txtNombre.getText().toUpperCase());
         med.setSimMed(txtSimbolo.getText().toUpperCase());
-        med.setDesMed(txtDescripcion.getText().toUpperCase());
-
+        med.setLarMed(Integer.parseInt(txtLargo.getText()));
+        med.setAncMed(Integer.parseInt(txtAncho.getText()));
+        
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
 
@@ -389,7 +410,7 @@ public class FormMedida extends javax.swing.JPanel {
 
         for (int i = 0; i < medidas.size(); i++) {
             Medida med = medidas.get(i);
-            Object[] fila = {med.getCodMed(),med.getNomMed(),med.getSimMed(),med.getDesMed()};
+            Object[] fila = {med.getCodMed(),med.getNomMed(),med.getSimMed(),med.getAncMed(),med.getLarMed()};
             Modelo.addRow(fila);
         }
     }
@@ -398,14 +419,16 @@ public class FormMedida extends javax.swing.JPanel {
         txtCodigo.setText("");
         txtNombre.setText("");
         txtSimbolo.setText("");
-        txtDescripcion.setText("");
+        txtAncho.setText("");
+        txtLargo.setText("");
     }
 
     private void activartextos(boolean b) {
         txtCodigo.setEnabled(!b);
         txtNombre.setEnabled(b);
         txtSimbolo.setEnabled(b);
-        txtDescripcion.setEnabled(b);
+        txtAncho.setEnabled(b);
+        txtLargo.setEnabled(b);
     }
 
     private void activarBotones() {
@@ -454,7 +477,8 @@ public class FormMedida extends javax.swing.JPanel {
             if (medida != null) {
 
                 txtNombre.setText(medida.getNomMed());
-                txtDescripcion.setText(medida.getDesMed());
+                txtLargo.setText(medida.getLarMed()+"");
+                txtAncho.setText(medida.getAncMed()+"");
             } else {
                 JOptionPane.showMessageDialog(this, "MEDIDA NO EXISTE", "MENSAJE", 0, null);
             }
@@ -540,17 +564,18 @@ public class FormMedida extends javax.swing.JPanel {
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnSalir;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar;
+    private javax.swing.JLabel lblAncho;
     private javax.swing.JLabel lblCodigo;
-    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblLargo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblSimbolo;
     private javax.swing.JLabel lblTitulo1;
     private javax.swing.JLabel lblTitulo2;
     private javax.swing.JTable tblMedida;
+    private javax.swing.JTextField txtAncho;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextArea txtDescripcion;
+    private javax.swing.JTextField txtLargo;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtSimbolo;
     // End of variables declaration//GEN-END:variables

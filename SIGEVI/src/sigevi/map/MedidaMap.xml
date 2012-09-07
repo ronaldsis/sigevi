@@ -6,8 +6,8 @@
     
     <!-- INSERT -->
     <insert id="insertMedida" parameterClass="sigevi.bea.Medida" >
-        INSERT INTO medida (codMed, nomMed,simMed, desMed)
-        VALUES (#codMed#, #nomMed#, #simMed#, #desMed#);
+        INSERT INTO medida (codMed, nomMed,simMed, ancMed, larMed)
+        VALUES (#codMed#, #nomMed#, #simMed#, #ancMed#, #larMed#);
     </insert>
     
     <!-- UPDATE -->
@@ -15,7 +15,8 @@
         UPDATE medida SET
         nomMed =#nomMed#,
         simMed =#simMed#,
-        desMed =#desMed#
+        ancMed =#ancMed#
+        larMed =#larMed#
         WHERE codMed =#codMed#;
     </update>
    

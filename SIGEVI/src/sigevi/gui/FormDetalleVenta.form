@@ -69,7 +69,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="cboCodDes" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtPrecio" min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="txtCodPre" min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -138,7 +138,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="cboCodDes" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPrecio" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="txtCodPre" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -148,49 +148,34 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnAgregarDetalle">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/sigevi/img/add.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="AGREGAR A LA VENTA"/>
+        <Property name="text" type="java.lang.String" value="AGREGAR"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCategoria">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="CATEGORIA:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblProducto">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="PRODUCTO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblMedida">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="MEDIDA:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblStock">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="STOCK:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cboCategoria">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
             <StringItem index="0" value="ELEGIR"/>
@@ -203,33 +188,21 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblTipoVenta">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="TIPO DE VENTA:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblAncho">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="ANCHO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLargo">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="LARGO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cboProducto">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
             <StringItem index="0" value="ELEGIR"/>
@@ -242,9 +215,6 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="cboDespacho">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
             <StringItem index="0" value="ELEGIR"/>
@@ -256,17 +226,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtStock">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cboMedida">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
             <StringItem index="0" value="ELEGIR"/>
@@ -279,62 +241,28 @@
     </Component>
     <Component class="javax.swing.JLabel" name="txtPies">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="PIE CUADRADO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="txtSugerido">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="PRECIO SUGERIDO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="txtPrecioVenta">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="PRECIO VENTA:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAncho">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtLargo">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPie">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField5">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField6">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="10" style="0"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cboCodPro">
       <Properties>
@@ -363,7 +291,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPrecio">
+    <Component class="javax.swing.JTextField" name="txtCodPre">
     </Component>
   </SubComponents>
 </Form>
