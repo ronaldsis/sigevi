@@ -93,7 +93,7 @@ public class FormUsuario extends javax.swing.JPanel {
         lblContrasena2.setText("CONFIRMAR PASS :");
 
         jToolBar.setBackground(new java.awt.Color(255, 255, 255));
-        jToolBar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jToolBar.setBorder(null);
         jToolBar.setFloatable(false);
         jToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jToolBar.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -304,7 +304,7 @@ public class FormUsuario extends javax.swing.JPanel {
                                     .add(txtApellido)
                                     .add(txtPassU2)))
                             .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(0, 169, Short.MAX_VALUE)))
+                        .add(0, 175, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -346,7 +346,7 @@ public class FormUsuario extends javax.swing.JPanel {
                 .add(11, 11, 11)
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

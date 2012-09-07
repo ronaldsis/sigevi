@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigevi.gui;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -17,21 +13,13 @@ import sigevi.bea.ProductoDespacho;
 import sigevi.bea.ProductoMedida;
 import sigevi.map.SqlMapConfig;
 
-/**
- *
- * @author SIMONETTA
- */
 public class FormDetalleVenta extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormDetalleVenta
-     */
     public FormDetalleVenta() {
         this.setLocationRelativeTo(null);
         initComponents();
-        cargarCategorias();
+        listarCategorias();
         autocompletarBox();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -39,8 +27,8 @@ public class FormDetalleVenta extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnAgregarDetalle = new javax.swing.JButton();
+        lblCategoria = new javax.swing.JLabel();
         lblProducto = new javax.swing.JLabel();
         lblMedida = new javax.swing.JLabel();
         lblStock = new javax.swing.JLabel();
@@ -49,27 +37,29 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         lblAncho = new javax.swing.JLabel();
         lblLargo = new javax.swing.JLabel();
         cboProducto = new javax.swing.JComboBox();
-        cboTipoDeVenta = new javax.swing.JComboBox();
-        jTextField1 = new javax.swing.JTextField();
+        cboDespacho = new javax.swing.JComboBox();
+        txtStock = new javax.swing.JTextField();
         cboMedida = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtPies = new javax.swing.JLabel();
+        txtSugerido = new javax.swing.JLabel();
+        txtPrecioVenta = new javax.swing.JLabel();
+        txtAncho = new javax.swing.JTextField();
+        txtLargo = new javax.swing.JTextField();
+        txtPie = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
+        cboCodPro = new javax.swing.JComboBox();
+        cboCodMed = new javax.swing.JComboBox();
+        cboCodDes = new javax.swing.JComboBox();
+        txtPrecio = new javax.swing.JTextField();
 
         jButton4.setText("jButton4");
 
-        setPreferredSize(null);
+        btnAgregarDetalle.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        btnAgregarDetalle.setText("AGREGAR A LA VENTA");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton3.setText("CONFIRMAR");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel1.setText("CATEGORIA:");
+        lblCategoria.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        lblCategoria.setText("CATEGORIA:");
 
         lblProducto.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         lblProducto.setText("PRODUCTO:");
@@ -98,81 +88,98 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         lblLargo.setText("LARGO:");
 
         cboProducto.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        cboProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "EJEJIR" }));
+        cboProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR" }));
         cboProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboProductoActionPerformed(evt);
             }
         });
 
-        cboTipoDeVenta.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        cboTipoDeVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEJIR" }));
+        cboDespacho.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        cboDespacho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR" }));
+        cboDespacho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboDespachoActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        txtStock.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
 
         cboMedida.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         cboMedida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR" }));
+        cboMedida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboMedidaActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel2.setText("PIES:");
+        txtPies.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        txtPies.setText("PIE CUADRADO:");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel3.setText("PRECIO SUGERIDO:");
+        txtSugerido.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        txtSugerido.setText("PRECIO SUGERIDO:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel4.setText("PRECIO VENTA:");
+        txtPrecioVenta.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        txtPrecioVenta.setText("PRECIO VENTA:");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        txtAncho.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        txtLargo.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        txtPie.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
 
         jTextField5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
 
         jTextField6.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
 
+        cboCodPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "pro" }));
+
+        cboCodMed.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "med" }));
+
+        cboCodDes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "des" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblProducto)
-                                            .addComponent(lblMedida))
-                                        .addGap(42, 42, 42))
-                                    .addComponent(lblStock)
-                                    .addComponent(lblTipoVenta)
-                                    .addComponent(lblAncho)
-                                    .addComponent(lblLargo)
-                                    .addComponent(jLabel2))
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtSugerido)
+                                .addComponent(txtPies, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblLargo, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cboProducto, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cboMedida, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cboTipoDeVenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField2)
-                                .addComponent(jTextField6)
-                                .addComponent(jTextField5)
-                                .addComponent(jTextField4)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtPrecioVenta)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cboCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cboCodMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblCategoria, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTipoVenta, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblProducto, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblMedida, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblStock, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblAncho, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboMedida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboCategoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAncho, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPie, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtLargo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cboCodDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -180,47 +187,54 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblCategoria)
                     .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblProducto)
-                    .addComponent(cboProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMedida)
-                    .addComponent(cboMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblStock))
+                    .addComponent(cboProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblProducto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboTipoDeVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMedida))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTipoVenta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStock))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAncho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAncho))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLargo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(txtPie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPies))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(txtSugerido))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(txtPrecioVenta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregarDetalle)
+                    .addComponent(cboCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cboCodDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -230,10 +244,37 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         AutoCompleteDecorator.decorate(this.cboCategoria);
         AutoCompleteDecorator.decorate(this.cboMedida);
         AutoCompleteDecorator.decorate(this.cboProducto);
-        AutoCompleteDecorator.decorate(this.cboTipoDeVenta);
+        AutoCompleteDecorator.decorate(this.cboDespacho);
     }
 
-    private void listarProductosXCategoria(int codCat) {
+    private void listarCategorias() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        List<Categoria> categorias = new ArrayList<>();
+        try {
+            categorias = sqlMapClient.queryForList("listCategoria", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormDetalleVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (int i = 0; i < categorias.size(); i++) {
+            Categoria cat = categorias.get(i);
+            cboCategoria.addItem(cat.getNomCat());
+        }
+    }
+    
+    private double getStockProducto(int codigo){
+        Producto producto = new Producto();
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        Object obj = null;
+        try {
+            obj = sqlMapClient.queryForObject("getProducto", codigo);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        producto = ((Producto) obj);
+        return producto.getStoPro();
+    }
+    private void listarProductosDeCategoria(int codCat) {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<Producto> productos = new ArrayList<>();
         try {
@@ -244,89 +285,107 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         for (int i = 0; i < productos.size(); i++) {
             Producto per = productos.get(i);
             cboProducto.addItem(per.getNomPro());
+            cboCodPro.addItem(per.getCodPro());
         }
     }
 
-    private void listarTipoDeVentaXProducto(int codPro) {
+    private void listarMedidasDeProducto(int cod) {
+        cboMedida.removeAllItems();
+        cboMedida.addItem("ELEGIR");
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
-        List<ProductoDespacho> pd = new ArrayList<>();
+        List<ProductoMedida> productoMedidas = new ArrayList<>();
         try {
-            pd = sqlMapClient.queryForList("listDespachosDeProducto", codPro);
+            productoMedidas = sqlMapClient.queryForList("listMedidasDeProducto", cod);
         } catch (SQLException ex) {
-            Logger.getLogger(FormDetalleVenta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        for (int i = 0; i < pd.size(); i++) {
-            ProductoDespacho per = pd.get(i);
-            cboTipoDeVenta.addItem(per.getNomDes());
+            Logger.getLogger(FormProMed.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        for (int i = 0; i < productoMedidas.size(); i++) {
+            ProductoMedida med = productoMedidas.get(i);
+            cboMedida.addItem(med.getNomMed());
+            cboCodMed.addItem(med.getCodMed());
+        }
     }
-    private void listarMedidaXProducto(int codPro) {
+
+    private void listarDespachosDeProducto(int cod) {
+        cboDespacho.removeAllItems();
+        cboDespacho.addItem("ELEGIR");
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
-        List<ProductoMedida> pm = new ArrayList<>();
+        List<ProductoDespacho> productoDespachos = new ArrayList<>();
         try {
-            pm = sqlMapClient.queryForList("listMedidasDeProducto", codPro);
+            productoDespachos = sqlMapClient.queryForList("listDespachosDeProducto", cod);
         } catch (SQLException ex) {
-            Logger.getLogger(FormDetalleVenta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        for (int i = 0; i < pm.size(); i++) {
-            ProductoMedida per = pm.get(i);
-            cboTipoDeVenta.addItem(per.getNomMed());
+            Logger.getLogger(FormProMed.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        for (int i = 0; i < productoDespachos.size(); i++) {
+            ProductoDespacho des = productoDespachos.get(i);
+            cboDespacho.addItem(des.getNomDes());
+            cboCodDes.addItem(des.getCodDes());
+        }
     }
 
-    private void cargarCategorias() {
-        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
-        List<Categoria> categorias = new ArrayList<>();
-        try {
-            categorias = sqlMapClient.queryForList("listCategoria", null);
-        } catch (SQLException ex) {
-            Logger.getLogger(FormDetalleVenta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        for (int i = 0; i < categorias.size(); i++) {
-            Categoria per = categorias.get(i);
-            cboCategoria.addItem(per.getNomCat());
-        }
-    }
-        
     private void cboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCategoriaActionPerformed
         cboProducto.removeAllItems();
-        cboProducto.addItem("ELEJIR");
-        listarProductosXCategoria(cboCategoria.getSelectedIndex());
+        cboProducto.addItem("ELEGIR");
+        listarProductosDeCategoria(cboCategoria.getSelectedIndex());
     }//GEN-LAST:event_cboCategoriaActionPerformed
 
     private void cboProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboProductoActionPerformed
-
-
-        listarTipoDeVentaXProducto(1);
-        listarMedidaXProducto(1);
-
-
+         if (cboProducto.getSelectedIndex() != -1) {
+             if (!cboProducto.getSelectedItem().toString().equals("ELEGIR")) {
+                cboCodPro.setSelectedIndex(cboProducto.getSelectedIndex());
+                txtStock.setText(""+getStockProducto(((Integer) cboCodPro.getSelectedItem()).intValue()));
+               listarMedidasDeProducto(((Integer) cboCodPro.getSelectedItem()).intValue());
+                listarDespachosDeProducto(((Integer) cboCodPro.getSelectedItem()).intValue());
+             }
+             else {
+                 txtStock.setText("");
+             }
+         }
     }//GEN-LAST:event_cboProductoActionPerformed
+
+    private void cboMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedidaActionPerformed
+        if (cboMedida.getSelectedIndex() != -1) {
+            cboCodMed.setSelectedIndex(cboMedida.getSelectedIndex());
+        }
+    }//GEN-LAST:event_cboMedidaActionPerformed
+
+    private void cboDespachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDespachoActionPerformed
+        if (cboDespacho.getSelectedIndex() != -1) {
+            cboCodDes.setSelectedIndex(cboDespacho.getSelectedIndex());
+        }
+        if (cboDespacho.getSelectedItem().toString().equals("PEDAZO")){
+            String medida=cboMedida.getSelectedItem().toString();
+            String largo =medida.substring(WIDTH, WIDTH);
+        }
+    }//GEN-LAST:event_cboDespachoActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarDetalle;
     private javax.swing.JComboBox cboCategoria;
+    private javax.swing.JComboBox cboCodDes;
+    private javax.swing.JComboBox cboCodMed;
+    private javax.swing.JComboBox cboCodPro;
+    private javax.swing.JComboBox cboDespacho;
     private javax.swing.JComboBox cboMedida;
     private javax.swing.JComboBox cboProducto;
-    private javax.swing.JComboBox cboTipoDeVenta;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lblAncho;
+    private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblLargo;
     private javax.swing.JLabel lblMedida;
     private javax.swing.JLabel lblProducto;
     private javax.swing.JLabel lblStock;
     private javax.swing.JLabel lblTipoVenta;
+    private javax.swing.JTextField txtAncho;
+    private javax.swing.JTextField txtLargo;
+    private javax.swing.JTextField txtPie;
+    private javax.swing.JLabel txtPies;
+    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JLabel txtPrecioVenta;
+    private javax.swing.JTextField txtStock;
+    private javax.swing.JLabel txtSugerido;
     // End of variables declaration//GEN-END:variables
 }
