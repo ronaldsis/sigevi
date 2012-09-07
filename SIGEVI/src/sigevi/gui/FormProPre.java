@@ -124,7 +124,7 @@ public class FormProPre extends javax.swing.JFrame {
      private boolean getCombinacion(int cod1, int cod2, int cod3) {
         boolean rsta = false;
         long cmb = cod1*100000 + cod2*1000 + cod3;
-         System.out.println("combinacion::::   " + cmb);
+        
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<ProductoPrecio> combinaciones = new ArrayList<>();
 

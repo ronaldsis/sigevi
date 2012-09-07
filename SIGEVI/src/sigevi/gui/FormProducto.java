@@ -627,9 +627,7 @@ public class FormProducto extends javax.swing.JPanel {
             Util exp = new Util();
             String archivo = "D:\\INFO-" + exp.getFecha() + ".xls";
             exp.exportarData(tblProducto, new File(archivo));
-            JOptionPane.showMessageDialog(null, "INFORMACIÓN EXPORTADA A :  "
-                    + archivo, " MENSAJE",
-                    JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "INFORMACIÓN EXPORTADA A :  "+ archivo, " MENSAJE",JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -665,6 +663,7 @@ public class FormProducto extends javax.swing.JPanel {
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
      activarTab(false);
+     JOptionPane.showMessageDialog(null, "PROCESAR PRODUCTO FINALIZADO", "MENSAJE",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
