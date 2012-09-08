@@ -44,6 +44,11 @@ public class FormInicio extends javax.swing.JPanel {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/sistema.png"))); // NOI18N
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/venta.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/usuario.png"))); // NOI18N
 
@@ -95,6 +100,13 @@ public class FormInicio extends javax.swing.JPanel {
                 .addContainerGap(170, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        FormDetalleVenta dp;
+        dp = new FormDetalleVenta();
+        dp.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

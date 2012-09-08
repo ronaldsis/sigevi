@@ -154,10 +154,10 @@
                           <Component id="lblTipo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtNombre" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="txtConsultar" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="lblCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCliente" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

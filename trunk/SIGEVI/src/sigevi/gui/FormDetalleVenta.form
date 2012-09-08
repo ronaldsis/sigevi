@@ -29,21 +29,9 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                              <Component id="txtSugerido" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtPies" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblLargo" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="txtPrecioVenta" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="cboCodPro" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="cboCodMed" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
                           <Component id="lblCategoria" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblTipoVenta" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblProducto" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -51,25 +39,62 @@
                           <Component id="lblStock" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblAncho" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="txtStock" alignment="1" min="-2" pref="143" max="-2" attributes="0"/>
-                          <Component id="cboDespacho" alignment="1" min="-2" pref="143" max="-2" attributes="0"/>
-                          <Component id="btnAgregarDetalle" alignment="1" min="-2" pref="143" max="-2" attributes="0"/>
-                          <Component id="cboProducto" alignment="1" max="32767" attributes="0"/>
-                          <Component id="cboMedida" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
-                          <Component id="cboCategoria" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
-                          <Component id="txtAncho" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jTextField6" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jTextField5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtPie" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtLargo" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="txtStock" alignment="1" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Component id="cboDespacho" alignment="1" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Component id="cboMedida" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Component id="cboCategoria" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtAncho" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblLargo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtLargo" min="-2" pref="40" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblPieCuadrado" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtPrecioPie" min="-2" pref="39" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="cboProducto" min="-2" pref="222" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="cboCodDes" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtCodPre" min="-2" pref="44" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="cboCodDes" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txtCodPre" min="-2" pref="44" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnLimpiar" min="-2" pref="140" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="lblPrecioVenta" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="cboCodPro" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="cboCodMed" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lblPrecioSugerido" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="btnAgregarDetalle" alignment="1" min="-2" pref="143" max="-2" attributes="0"/>
+                              <Component id="txtPrecioVenta" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtPrecioSugerido" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -108,26 +133,20 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtAncho" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblAncho" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtLargo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblLargo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtLargo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPieCuadrado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPrecioPie" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtPie" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPies" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPrecioSugerido" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPrecioSugerido" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtSugerido" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPrecioVenta" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPrecioVenta" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -138,7 +157,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="cboCodDes" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCodPre" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtCodPre" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="btnLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -239,17 +261,17 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboMedidaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="txtPies">
+    <Component class="javax.swing.JLabel" name="lblPieCuadrado">
       <Properties>
-        <Property name="text" type="java.lang.String" value="PIE CUADRADO:"/>
+        <Property name="text" type="java.lang.String" value="PIE2:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="txtSugerido">
+    <Component class="javax.swing.JLabel" name="lblPrecioSugerido">
       <Properties>
         <Property name="text" type="java.lang.String" value="PRECIO SUGERIDO:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="txtPrecioVenta">
+    <Component class="javax.swing.JLabel" name="lblPrecioVenta">
       <Properties>
         <Property name="text" type="java.lang.String" value="PRECIO VENTA:"/>
       </Properties>
@@ -258,11 +280,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtLargo">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPie">
+    <Component class="javax.swing.JTextField" name="txtPrecioPie">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField5">
+    <Component class="javax.swing.JTextField" name="txtPrecioSugerido">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField6">
+    <Component class="javax.swing.JTextField" name="txtPrecioVenta">
     </Component>
     <Component class="javax.swing.JComboBox" name="cboCodPro">
       <Properties>
@@ -281,6 +303,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboCodMedActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cboCodDes">
       <Properties>
@@ -292,6 +317,17 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCodPre">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLimpiar">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/sigevi/img/limpiar.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="LIMPIAR"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

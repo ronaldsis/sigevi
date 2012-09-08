@@ -19,6 +19,7 @@ public class FormVenta extends javax.swing.JPanel {
 
     public FormVenta() {
         initComponents();
+        txtNumVenta.setText(getNuevoCodigo() + "");
     }
 
     @SuppressWarnings("unchecked")
@@ -280,7 +281,7 @@ public class FormVenta extends javax.swing.JPanel {
                             .addComponent(cboComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTipo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblCliente))))
@@ -317,6 +318,21 @@ public class FormVenta extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private int getNuevoCodigo() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        Object obj = null;
+        int cod = 0;
+        try {
+            obj = sqlMapClient.queryForObject("getMaxVenta");
+        } catch (SQLException ex) {
+            Logger.getLogger(FormCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (obj != null) {
+            cod = ((Integer) obj).intValue();
+        }
+        return cod + 1;
+    }
+    
     private void habilitarTextos(boolean b) {
         lblIgv.setVisible(b);
         lblSubTotal.setVisible(b);
@@ -335,21 +351,6 @@ public class FormVenta extends javax.swing.JPanel {
         cboComprobante.setSelectedIndex(0);
         tblDetalleVenta.setModel(new DefaultTableModel());
 
-    }
-
-    private int getNuevoCodigo() {
-        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
-        Object obj = null;
-        int cod = 0;
-        try {
-            obj = sqlMapClient.queryForObject("getMaxProducto");
-        } catch (SQLException ex) {
-            Logger.getLogger(FormProducto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (obj != null) {
-            cod = ((Integer) obj).intValue();
-        }
-        return cod + 1;
     }
 
     private void agregarVenta() {

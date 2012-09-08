@@ -562,7 +562,6 @@ public class FormProducto extends javax.swing.JPanel {
                 txtNombre.setText(producto.getNomPro());
                 txtDescripción.setText(producto.getDesPro());
                 txtStock.setText(producto.getStoPro().toString());
-                System.out.println("categoria:::::::::"+producto.getNomCat());
                 cboCategoria.setSelectedIndex(producto.getCategoria_codCat());
                 btnEliminar.setEnabled(true);
                 btnEditar.setEnabled(true);
