@@ -490,7 +490,7 @@ public class FormCategoria extends javax.swing.JPanel {
                 archivo, " MENSAJE",
                 JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.print(ex.getMessage());             
         }
     }//GEN-LAST:event_btnExcelActionPerformed
 

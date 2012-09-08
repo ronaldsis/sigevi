@@ -28,7 +28,7 @@
     </select>
     
      <select id="getMaxVenta" resultClass="int">
-        SELECT max(codPer)
+        SELECT max(nroVen)
         FROM venta;
     </select>
     

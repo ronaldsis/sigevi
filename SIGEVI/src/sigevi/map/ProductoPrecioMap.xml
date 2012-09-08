@@ -17,6 +17,12 @@
         WHERE codProPre =#codProPre#;
     </select>
     
+   <select id="getIdProductoPrecio" resultClass="sigevi.bea.ProductoPrecio">
+        SELECT codProPre, precio
+        FROM producto_precio
+        where producto_codPro*100000 + producto_medida_codProMed*1000 + producto_despacho_codProDes =#valor#;
+    </select>
+    
     <select id="listPreciosDeProducto" resultClass="sigevi.bea.ProductoPrecio">
         SELECT codProPre, nomMed, nomDes, precio
         FROM producto_precio
