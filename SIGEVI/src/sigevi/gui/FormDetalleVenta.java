@@ -16,7 +16,7 @@ import sigevi.bea.ProductoPrecio;
 import sigevi.map.SqlMapConfig;
 
 public class FormDetalleVenta extends javax.swing.JFrame {
-    
+
     public FormDetalleVenta() {
         this.setLocationRelativeTo(null);
         initComponents();
@@ -27,7 +27,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
          cboCodPro.setVisible(false);
          txtCodPre.setVisible(false);*/
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -255,7 +255,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         AutoCompleteDecorator.decorate(this.cboProducto);
         AutoCompleteDecorator.decorate(this.cboDespacho);
     }
-    
+
     private void listarCategorias() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<Categoria> categorias = new ArrayList<>();
@@ -264,13 +264,13 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(FormDetalleVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         for (int i = 0; i < categorias.size(); i++) {
             Categoria cat = categorias.get(i);
             cboCategoria.addItem(cat.getNomCat());
         }
     }
-    
+
     private Producto getProducto(int codigo) {
         Producto producto = new Producto();
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
@@ -283,8 +283,8 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         producto = ((Producto) obj);
         return producto;
     }
-    
-       private ProductoPrecio getProductoPrecio(long cmb) {
+
+    private ProductoPrecio getProductoPrecio(long cmb) {
         ProductoPrecio pp = new ProductoPrecio();
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         Object obj = null;
@@ -296,7 +296,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         pp = ((ProductoPrecio) obj);
         return pp;
     }
-    
+
     private Medida getMedida(int codigo) {
         Medida medida = new Medida();
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
@@ -309,7 +309,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         medida = ((Medida) obj);
         return medida;
     }
-    
+
     private void listarProductosDeCategoria(int codCat) {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<Producto> productos = new ArrayList<>();
@@ -324,7 +324,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             cboCodPro.addItem(per.getCodPro());
         }
     }
-    
+
     private void listarMedidasDeProducto(int cod) {
         cboMedida.removeAllItems();
         cboMedida.addItem("ELEGIR");
@@ -335,14 +335,14 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(FormProMed.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         for (int i = 0; i < productoMedidas.size(); i++) {
             ProductoMedida med = productoMedidas.get(i);
             cboMedida.addItem(med.getNomMed());
             cboCodMed.addItem(med.getCodMed());
         }
     }
-    
+
     private void listarDespachosDeProducto(int cod) {
         cboDespacho.removeAllItems();
         cboDespacho.addItem("ELEGIR");
@@ -353,20 +353,20 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(FormProMed.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         for (int i = 0; i < productoDespachos.size(); i++) {
             ProductoDespacho des = productoDespachos.get(i);
             cboDespacho.addItem(des.getNomDes());
             cboCodDes.addItem(des.getCodDes());
         }
     }
-    
+
     private void cboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCategoriaActionPerformed
         cboProducto.removeAllItems();
         cboProducto.addItem("ELEGIR");
         listarProductosDeCategoria(cboCategoria.getSelectedIndex());
     }//GEN-LAST:event_cboCategoriaActionPerformed
-    
+
     private void cboProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboProductoActionPerformed
         if (cboProducto.getSelectedIndex() > 0) {
             cboCodPro.setSelectedIndex(cboProducto.getSelectedIndex());
@@ -374,30 +374,30 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             txtStock.setText("" + getProducto(Integer.parseInt(s)).getStoPro());
             listarMedidasDeProducto(((Integer) cboCodPro.getSelectedItem()).intValue());
             listarDespachosDeProducto(((Integer) cboCodPro.getSelectedItem()).intValue());
-        } 
+        }
     }//GEN-LAST:event_cboProductoActionPerformed
-    
+
     private void cboMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedidaActionPerformed
         if (cboProducto.getSelectedIndex() > 0) {
             cboCodMed.setSelectedIndex(cboMedida.getSelectedIndex());
         }
     }//GEN-LAST:event_cboMedidaActionPerformed
-    
+
     private void cboDespachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDespachoActionPerformed
         if (cboDespacho.getSelectedIndex() > 0) {
             cboCodDes.setSelectedIndex(cboDespacho.getSelectedIndex());
-            if(cboDespacho.getSelectedItem().equals("PIE2")){
-                        int pro =((Integer) cboCodPro.getSelectedItem()).intValue();
-        int med =((Integer) cboCodMed.getSelectedItem()).intValue();
-        int des =((Integer) cboCodDes.getSelectedItem()).intValue(); 
-        long cmb = pro*100000 + med*1000 + des;
-                System.out.println("com"+cmb);
-                txtPrecioPie.setText(""+getProductoPrecio(cmb).getPrecio());
-                
+            if (cboDespacho.getSelectedItem().equals("PIE2")) {
+                int pro = ((Integer) cboCodPro.getSelectedItem()).intValue();
+                int med = ((Integer) cboCodMed.getSelectedItem()).intValue();
+                int des = ((Integer) cboCodDes.getSelectedItem()).intValue();
+                long cmb = pro * 100000 + med * 1000 + des;
+                System.out.println("com" + cmb);
+                txtPrecioPie.setText("" + getProductoPrecio(cmb).getPrecio());
+
             }
         }
     }//GEN-LAST:event_cboDespachoActionPerformed
-    
+
     private void cboCodMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodMedActionPerformed
         if (cboCodMed.getSelectedIndex() > 0) {
             String s = cboCodMed.getSelectedItem().toString();
@@ -416,7 +416,6 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         cboMedida.setSelectedIndex(0);
         cboDespacho.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarDetalle;
     private javax.swing.JButton btnLimpiar;
