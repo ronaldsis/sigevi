@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import sigevi.bea.Venta;
+import sigevi.bea.DetalleVenta;
 import sigevi.map.SqlMapConfig;
 
 public class FormVenta extends javax.swing.JPanel {
@@ -365,17 +366,37 @@ public class FormVenta extends javax.swing.JPanel {
         } catch (ParseException ex) {
             Logger.getLogger(FormVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        /*   vnt.setUsuario_codUsu(txtDireccion.getText());
-         vnt.setCliente_codCli(txtTelefono.getText());*/
-
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
 
-            sqlMapClient.insert("insertVentas", vnt);
+            sqlMapClient.insert("insertVenta", vnt);
         } catch (SQLException ex) {
             Logger.getLogger(FormVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        /*for*/
+        
+        
+        
+    }
+    
+    private void agregarDetalleVenta(int venta, int producto, double precio, double cantidad){
+        DetalleVenta det=new DetalleVenta();
+        det.setNroDet(getNuevoCodigo());
+        det.setVenta_nroVen(venta);
+        det.setProducto_codPro(producto);
+        det.setPreDet(precio);
+        det.setCanDet(cantidad);
+        
+         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        try {
+
+            sqlMapClient.insert("insertDetalleVenta", det);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
