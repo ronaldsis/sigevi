@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigevi.gui;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -12,7 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import sigevi.bea.Categoria;
@@ -20,10 +19,6 @@ import sigevi.bea.Producto;
 import sigevi.map.SqlMapConfig;
 import sigevi.uti.Util;
 
-/**
- *
- * @author SIMONETTA
- */
 public class FormProducto extends javax.swing.JInternalFrame {
 
     private sigevi.gui.FormProDes pxd;
@@ -33,8 +28,30 @@ public class FormProducto extends javax.swing.JInternalFrame {
     String[] Titulo = {"CODIGO", "NOMBRE", "DESCRIPCIÓN", "STOCK", "CATEGORIA"};
     String[][] datos = {};
     
+    protected javax.swing.JDesktopPane m_desktop;
+    protected boolean m_undecorated;
+    
+    public void setUndecorated(boolean undecorated) {
+        if (m_undecorated != undecorated) {
+            m_undecorated = undecorated;
+            BasicInternalFrameUI ui = (BasicInternalFrameUI) getUI();
+            if (undecorated) {
+                putClientProperty("titlePane", ui.getNorthPane());
+                putClientProperty("border", getBorder());
+                ui.setNorthPane(null);
+                setBorder(null);
+            } else {
+                ui.setNorthPane((JComponent) getClientProperty("titlePane"));
+                setBorder((Border) getClientProperty("border"));
+                putClientProperty("titlePane", null);
+                putClientProperty("border", null);
+            }
+        }
+    }
+    
     public FormProducto() {
         initComponents();
+        setUndecorated(true);
         cargarCategorias();
         AutoCompleteDecorator.decorate(this.cboCategoria);
     }
@@ -423,11 +440,9 @@ private void activarTab(boolean b){
         cboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR CATEGORIA" }));
         cboCategoria.setEnabled(false);
 
-        pnlProcesarProducto.setLayout(new org.jdesktop.swingx.VerticalLayout());
-
         btnMedidas.setText("INGRESAR MEDIDAS");
         btnMedidas.setEnabled(false);
-        btnMedidas.setPreferredSize(new java.awt.Dimension(100, 23));
+        btnMedidas.setPreferredSize(new java.awt.Dimension(150, 23));
         btnMedidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMedidasActionPerformed(evt);
@@ -437,7 +452,7 @@ private void activarTab(boolean b){
 
         btnDespacho.setText("INGRESA DESPACHOS");
         btnDespacho.setEnabled(false);
-        btnDespacho.setPreferredSize(new java.awt.Dimension(100, 23));
+        btnDespacho.setPreferredSize(new java.awt.Dimension(150, 23));
         btnDespacho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDespachoActionPerformed(evt);
@@ -447,7 +462,7 @@ private void activarTab(boolean b){
 
         btnPrecio.setText("INGRESAR PRECIOS");
         btnPrecio.setEnabled(false);
-        btnPrecio.setPreferredSize(new java.awt.Dimension(100, 23));
+        btnPrecio.setPreferredSize(new java.awt.Dimension(150, 23));
         btnPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrecioActionPerformed(evt);
@@ -458,6 +473,7 @@ private void activarTab(boolean b){
         btnFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ok.png"))); // NOI18N
         btnFinalizar.setText("FINALIZAR");
         btnFinalizar.setEnabled(false);
+        btnFinalizar.setPreferredSize(new java.awt.Dimension(150, 25));
         btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFinalizarActionPerformed(evt);
@@ -501,9 +517,9 @@ private void activarTab(boolean b){
                             .add(jScrollPane2)
                             .add(txtNombre)
                             .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 60, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(tabProcesar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 199, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(146, 146, 146))))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 55, Short.MAX_VALUE)
+                        .add(tabProcesar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 206, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(139, 139, 139))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -524,18 +540,18 @@ private void activarTab(boolean b){
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(lblDireccion)
-                            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 58, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(tabProcesar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(lblCodigo)
-                    .add(txtStock, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(lblCodigo2))
-                .add(15, 15, 15)
+                            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 58, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(lblCodigo)
+                            .add(txtStock, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lblCodigo2)))
+                    .add(tabProcesar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
         );
 
         pack();
@@ -650,7 +666,11 @@ private void activarTab(boolean b){
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.setVisible(false);
+        this.dispose();
+        FormInicio inicio = new FormInicio();
+        FormPrincipal.escritorio.add(inicio);
+        inicio.toFront();
+        inicio.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnMedidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedidasActionPerformed

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigevi.gui;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -11,20 +7,40 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import sigevi.bea.Despacho;
 import sigevi.map.SqlMapConfig;
 
-/**
- *
- * @author SIMONETTA
- */
 public class FormDespacho extends javax.swing.JInternalFrame {
 
 DefaultListModel modeloLista = new DefaultListModel();
-
+    protected javax.swing.JDesktopPane m_desktop;
+    protected boolean m_undecorated;
+    
+    public void setUndecorated(boolean undecorated) {
+        if (m_undecorated != undecorated) {
+            m_undecorated = undecorated;
+            BasicInternalFrameUI ui = (BasicInternalFrameUI) getUI();
+            if (undecorated) {
+                putClientProperty("titlePane", ui.getNorthPane());
+                putClientProperty("border", getBorder());
+                ui.setNorthPane(null);
+                setBorder(null);
+            } else {
+                ui.setNorthPane((JComponent) getClientProperty("titlePane"));
+                setBorder((Border) getClientProperty("border"));
+                putClientProperty("titlePane", null);
+                putClientProperty("border", null);
+            }
+        }
+    }
+    
     public FormDespacho() {
         initComponents();
+        setUndecorated(true);
     }
 
     private int getNuevoCodigo() {
@@ -372,7 +388,11 @@ DefaultListModel modeloLista = new DefaultListModel();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.setVisible(false);
+        this.dispose();
+        FormInicio inicio = new FormInicio();
+        FormPrincipal.escritorio.add(inicio);
+        inicio.toFront();
+        inicio.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void lstDespachosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstDespachosValueChanged

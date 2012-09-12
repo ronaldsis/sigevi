@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import sigevi.bea.Medida;
 import sigevi.map.SqlMapConfig;
@@ -20,8 +23,30 @@ public class FormMedida extends javax.swing.JInternalFrame {
     String[] Titulo = {"CODIGO", "NOMBRE", "UNIDAD DE MEDIDA","ANCHO", "LARGO"};
     String[][] datos = {};
     
+    protected javax.swing.JDesktopPane m_desktop;
+    protected boolean m_undecorated;
+    
+    public void setUndecorated(boolean undecorated) {
+        if (m_undecorated != undecorated) {
+            m_undecorated = undecorated;
+            BasicInternalFrameUI ui = (BasicInternalFrameUI) getUI();
+            if (undecorated) {
+                putClientProperty("titlePane", ui.getNorthPane());
+                putClientProperty("border", getBorder());
+                ui.setNorthPane(null);
+                setBorder(null);
+            } else {
+                ui.setNorthPane((JComponent) getClientProperty("titlePane"));
+                setBorder((Border) getClientProperty("border"));
+                putClientProperty("titlePane", null);
+                putClientProperty("border", null);
+            }
+        }
+    }
+        
     public FormMedida() {
         initComponents();
+        setUndecorated(true);
     }
 
     private int getNuevoCodigo() {
@@ -538,7 +563,11 @@ public class FormMedida extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.setVisible(false);
+        this.dispose();
+        FormInicio inicio = new FormInicio();
+        FormPrincipal.escritorio.add(inicio);
+        inicio.toFront();
+        inicio.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
