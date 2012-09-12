@@ -6,6 +6,11 @@
       <Color blue="8d" green="5e" red="23" type="rgb"/>
     </Property>
   </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
+      <ComponentRef name="Form"/>
+    </Property>
+  </AccessibilityProperties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -51,24 +56,19 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="504" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="516" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                  <EmptySpace pref="128" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jButton5" alignment="1" min="-2" pref="128" max="-2" attributes="0"/>
-                              <Component id="jButton1" alignment="1" min="-2" pref="128" max="-2" attributes="0"/>
-                              <Component id="jButton7" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jButton5" alignment="1" min="-2" pref="128" max="-2" attributes="0"/>
+                          <Component id="jButton1" alignment="1" min="-2" pref="128" max="-2" attributes="0"/>
+                          <Component id="jButton7" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButton4" pref="0" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jButton4" min="-2" pref="130" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jButton2" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
                       <Component id="jButton3" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>

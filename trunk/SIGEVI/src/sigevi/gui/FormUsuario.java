@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigevi.gui;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -12,29 +8,49 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import sigevi.bea.Perfil;
 import sigevi.bea.Usuario;
-import sigevi.gui.FormPrincipal;
 import sigevi.map.SqlMapConfig;
 import sigevi.uti.Util;
 
-/**
- *
- * @author SIMONETTA
- */
-public class FormUsuario extends javax.swing.JInternalFrame {
+public final class FormUsuario extends javax.swing.JInternalFrame {
 
-  DefaultTableModel Modelo;
+    DefaultTableModel Modelo;
     String[] Titulo = {"CODIGO", "LOGIN", "NOMBRES", "APELLIDOS", "PERFIL"};
     String[][] datos = {};
+
+    protected javax.swing.JDesktopPane m_desktop;
+    protected boolean m_undecorated;
+    
+    public void setUndecorated(boolean undecorated) {
+        if (m_undecorated != undecorated) {
+            m_undecorated = undecorated;
+            BasicInternalFrameUI ui = (BasicInternalFrameUI) getUI();
+            if (undecorated) {
+                putClientProperty("titlePane", ui.getNorthPane());
+                putClientProperty("border", getBorder());
+                ui.setNorthPane(null);
+                setBorder(null);
+            } else {
+                ui.setNorthPane((JComponent) getClientProperty("titlePane"));
+                setBorder((Border) getClientProperty("border"));
+                putClientProperty("titlePane", null);
+                putClientProperty("border", null);
+            }
+        }
+    }
     
     public FormUsuario() {
         initComponents();
+        setUndecorated(true);
     }
 
-  private int getNuevoCodigo() {
+    private int getNuevoCodigo() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         Object obj = null;
         int cod = 0;
@@ -51,7 +67,7 @@ public class FormUsuario extends javax.swing.JInternalFrame {
 
     private String getLogin() {
         if (txtApellido.getText().length() == 4) {
-            return txtNombre.getText().substring(0, 1).toLowerCase()+ txtApellido.getText().substring(0, 4).toLowerCase();
+            return txtNombre.getText().substring(0, 1).toLowerCase() + txtApellido.getText().substring(0, 4).toLowerCase();
         }
         if (txtApellido.getText().length() == 3) {
             return txtNombre.getText().substring(0, 1).toLowerCase() + txtApellido.getText().substring(0, 3).toLowerCase();
@@ -87,7 +103,6 @@ public class FormUsuario extends javax.swing.JInternalFrame {
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
-
             sqlMapClient.insert("insertUsuario", usu);
         } catch (SQLException ex) {
             Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,7 +111,7 @@ public class FormUsuario extends javax.swing.JInternalFrame {
 
     private void modificarUsuario() {
         Usuario usu = new Usuario();
-        usu=getUsuario(Integer.parseInt(txtCodigo.getText()));
+        usu = getUsuario(Integer.parseInt(txtCodigo.getText()));
         usu.setLogUsu(getLogin());
         usu.setApeUsu(txtApellido.getText().toUpperCase());
         usu.setNomUsu(txtNombre.getText().toUpperCase());
@@ -140,15 +155,14 @@ public class FormUsuario extends javax.swing.JInternalFrame {
         }
     }
 
-    private boolean validarContraseña(){
-        if(txtPassU.getText().equals(txtPassU2.getText())){
-           return true;  
-        }
-        else {
+    private boolean validarContraseña() {
+        if (txtPassU.getText().equals(txtPassU2.getText())) {
+            return true;
+        } else {
             return false;
         }
     }
-    
+
     private void cargarPerfiles() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<Perfil> perfiles = new ArrayList<>();
@@ -533,13 +547,12 @@ public class FormUsuario extends javax.swing.JInternalFrame {
         if (txtNombre.getText().equals("") || txtApellido.getText().equals("") || txtPassU.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         }
-        if (validarContraseña()!=true){
+        if (validarContraseña() != true) {
             JOptionPane.showMessageDialog(this, "LAS CONTRASEÑAS NO COINCIDEN", "MENSAJE", 2, null);
         }
-        if (cboPerfil.getSelectedIndex()==0){
+        if (cboPerfil.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "SELECCIONE UN PERFIL", "MENSAJE", 2, null);
-        }
-        else {
+        } else {
             agregarUsuario();
             JOptionPane.showMessageDialog(this, "USUARIO REGISTRADO, LOGIN: " + getLogin(), "MENSAJE", 1, null);
             listarUsuarios();
@@ -576,7 +589,7 @@ public class FormUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int confirmado = JOptionPane.showConfirmDialog(this, "¿LO CONFIRMAS?","MENSAJE", 1);
+        int confirmado = JOptionPane.showConfirmDialog(this, "¿LO CONFIRMAS?", "MENSAJE", 1);
 
         if (JOptionPane.OK_OPTION == confirmado) {
             eliminarUsuario(Integer.parseInt(txtCodigo.getText()));
@@ -610,11 +623,11 @@ public class FormUsuario extends javax.swing.JInternalFrame {
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         try {
             Util exp = new Util();
-            String archivo="D:\\INFO-"+exp.getFecha()+".xls";
+            String archivo = "D:\\INFO-" + exp.getFecha() + ".xls";
             exp.exportarData(tblUsuario, new File(archivo));
-            JOptionPane.showMessageDialog(null, "INFORMACIÓN EXPORTADA A :  " +
-                archivo, " MENSAJE",
-                JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "INFORMACIÓN EXPORTADA A :  "
+                    + archivo, " MENSAJE",
+                    JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -629,12 +642,12 @@ public class FormUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        FormInicio inicio=new FormInicio();
+        this.dispose();
+        FormInicio inicio = new FormInicio();
         FormPrincipal.escritorio.add(inicio);
         inicio.toFront();
         inicio.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;

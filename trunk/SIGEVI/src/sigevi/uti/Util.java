@@ -11,6 +11,9 @@ import jxl.write.*;
 
 public class Util {
 
+                protected boolean m_undecorated;
+                protected javax.swing.JDesktopPane m_desktop;
+                
     public void exportarData(JTable table, File file) {
 
         try {
@@ -48,4 +51,5 @@ public class Util {
         annio = Integer.toString(c.get(Calendar.YEAR));
         return hora+min+dia + mes + annio;
     }
+    
 }
