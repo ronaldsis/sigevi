@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigevi.gui;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -17,10 +13,6 @@ import sigevi.bea.ProductoMedida;
 import sigevi.bea.ProductoPrecio;
 import sigevi.map.SqlMapConfig;
 
-/**
- *
- * @author SIMONETTA
- */
 public class FormProPre extends javax.swing.JFrame {
 
     DefaultTableModel Modelo;
@@ -30,6 +22,18 @@ public class FormProPre extends javax.swing.JFrame {
     
     public FormProPre() {
         initComponents();
+        ocultarCbo();
+        txtCodPro.setText(codPro + "");
+        txtProducto.setText(sigevi.gui.FormProducto.getProducto(codPro).getNomPro());
+        Modelo = new DefaultTableModel(datos, Titulo);
+        tblPreciosDeProducto.setModel(Modelo);
+        listarMedidasDeProducto(codPro);
+        listarDespachosDeProducto(codPro);
+    }
+    
+    private void ocultarCbo(){
+           cboCodDes.setVisible(false);
+         cboCodMed.setVisible(false);
     }
 
     private void listarMedidasDeProducto(int cod) {
@@ -148,6 +152,7 @@ public class FormProPre extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtCodPro = new javax.swing.JTextField();
         lblTitulo1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtProducto = new javax.swing.JTextField();
@@ -165,6 +170,8 @@ public class FormProPre extends javax.swing.JFrame {
         cboCodMed = new javax.swing.JComboBox();
         cboCodDes = new javax.swing.JComboBox();
         cboDespacho = new javax.swing.JComboBox();
+
+        txtCodPro.setText("jTextField1");
 
         lblTitulo1.setBackground(new java.awt.Color(35, 94, 141));
         lblTitulo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -257,10 +264,13 @@ public class FormProPre extends javax.swing.JFrame {
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                                     .add(jLabel4)
                                     .add(jLabel2))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(txtPrecio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 127, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(cboDespacho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                    .add(layout.createSequentialGroup()
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(txtPrecio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 127, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(layout.createSequentialGroup()
+                                        .add(6, 6, 6)
+                                        .add(cboDespacho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 200, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel1)
@@ -268,7 +278,7 @@ public class FormProPre extends javax.swing.JFrame {
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                     .add(txtProducto)
-                                    .add(cboMedida, 0, 125, Short.MAX_VALUE))))
+                                    .add(cboMedida, 0, 200, Short.MAX_VALUE))))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
@@ -280,9 +290,7 @@ public class FormProPre extends javax.swing.JFrame {
                                 .add(cboCodDes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, btnCerrar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 102, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
-            .add(layout.createSequentialGroup()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 350, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, Short.MAX_VALUE))
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -330,7 +338,7 @@ public class FormProPre extends javax.swing.JFrame {
     }//GEN-LAST:event_cboMedidaActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        int pro =Integer.parseInt(txtProducto.getText());
+        int pro =Integer.parseInt(txtCodPro.getText());
         int med =((Integer) cboCodMed.getSelectedItem()).intValue();
         int des =((Integer) cboCodDes.getSelectedItem()).intValue();
 
@@ -383,6 +391,7 @@ public class FormProPre extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo1;
     private javax.swing.JLabel lblTitulo3;
     private javax.swing.JTable tblPreciosDeProducto;
+    private javax.swing.JTextField txtCodPro;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtProducto;
     // End of variables declaration//GEN-END:variables
