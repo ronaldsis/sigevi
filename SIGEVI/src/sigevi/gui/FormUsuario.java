@@ -244,7 +244,7 @@ public final class FormUsuario extends javax.swing.JInternalFrame {
         txtLogin = new javax.swing.JTextField();
         lblTitulo1 = new javax.swing.JLabel();
 
-        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         setMinimumSize(new java.awt.Dimension(800, 550));
         setPreferredSize(new java.awt.Dimension(800, 550));
 
@@ -444,7 +444,7 @@ public final class FormUsuario extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 796, Short.MAX_VALUE)
+            .addGap(0, 798, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(16, 16, 16)
@@ -478,12 +478,12 @@ public final class FormUsuario extends javax.swing.JInternalFrame {
                                         .addComponent(txtApellido)
                                         .addComponent(txtPassU2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addComponent(jToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 159, Short.MAX_VALUE)))
+                            .addGap(0, 161, Short.MAX_VALUE)))
                     .addGap(16, 16, 16)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 522, Short.MAX_VALUE)
+            .addGap(0, 523, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(5, 5, 5)
@@ -523,7 +523,7 @@ public final class FormUsuario extends javax.swing.JInternalFrame {
                     .addGap(11, 11, 11)
                     .addComponent(lblTitulo2)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
                     .addGap(6, 6, 6)))
         );
 
@@ -643,10 +643,6 @@ public final class FormUsuario extends javax.swing.JInternalFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
-        FormInicio inicio = new FormInicio();
-        FormPrincipal.escritorio.add(inicio);
-        inicio.toFront();
-        inicio.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

@@ -160,6 +160,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
         lblTitulo3 = new javax.swing.JLabel();
         txtCodigoCliente = new javax.swing.JTextField();
 
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         setPreferredSize(new java.awt.Dimension(800, 550));
 
         lblCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -306,7 +307,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(layout.createSequentialGroup()
                                         .add(cboComprobante, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(0, 0, Short.MAX_VALUE))
+                                        .add(0, 100, Short.MAX_VALUE))
                                     .add(txtNombre))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(txtConsultar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -418,7 +419,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
                             .add(lblTotal)
                             .add(txtTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(btnVender))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         pack();
