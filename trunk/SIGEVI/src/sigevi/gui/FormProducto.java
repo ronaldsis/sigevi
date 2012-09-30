@@ -251,6 +251,7 @@ private void activarTab(boolean b){
         btnPrecio = new javax.swing.JButton();
         btnFinalizar = new javax.swing.JButton();
 
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         setPreferredSize(new java.awt.Dimension(800, 550));
 
         lblTitulo2.setBackground(new java.awt.Color(35, 94, 141));
@@ -440,6 +441,8 @@ private void activarTab(boolean b){
         cboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR CATEGORIA" }));
         cboCategoria.setEnabled(false);
 
+        pnlProcesarProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         btnMedidas.setText("INGRESAR MEDIDAS");
         btnMedidas.setEnabled(false);
         btnMedidas.setPreferredSize(new java.awt.Dimension(150, 23));
@@ -517,7 +520,7 @@ private void activarTab(boolean b){
                             .add(jScrollPane2)
                             .add(txtNombre)
                             .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 60, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 55, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 69, Short.MAX_VALUE)
                         .add(tabProcesar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 206, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(139, 139, 139))))
         );
@@ -551,7 +554,7 @@ private void activarTab(boolean b){
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
         );
 
         pack();
@@ -667,10 +670,6 @@ private void activarTab(boolean b){
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
-        FormInicio inicio = new FormInicio();
-        FormPrincipal.escritorio.add(inicio);
-        inicio.toFront();
-        inicio.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnMedidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedidasActionPerformed

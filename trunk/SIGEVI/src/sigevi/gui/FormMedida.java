@@ -206,6 +206,10 @@ public class FormMedida extends javax.swing.JInternalFrame {
         txtLargo = new javax.swing.JTextField();
         txtAncho = new javax.swing.JTextField();
 
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        setMinimumSize(new java.awt.Dimension(800, 550));
+        setPreferredSize(new java.awt.Dimension(800, 550));
+
         lblCodigo.setText("CODIGO :");
 
         lblSimbolo.setText("SIMBOLO :");
@@ -394,7 +398,7 @@ public class FormMedida extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(0, 0, Short.MAX_VALUE)
+                        .add(0, 107, Short.MAX_VALUE)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(layout.createSequentialGroup()
                                 .add(lblNombre)
@@ -452,7 +456,7 @@ public class FormMedida extends javax.swing.JInternalFrame {
                 .add(16, 16, 16)
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
         );
 
         pack();
@@ -564,10 +568,6 @@ public class FormMedida extends javax.swing.JInternalFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
-        FormInicio inicio = new FormInicio();
-        FormPrincipal.escritorio.add(inicio);
-        inicio.toFront();
-        inicio.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

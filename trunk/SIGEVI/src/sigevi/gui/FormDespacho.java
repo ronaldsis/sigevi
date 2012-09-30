@@ -389,10 +389,6 @@ DefaultListModel modeloLista = new DefaultListModel();
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
-        FormInicio inicio = new FormInicio();
-        FormPrincipal.escritorio.add(inicio);
-        inicio.toFront();
-        inicio.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void lstDespachosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstDespachosValueChanged

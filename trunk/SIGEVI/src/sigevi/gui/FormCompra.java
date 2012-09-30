@@ -73,6 +73,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
         lblTitulo3 = new javax.swing.JLabel();
         lblTitulo2 = new javax.swing.JLabel();
 
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         setPreferredSize(new java.awt.Dimension(800, 550));
 
         lblNroCompra.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -268,7 +269,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
                             .add(cmbTipoComprobante, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(cmbFormaPago, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(txtNComprobante))
-                        .add(0, 162, Short.MAX_VALUE))
+                        .add(0, 176, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, lblTitulo1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .add(22, 22, 22))
         );
@@ -315,7 +316,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
                     .add(lblCantidad)
                     .add(txtCantidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(btnAgregarProducto))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 20, Short.MAX_VALUE)
                 .add(lblTitulo3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 158, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)

@@ -23,7 +23,7 @@ public class FormCategoria extends javax.swing.JInternalFrame {
     String[] Titulo = {"CODIGO", "NOMBRE", "DESCRIPCIÓN"};
     String[][] datos = {};
     
-       protected javax.swing.JDesktopPane m_desktop;
+    protected javax.swing.JDesktopPane m_desktop;
     protected boolean m_undecorated;
     
     public void setUndecorated(boolean undecorated) {
@@ -188,6 +188,9 @@ public class FormCategoria extends javax.swing.JInternalFrame {
         txtDescripcion = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        setMinimumSize(new java.awt.Dimension(800, 550));
+        setPreferredSize(new java.awt.Dimension(800, 550));
 
         lblTitulo2.setBackground(new java.awt.Color(35, 94, 141));
         lblTitulo2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -390,7 +393,7 @@ public class FormCategoria extends javax.swing.JInternalFrame {
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 277, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(0, 0, Short.MAX_VALUE)))
+                        .add(0, 173, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -414,7 +417,7 @@ public class FormCategoria extends javax.swing.JInternalFrame {
                 .add(18, 18, 18)
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))
         );
 
         pack();
