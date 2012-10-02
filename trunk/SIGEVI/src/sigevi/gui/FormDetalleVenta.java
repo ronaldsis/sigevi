@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import sigevi.bea.Categoria;
@@ -39,8 +40,8 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         cboCodPro.setVisible(false);
         txtCodPre.setVisible(false);
     }
-    
-    private void limpiar(){
+
+    private void limpiar() {
         txtStock.setText("");
         txtAncho.setText("");
         txtLargo.setText("");
@@ -125,7 +126,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             txtAncho.setEnabled(false);
             txtLargo.setEnabled(false);
             double a = getProductoPrecio(cmb).getPrecio();
-            txtPrecioSugerido.setText(a+"");
+            txtPrecioSugerido.setText(a + "");
         }
     }
 
@@ -208,6 +209,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         cboCodDes = new javax.swing.JComboBox();
         txtCodPre = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
+        btnLimpiar1 = new javax.swing.JButton();
 
         btnAgregarDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/add.png"))); // NOI18N
         btnAgregarDetalle.setText("AGREGAR");
@@ -299,66 +301,76 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             }
         });
 
+        btnLimpiar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/close.png"))); // NOI18N
+        btnLimpiar1.setText("CERRAR");
+        btnLimpiar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiar1ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(27, 27, 27)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(lblCategoria)
-                    .add(lblTipoVenta)
-                    .add(lblProducto)
-                    .add(lblMedida)
-                    .add(lblStock)
-                    .add(lblAncho)
-                    .add(lblPrecioSugerido))
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(10, 10, 10)
-                        .add(cboCategoria, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 200, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(27, 27, 27)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(lblCategoria)
+                            .add(lblTipoVenta)
+                            .add(lblProducto)
+                            .add(lblMedida)
+                            .add(lblStock)
+                            .add(lblAncho)
+                            .add(lblPrecioSugerido)))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(btnAgregarDetalle, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 101, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, cboProducto, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(txtAncho, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                            .add(txtStock)
+                            .add(txtPrecioSugerido))
+                        .add(26, 26, 26)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                .add(layout.createSequentialGroup()
-                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(txtPrecioSugerido, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(txtAncho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 55, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(txtStock, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 55, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                            .add(18, 18, 18)
-                                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                                .add(lblPieCuadrado)
-                                                .add(lblLargo))
-                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                                .add(txtLargo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .add(txtPrecioPie, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                                        .add(layout.createSequentialGroup()
-                                            .add(lblPrecioVenta)
-                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                            .add(txtCantidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                                .add(layout.createSequentialGroup()
-                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(layout.createSequentialGroup()
-                                            .add(6, 6, 6)
-                                            .add(cboCodDes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                            .add(cboCodMed, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                        .add(btnAgregarDetalle, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 101, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(layout.createSequentialGroup()
-                                            .add(cboCodPro, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                            .add(txtCodPre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                        .add(btnLimpiar)))
-                                .add(cboDespacho, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, cboMedida, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 200, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, cboProducto, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 200, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(18, 18, 18)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(lblPieCuadrado)
+                                    .add(lblLargo))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(txtLargo)
+                                    .add(txtPrecioPie)))
+                            .add(layout.createSequentialGroup()
+                                .add(lblPrecioVenta)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(txtCantidad))))
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, cboMedida, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(cboDespacho, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .add(63, 63, 63))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, cboCategoria, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .add(6, 6, 6)
+                        .add(cboCodDes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(cboCodMed, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(8, 8, 8)
+                        .add(cboCodPro, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(txtCodPre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(3, 3, 3))
+                    .add(layout.createSequentialGroup()
+                        .add(btnLimpiar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(btnLimpiar1)))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -401,7 +413,8 @@ public class FormDetalleVenta extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btnAgregarDetalle)
-                    .add(btnLimpiar))
+                    .add(btnLimpiar)
+                    .add(btnLimpiar1))
                 .add(11, 11, 11)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(cboCodDes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -414,16 +427,21 @@ public class FormDetalleVenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDetalleActionPerformed
-        int codPro= cboProducto.getSelectedIndex();
-        String nomPro = cboProducto.getSelectedItem().toString();
-        String medPro = cboMedida.getSelectedItem().toString();
-        int canPro=Integer.parseInt(txtCantidad.getText());
-        double prePro=Double.parseDouble(txtPrecioSugerido.getText());
-        double subtotal=canPro*prePro;
-        Object[] fila = {codPro, nomPro, medPro,canPro, prePro, subtotal};
-        DefaultTableModel modelo = (DefaultTableModel) FormVenta.tblDetalleVenta.getModel();
-        modelo.addRow(fila);
-        limpiar();
+        if (txtCantidad.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
+        } else {
+            int codPro = cboProducto.getSelectedIndex();
+            String nomPro = cboProducto.getSelectedItem().toString();
+            String medPro = cboMedida.getSelectedItem().toString();
+            double canPro = Double.parseDouble(txtCantidad.getText());
+            double prePro = Double.parseDouble(txtPrecioSugerido.getText());
+            double subtotal = canPro * prePro;
+            Object[] fila = {codPro, nomPro, medPro, canPro, prePro, subtotal};
+            DefaultTableModel modelo = (DefaultTableModel) FormVenta.tblDetalleVenta.getModel();
+            modelo.addRow(fila);
+            limpiar();
+        }
+
     }//GEN-LAST:event_btnAgregarDetalleActionPerformed
 
     private void cboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCategoriaActionPerformed
@@ -481,9 +499,14 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             calcularVentaPie();
         }
     }//GEN-LAST:event_txtLargoKeyPressed
+
+    private void btnLimpiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiar1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnLimpiar1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarDetalle;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnLimpiar1;
     private javax.swing.JComboBox cboCategoria;
     private javax.swing.JComboBox cboCodDes;
     private javax.swing.JComboBox cboCodMed;

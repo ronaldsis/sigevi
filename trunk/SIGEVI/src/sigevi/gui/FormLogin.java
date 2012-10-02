@@ -185,9 +185,9 @@ public class FormLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static String getUsuario() {
-        String usuario="admin";
-        return usuario;
+    public static int getUsuario() {
+        //String usuario="admin";
+        return 1;
     }
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed

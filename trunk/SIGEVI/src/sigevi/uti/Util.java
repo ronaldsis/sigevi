@@ -2,12 +2,18 @@ package sigevi.uti;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.*;
 import jxl.*;
 import jxl.write.*;
+import sigevi.gui.FormVenta;
 
 public class Util {
 
@@ -52,4 +58,14 @@ public class Util {
         return hora+min+dia + mes + annio;
     }
     
+        public Date setFecha(String strFecha){
+        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
+        Date fecha = null;
+        try {
+            fecha = formatoDelTexto.parse(strFecha);
+        } catch (ParseException ex) {
+            Logger.getLogger(FormVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return fecha;
+    }
 }

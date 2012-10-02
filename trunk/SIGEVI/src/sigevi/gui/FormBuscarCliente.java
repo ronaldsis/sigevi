@@ -163,7 +163,6 @@ public class FormBuscarCliente extends javax.swing.JFrame {
         if (fila != -1) {
             String dato = String.valueOf(this.tblBusquedaCliente.getValueAt(fila, 0));
             
-            
             Cliente cliente = new Cliente();
             cliente = getCliente(dato);
             if (cliente != null) {

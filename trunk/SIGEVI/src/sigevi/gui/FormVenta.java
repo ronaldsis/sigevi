@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import sigevi.bea.DetalleVenta;
 import sigevi.bea.Venta;
 import sigevi.map.SqlMapConfig;
+import sigevi.uti.Util;
 
 public class FormVenta extends javax.swing.JInternalFrame {
 
@@ -81,13 +82,18 @@ public class FormVenta extends javax.swing.JInternalFrame {
         tblDetalleVenta.setModel(new DefaultTableModel());
 
     }
-
+    
     private void agregarVenta() {
+        Util uti = new Util();
         DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
         Venta vnt = new Venta();
-        vnt.setNroVen(Integer.parseInt(txtNumVenta.getText()));
+        int numVen = Integer.parseInt(txtNumVenta.getText());
+        vnt.setNroVen(numVen);
         vnt.setNroCom(txtNroComprobante.getText());
         vnt.setTipCom((String) cboComprobante.getSelectedItem());
+        vnt.setFecVen(uti.setFecha(txtFecha.getText()));
+        vnt.setCliente_codCli(Integer.parseInt(txtCodigoCliente.getText()));
+        vnt.setUsuario_codUsu(FormLogin.getUsuario());
         try {
             vnt.setFecVen((Date) formatter.parse(txtFecha.getText()));
 
@@ -103,8 +109,13 @@ public class FormVenta extends javax.swing.JInternalFrame {
             Logger.getLogger(sigevi.gui.FormVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        /*for*/
-        
+        /***Recorremos la tabla***/
+            for (int i = 0; i < tblDetalleVenta.getRowCount(); i++) {
+            int codPro = Integer.parseInt(FormVenta.tblDetalleVenta.getValueAt(i, 0).toString());
+            double precio = Double.parseDouble(FormVenta.tblDetalleVenta.getValueAt(i, 3).toString());
+            double cantidad = Double.parseDouble(FormVenta.tblDetalleVenta.getValueAt(i, 4).toString());
+            agregarDetalleVenta(numVen, codPro, precio, cantidad);
+        }
     }
     
     private void agregarDetalleVenta(int venta, int producto, double precio, double cantidad){
@@ -122,7 +133,6 @@ public class FormVenta extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(sigevi.gui.FormVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
     
     @SuppressWarnings("unchecked")
@@ -158,6 +168,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
         lblTitulo1 = new javax.swing.JLabel();
         lblTitulo3 = new javax.swing.JLabel();
         txtCodigoCliente = new javax.swing.JTextField();
+        lblNroDocumento1 = new javax.swing.JLabel();
 
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         setPreferredSize(new java.awt.Dimension(800, 550));
@@ -293,67 +304,55 @@ public class FormVenta extends javax.swing.JInternalFrame {
         lblTitulo3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lblTitulo3.setOpaque(true);
 
+        txtCodigoCliente.setEnabled(false);
+
+        lblNroDocumento1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNroDocumento1.setText("COD CLIENTE :");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
+                .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(lblTitulo1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(layout.createSequentialGroup()
-                                .add(7, 7, 7)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                    .add(lblNroComprobante)
-                                    .add(lblNroVenta))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, txtNumVenta)
-                                    .add(txtNroComprobante, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 75, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                .add(44, 44, 44)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                    .add(lblTipo)
-                                    .add(lblCliente))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(layout.createSequentialGroup()
-                                        .add(cboComprobante, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(0, 100, Short.MAX_VALUE))
-                                    .add(txtNombre))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(txtConsultar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(67, 67, 67)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                    .add(layout.createSequentialGroup()
-                                        .add(lblFecha)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(txtFecha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                        .add(16, 16, 16)
-                                        .add(lblNroDocumento)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                            .add(txtDni)
-                                            .add(txtCodigoCliente, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))))
-                            .add(lblTitulo3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(layout.createSequentialGroup()
-                                .add(1, 1, 1)
-                                .add(jScrollPane1))
-                            .add(layout.createSequentialGroup()
-                                .add(btnAgregar)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btnEliminar)
-                                .add(0, 0, Short.MAX_VALUE))))
-                    .add(layout.createSequentialGroup()
-                        .add(61, 61, 61)
-                        .add(lblDireccion)
+                        .add(7, 7, 7)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(lblNroComprobante)
+                            .add(lblNroVenta))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(txtDireccion)
-                        .add(236, 236, 236))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(0, 0, Short.MAX_VALUE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, txtNumVenta)
+                            .add(txtNroComprobante, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 75, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(44, 44, 44)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(lblTipo)
+                            .add(lblCliente))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(cboComprobante, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(0, 0, Short.MAX_VALUE))
+                            .add(txtNombre))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(txtConsultar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(211, 211, 211))
+                    .add(layout.createSequentialGroup()
+                        .add(btnAgregar)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(btnEliminar)
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .add(layout.createSequentialGroup()
+                .add(61, 61, 61)
+                .add(lblDireccion)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(txtDireccion)
+                .add(246, 246, 246))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(0, 0, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(layout.createSequentialGroup()
                         .add(btnVender, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 68, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -369,8 +368,23 @@ public class FormVenta extends javax.swing.JInternalFrame {
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                 .add(lblTotal)
                                 .add(18, 18, 18)
-                                .add(txtTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+                                .add(txtTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                    .add(layout.createSequentialGroup()
+                        .add(lblFecha)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(txtFecha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(lblNroDocumento)
+                            .add(lblNroDocumento1))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(txtDni)
+                            .add(txtCodigoCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 89, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 750, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(37, 37, 37))
+            .add(lblTitulo1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, lblTitulo3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -408,7 +422,9 @@ public class FormVenta extends javax.swing.JInternalFrame {
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                         .add(txtDireccion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(lblDireccion))
-                    .add(txtCodigoCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(txtCodigoCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(lblNroDocumento1)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(lblTitulo3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -439,7 +455,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-
+        agregarVenta();
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void txtConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultarActionPerformed
@@ -481,6 +497,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblIgv;
     private javax.swing.JLabel lblNroComprobante;
     private javax.swing.JLabel lblNroDocumento;
+    private javax.swing.JLabel lblNroDocumento1;
     private javax.swing.JLabel lblNroVenta;
     private javax.swing.JLabel lblSubTotal;
     private javax.swing.JLabel lblTipo;
