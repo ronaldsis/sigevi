@@ -392,7 +392,7 @@ public class FormCliente extends javax.swing.JInternalFrame {
 
         btnImprimir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/impimir.png"))); // NOI18N
-        btnImprimir.setText("Impirmir");
+        btnImprimir.setText("Imprimir");
         btnImprimir.setFocusable(false);
         btnImprimir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnImprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

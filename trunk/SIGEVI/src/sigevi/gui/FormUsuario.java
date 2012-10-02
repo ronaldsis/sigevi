@@ -5,6 +5,7 @@ import java.awt.print.PrinterException;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,10 +24,9 @@ public final class FormUsuario extends javax.swing.JInternalFrame {
     DefaultTableModel Modelo;
     String[] Titulo = {"CODIGO", "LOGIN", "NOMBRES", "APELLIDOS", "PERFIL"};
     String[][] datos = {};
-
     protected javax.swing.JDesktopPane m_desktop;
     protected boolean m_undecorated;
-    
+
     public void setUndecorated(boolean undecorated) {
         if (m_undecorated != undecorated) {
             m_undecorated = undecorated;
@@ -44,10 +44,11 @@ public final class FormUsuario extends javax.swing.JInternalFrame {
             }
         }
     }
-    
+
     public FormUsuario() {
         initComponents();
         setUndecorated(true);
+        cargarPerfiles();
     }
 
     private int getNuevoCodigo() {
@@ -98,7 +99,7 @@ public final class FormUsuario extends javax.swing.JInternalFrame {
         usu.setLogUsu(getLogin());
         usu.setApeUsu(txtApellido.getText().toUpperCase());
         usu.setNomUsu(txtNombre.getText().toUpperCase());
-        usu.setPasUsu(txtPassU.getText());
+        usu.setPasUsu(new String(txtPassU.getPassword()));
         usu.setPerfil_codPer(cboPerfil.getSelectedIndex());
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
@@ -115,7 +116,7 @@ public final class FormUsuario extends javax.swing.JInternalFrame {
         usu.setLogUsu(getLogin());
         usu.setApeUsu(txtApellido.getText().toUpperCase());
         usu.setNomUsu(txtNombre.getText().toUpperCase());
-        usu.setPasUsu(txtPassU.getText());
+        usu.setPasUsu(new String(txtPassU.getPassword()));
         usu.setPerfil_codPer(cboPerfil.getSelectedIndex());
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
@@ -156,7 +157,7 @@ public final class FormUsuario extends javax.swing.JInternalFrame {
     }
 
     private boolean validarContraseña() {
-        if (txtPassU.getText().equals(txtPassU2.getText())) {
+        if (Arrays.equals(txtPassU.getPassword(), txtPassU2.getPassword())) {
             return true;
         } else {
             return false;
@@ -544,13 +545,11 @@ public final class FormUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if (txtNombre.getText().equals("") || txtApellido.getText().equals("") || txtPassU.getText().equals("")) {
+        if (txtNombre.getText().equals("") || txtApellido.getText().equals("") || txtPassU.getPassword().toString().equals("")) {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
-        }
-        if (validarContraseña() != true) {
+        } else if (validarContraseña() != true) {
             JOptionPane.showMessageDialog(this, "LAS CONTRASEÑAS NO COINCIDEN", "MENSAJE", 2, null);
-        }
-        if (cboPerfil.getSelectedIndex() == 0) {
+        } else if (cboPerfil.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "SELECCIONE UN PERFIL", "MENSAJE", 2, null);
         } else {
             agregarUsuario();
@@ -602,7 +601,7 @@ public final class FormUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (txtNombre.getText().equals("") || txtApellido.getText().equals("") || txtPassU.getText().equals("")) {
+        if (txtNombre.getText().equals("") || txtApellido.getText().equals("") || txtPassU.getPassword().toString().equals("")) {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         } else {
             modificarUsuario();

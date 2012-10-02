@@ -2,6 +2,8 @@ package sigevi.uti;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -68,4 +70,11 @@ public class Util {
         }
         return fecha;
     }
-}
+        
+        public String df(double numero){
+            DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
+            simbolos.setDecimalSeparator('.');
+            DecimalFormat df = new DecimalFormat("#,###.00",simbolos);
+            return (df.format (numero));
+        }
+}          
