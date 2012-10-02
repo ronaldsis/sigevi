@@ -27,24 +27,6 @@ public class FormVenta extends javax.swing.JInternalFrame {
     protected boolean m_undecorated;
     private Util uti = new Util();
 
-    public void setUndecorated(boolean undecorated) {
-        if (m_undecorated != undecorated) {
-            m_undecorated = undecorated;
-            BasicInternalFrameUI ui = (BasicInternalFrameUI) getUI();
-            if (undecorated) {
-                putClientProperty("titlePane", ui.getNorthPane());
-                putClientProperty("border", getBorder());
-                ui.setNorthPane(null);
-                setBorder(null);
-            } else {
-                ui.setNorthPane((JComponent) getClientProperty("titlePane"));
-                setBorder((Border) getClientProperty("border"));
-                putClientProperty("titlePane", null);
-                putClientProperty("border", null);
-            }
-        }
-    }
-
     public FormVenta() {
         initComponents();
         setUndecorated(true);
@@ -65,8 +47,8 @@ public class FormVenta extends javax.swing.JInternalFrame {
         }
         return cod + 1;
     }
-    
-        private int getNuevoCodigoDetalle() {
+
+    private int getNuevoCodigoDetalle() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         Object obj = null;
         int cod = 0;
@@ -79,6 +61,24 @@ public class FormVenta extends javax.swing.JInternalFrame {
             cod = ((Integer) obj).intValue();
         }
         return cod + 1;
+    }
+
+    public void setUndecorated(boolean undecorated) {
+        if (m_undecorated != undecorated) {
+            m_undecorated = undecorated;
+            BasicInternalFrameUI bi = (BasicInternalFrameUI) getUI();
+            if (undecorated) {
+                putClientProperty("titlePane", bi.getNorthPane());
+                putClientProperty("border", getBorder());
+                bi.setNorthPane(null);
+                setBorder(null);
+            } else {
+                bi.setNorthPane((JComponent) getClientProperty("titlePane"));
+                setBorder((Border) getClientProperty("border"));
+                putClientProperty("titlePane", null);
+                putClientProperty("border", null);
+            }
+        }
     }
 
     private void habilitarTextos(boolean b) {
@@ -531,13 +531,13 @@ public class FormVenta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        double st=0.0;      
+        double st = 0.0;
         for (int i = 0; i < tblDetalleVenta.getRowCount(); i++) {
-            st =st + Double.parseDouble(FormVenta.tblDetalleVenta.getValueAt(i, 5).toString());
+            st = st + Double.parseDouble(FormVenta.tblDetalleVenta.getValueAt(i, 5).toString());
         }
-        txtSubTotal.setText(uti.df(st/1.1)+"");
-        txtIgv.setText(uti.df(st/1.18*0.18)+"");
-        txtTotal.setText(uti.df(st)+"");       
+        txtSubTotal.setText(uti.df(st / 1.1) + "");
+        txtIgv.setText(uti.df(st / 1.18 * 0.18) + "");
+        txtTotal.setText(uti.df(st) + "");
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void txtConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultarActionPerformed
@@ -568,7 +568,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        if (txtTotal.getText().equals("")||txtNombre.getText().equals("")||txtNroComprobante.getText().equals("")) {
+        if (txtTotal.getText().equals("") || txtNombre.getText().equals("") || txtNroComprobante.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         } else {
             agregarVenta();
@@ -588,7 +588,6 @@ public class FormVenta extends javax.swing.JInternalFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCalcular;

@@ -1,14 +1,27 @@
 package sigevi.gui;
 
+import com.ibatis.sqlmap.client.SqlMapClient;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import sigevi.bea.Categoria;
+import sigevi.bea.Producto;
+import sigevi.bea.Proveedor;
+import sigevi.map.SqlMapConfig;
 
 public class FormCompra extends javax.swing.JInternalFrame {
 
     protected javax.swing.JDesktopPane m_desktop;
     protected boolean m_undecorated;
-    
+
     public void setUndecorated(boolean undecorated) {
         if (m_undecorated != undecorated) {
             m_undecorated = undecorated;
@@ -26,10 +39,107 @@ public class FormCompra extends javax.swing.JInternalFrame {
             }
         }
     }
-    
+
     public FormCompra() {
         initComponents();
         setUndecorated(true);
+        txtNcompra.setText(getNuevoCodigo() + "");
+        listarCategorias();
+        listarProveedores();
+        autocompletarBox();
+    }
+
+    private void autocompletarBox() {
+        AutoCompleteDecorator.decorate(this.cboCategoriaPro);
+        AutoCompleteDecorator.decorate(this.cboProducto);
+        AutoCompleteDecorator.decorate(this.cboProveedor);
+    }
+
+    private Producto getProducto(int codigo) {
+        Producto producto = new Producto();
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        Object obj = null;
+        try {
+            obj = sqlMapClient.queryForObject("getProducto", codigo);
+        } catch (SQLException ex) {
+            Logger.getLogger(sigevi.gui.FormProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        producto = ((Producto) obj);
+        return producto;
+    }
+
+    private Proveedor getProveedor(int codigo) {
+        Proveedor proveedor = new Proveedor();
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        Object obj = null;
+        try {
+            obj = sqlMapClient.queryForObject("getProveedor", codigo);
+        } catch (SQLException ex) {
+            Logger.getLogger(sigevi.gui.FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        proveedor = ((Proveedor) obj);
+        return proveedor;
+    }
+
+    private int getNuevoCodigo() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        Object obj = null;
+        int cod = 0;
+        try {
+            obj = sqlMapClient.queryForObject("getMaxCompra");
+        } catch (SQLException ex) {
+            Logger.getLogger(sigevi.gui.FormCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (obj != null) {
+            cod = ((Integer) obj).intValue();
+        }
+        return cod + 1;
+    }
+
+    private void listarCategorias() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        List<Categoria> categorias = new ArrayList<>();
+        try {
+            categorias = sqlMapClient.queryForList("listCategoria", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(sigevi.gui.FormDetalleVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (int i = 0; i < categorias.size(); i++) {
+            Categoria cat = categorias.get(i);
+            cboCategoriaPro.addItem(cat.getNomCat());
+        }
+    }
+
+    private void listarProveedores() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        List<Proveedor> proveedores = new ArrayList<>();
+        try {
+            proveedores = sqlMapClient.queryForList("listProveedor", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(sigevi.gui.FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (int i = 0; i < proveedores.size(); i++) {
+            Proveedor prv = proveedores.get(i);
+            cboCodPrv.addItem(prv.getCodPrv());
+            cboProveedor.addItem(prv.getNomPrv());
+        }
+    }
+
+    private void listarProductosDeCategoria(int codCat) {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        List<Producto> productos = new ArrayList<>();
+        try {
+            productos = sqlMapClient.queryForList("listProductoXCategoria", codCat);
+        } catch (SQLException ex) {
+            Logger.getLogger(sigevi.gui.FormDetalleVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (int i = 0; i < productos.size(); i++) {
+            Producto per = productos.get(i);
+            cboCodPro.addItem(per.getCodPro());
+            cboProducto.addItem(per.getNomPro());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -40,7 +150,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
         txtNcompra = new javax.swing.JTextField();
         lblFecha = new javax.swing.JLabel();
         lblProveedor = new javax.swing.JLabel();
-        cmbProveedor = new javax.swing.JComboBox();
+        cboProveedor = new javax.swing.JComboBox();
         lblRUC = new javax.swing.JLabel();
         txtRuc = new javax.swing.JTextField();
         lblFormaPago = new javax.swing.JLabel();
@@ -48,7 +158,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
         lblTipoComprobante = new javax.swing.JLabel();
         cmbTipoComprobante = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaDetalleCompra = new javax.swing.JTable();
+        tblDetalleCompra = new javax.swing.JTable();
         cboCategoriaPro = new javax.swing.JComboBox();
         cboProducto = new javax.swing.JComboBox();
         lblCantidad = new javax.swing.JLabel();
@@ -70,26 +180,31 @@ public class FormCompra extends javax.swing.JInternalFrame {
         lblTitulo2 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        cboCodPro = new javax.swing.JComboBox();
+        cboCodPrv = new javax.swing.JComboBox();
 
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         setPreferredSize(new java.awt.Dimension(800, 550));
 
         lblNroCompra.setText("COMPRA N° :");
 
+        txtNcompra.setEnabled(false);
+
         lblFecha.setText("FECHA :");
 
         lblProveedor.setText("PROVEEDOR :");
 
-        cmbProveedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELIJA PROVEEDOR" }));
-        cmbProveedor.addActionListener(new java.awt.event.ActionListener() {
+        cboProveedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELIJA PROVEEDOR" }));
+        cboProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbProveedorActionPerformed(evt);
+                cboProveedorActionPerformed(evt);
             }
         });
 
         lblRUC.setText("R.U.C :");
 
         txtRuc.setEditable(false);
+        txtRuc.setEnabled(false);
 
         lblFormaPago.setText("FORMA DE PAGO :");
 
@@ -99,20 +214,33 @@ public class FormCompra extends javax.swing.JInternalFrame {
 
         cmbTipoComprobante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELIJA", "BOLETA", "FACTURA", "OTRO" }));
 
-        TablaDetalleCompra.setModel(new javax.swing.table.DefaultTableModel(
+        tblDetalleCompra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "CODIGO", "DESCRIPCION DEL PRODUCTO", "PRECIO", "CANTIDAD", "SUBTOTAL"
             }
-        ));
-        jScrollPane1.setViewportView(TablaDetalleCompra);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, false
+            };
 
-        cboCategoriaPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELIJA CATEGORÍA" }));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblDetalleCompra.setColumnSelectionAllowed(true);
+        tblDetalleCompra.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblDetalleCompra);
+        tblDetalleCompra.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblDetalleCompra.getColumnModel().getColumn(0).setMinWidth(60);
+        tblDetalleCompra.getColumnModel().getColumn(0).setMaxWidth(60);
+        tblDetalleCompra.getColumnModel().getColumn(1).setMinWidth(300);
+        tblDetalleCompra.getColumnModel().getColumn(1).setMaxWidth(300);
+
+        cboCategoriaPro.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
+        cboCategoriaPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CATEGORÍA" }));
         cboCategoriaPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboCategoriaProActionPerformed(evt);
@@ -120,17 +248,10 @@ public class FormCompra extends javax.swing.JInternalFrame {
         });
 
         cboProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELIJA PRODUCTO" }));
-        cboProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboProductoActionPerformed(evt);
-            }
-        });
 
         lblCantidad.setText("CANTIDAD :");
 
         lblPrecio.setText("PRECIO :");
-
-        txtPrecio.setEnabled(false);
 
         btnRegistrarCompra.setText("REGISTRAR COMPRA");
         btnRegistrarCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -187,74 +308,28 @@ public class FormCompra extends javax.swing.JInternalFrame {
             }
         });
 
+        cboCodPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "codPro" }));
+
+        cboCodPrv.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "codPrv" }));
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(lblTitulo1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(lblTitulo2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, lblTitulo3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(layout.createSequentialGroup()
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                            .add(lblProveedor)
-                                            .add(lblNroCompra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 75, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                            .add(layout.createSequentialGroup()
-                                                .add(txtNcompra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 58, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .add(51, 51, 51)
-                                                .add(lblFecha)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                                .add(jXDatePicker1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                            .add(cmbProveedor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 230, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                        .add(18, 18, 18)
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                            .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                                                .add(lblTipoComprobante)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                                .add(cmbTipoComprobante, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .add(layout.createSequentialGroup()
-                                                .add(lblRUC)
-                                                .add(18, 18, 18)
-                                                .add(txtRuc, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 155, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                            .add(layout.createSequentialGroup()
-                                                .add(lblFormaPago)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                                .add(cmbFormaPago, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .add(layout.createSequentialGroup()
-                                                .add(lblNroComprobante)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                                .add(txtNComprobante, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 81, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                                    .add(layout.createSequentialGroup()
-                                        .add(cboCategoriaPro, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(17, 17, 17)
-                                        .add(cboProducto, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 200, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                        .add(lblPrecio)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                        .add(txtPrecio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(lblCantidad)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                        .add(txtCantidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(btnAgregar)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(btnEliminar))))
-                            .add(layout.createSequentialGroup()
                                 .add(21, 21, 21)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                                     .add(layout.createSequentialGroup()
-                                        .add(btnRegistrarCompra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 139, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                            .add(btnRegistrarCompra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 139, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(org.jdesktop.layout.GroupLayout.LEADING, cboCodPrv, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                                 .add(438, 438, 438)
@@ -262,15 +337,70 @@ public class FormCompra extends javax.swing.JInternalFrame {
                                             .add(layout.createSequentialGroup()
                                                 .add(413, 413, 413)
                                                 .add(lblTotal))))
-                                    .add(lblIgv))
+                                    .add(layout.createSequentialGroup()
+                                        .add(cboCodPro, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .add(lblIgv)))
                                 .add(18, 18, 18)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(txtIgv, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 65, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(txtSubTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 65, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(txtTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 65, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                        .add(0, 0, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1))
+                                    .add(txtTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 65, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(layout.createSequentialGroup()
+                                .add(6, 6, 6)
+                                .add(cboCategoriaPro, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 92, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(cboProducto, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 235, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(lblPrecio)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(txtPrecio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(10, 10, 10)
+                                .add(lblCantidad)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(txtCantidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(32, 32, 32)
+                                .add(btnAgregar)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(btnEliminar)))
+                        .add(0, 17, Short.MAX_VALUE))
+                    .add(layout.createSequentialGroup()
+                        .add(27, 27, 27)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(lblProveedor)
+                            .add(lblNroCompra))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(layout.createSequentialGroup()
+                                .add(txtNcompra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 58, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(41, 41, 41)
+                                .add(lblFecha)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jXDatePicker1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(cboProveedor, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .add(18, 18, 18)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                                .add(lblTipoComprobante)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(cmbTipoComprobante, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .add(layout.createSequentialGroup()
+                                .add(lblRUC)
+                                .add(18, 18, 18)
+                                .add(txtRuc, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 155, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(layout.createSequentialGroup()
+                                .add(lblFormaPago)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(cmbFormaPago, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .add(layout.createSequentialGroup()
+                                .add(lblNroComprobante)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(txtNComprobante, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 81, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(20, 20, 20)))
                 .addContainerGap())
+            .add(lblTitulo2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -285,9 +415,9 @@ public class FormCompra extends javax.swing.JInternalFrame {
                             .add(lblFecha)
                             .add(jXDatePicker1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(lblProveedor)
-                            .add(cmbProveedor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(cboProveedor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lblProveedor)))
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(lblTipoComprobante)
@@ -315,10 +445,9 @@ public class FormCompra extends javax.swing.JInternalFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(lblTitulo3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(btnRegistrarCompra)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(lblSubtotal)
@@ -326,55 +455,77 @@ public class FormCompra extends javax.swing.JInternalFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(txtIgv, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(lblIgv))))
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(lblIgv))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(14, 14, 14)
+                                .add(lblTotal))
+                            .add(layout.createSequentialGroup()
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(txtTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                     .add(layout.createSequentialGroup()
-                        .add(14, 14, 14)
-                        .add(lblTotal))
-                    .add(layout.createSequentialGroup()
+                        .add(btnRegistrarCompra)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(cboCodPro, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(txtTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(38, 38, 38))
+                        .add(cboCodPrv, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(32, 32, 32))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProveedorActionPerformed
+    private void cboProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboProveedorActionPerformed
+        if (cboProveedor.getSelectedIndex() > 0) {
+            cboCodPrv.setSelectedIndex(cboProveedor.getSelectedIndex());
+            String s = cboCodPrv.getSelectedItem().toString();
+            txtRuc.setText("" + getProveedor(Integer.parseInt(s)).getDocPrv());
+        }
 
-    }//GEN-LAST:event_cmbProveedorActionPerformed
+    }//GEN-LAST:event_cboProveedorActionPerformed
 
     private void cboCategoriaProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCategoriaProActionPerformed
-
+        cboProducto.removeAllItems();
+        cboProducto.addItem("ELEGIR");
+        cboCodPro.removeAllItems();
+        cboCodPro.addItem("pro");
+        listarProductosDeCategoria(cboCategoriaPro.getSelectedIndex());
     }//GEN-LAST:event_cboCategoriaProActionPerformed
 
-    private void cboProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboProductoActionPerformed
-
-    }//GEN-LAST:event_cboProductoActionPerformed
-
     private void btnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCompraActionPerformed
-
     }//GEN-LAST:event_btnRegistrarCompraActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-       /* dp = new FormDetalleVenta();
-        dp.setVisible(true);*/
+        if (txtCantidad.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
+        } else {
+            int codPro = cboProducto.getSelectedIndex();
+            String nomPro = cboProducto.getSelectedItem().toString();
+            double canPro = Double.parseDouble(txtCantidad.getText());
+            double prePro = Double.parseDouble(txtPrecio.getText());
+            double subtotal = canPro * prePro;
+            Object[] fila = {codPro, nomPro,canPro, prePro, subtotal};
+            DefaultTableModel modelo = (DefaultTableModel) tblDetalleCompra.getModel();
+            modelo.addRow(fila);
+            //limpiar();
+        }
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-     /*   DefaultTableModel modelo = (DefaultTableModel) FormVenta.tblDetalleVenta.getModel();
-        modelo.removeRow(tblDetalleVenta.getSelectedRow());*/
+         DefaultTableModel modelo = (DefaultTableModel) FormVenta.tblDetalleVenta.getModel();
+         modelo.removeRow(tblDetalleCompra.getSelectedRow());
     }//GEN-LAST:event_btnEliminarActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaDetalleCompra;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegistrarCompra;
     private javax.swing.JComboBox cboCategoriaPro;
+    private javax.swing.JComboBox cboCodPro;
+    private javax.swing.JComboBox cboCodPrv;
     private javax.swing.JComboBox cboProducto;
+    private javax.swing.JComboBox cboProveedor;
     private javax.swing.JComboBox cmbFormaPago;
-    private javax.swing.JComboBox cmbProveedor;
     private javax.swing.JComboBox cmbTipoComprobante;
     private javax.swing.JScrollPane jScrollPane1;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
@@ -393,6 +544,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblTitulo2;
     private javax.swing.JLabel lblTitulo3;
     private javax.swing.JLabel lblTotal;
+    private javax.swing.JTable tblDetalleCompra;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtIgv;
     private javax.swing.JTextField txtNComprobante;

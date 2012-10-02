@@ -6,7 +6,25 @@ public class Producto {
     private Double stoPro;
     private String desPro;
     private String nomCat;
+    private Double preVen;
+    private Double preCom;
     private Integer categoria_codCat;
+
+    public Double getPreVen() {
+        return preVen;
+    }
+
+    public void setPreVen(Double preVen) {
+        this.preVen = preVen;
+    }
+
+    public Double getPreCom() {
+        return preCom;
+    }
+
+    public void setPreCom(Double preCom) {
+        this.preCom = preCom;
+    }
 
     public Integer getCodPro() {
         return codPro;
