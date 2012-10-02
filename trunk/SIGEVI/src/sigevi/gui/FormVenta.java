@@ -96,6 +96,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
         txtSubTotal.setText("");
         txtIgv.setText("");
         txtTotal.setText("");
+        txtNroComprobante.setText("");
         cboComprobante.setSelectedIndex(0);
         tblDetalleVenta.setModel(new DefaultTableModel());
         txtNumVenta.setText(getNuevoCodigo() + "");
@@ -188,6 +189,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
         txtCodigoCliente = new javax.swing.JTextField();
         lblNroDocumento1 = new javax.swing.JLabel();
         jToolBar = new javax.swing.JToolBar();
+        btnSalir = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
         btnVender = new javax.swing.JButton();
         btnCalcular = new javax.swing.JButton();
@@ -331,6 +333,18 @@ public class FormVenta extends javax.swing.JInternalFrame {
 
         jToolBar.setBorder(null);
         jToolBar.setRollover(true);
+
+        btnSalir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/inicio.png"))); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jToolBar.add(btnSalir);
 
         btnImprimir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/impimir.png"))); // NOI18N
@@ -571,11 +585,16 @@ public class FormVenta extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnImprimirActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnImprimir;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVender;
     private javax.swing.JComboBox cboComprobante;
     private javax.swing.JScrollPane jScrollPane1;

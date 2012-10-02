@@ -30,14 +30,14 @@ public final class FormUsuario extends javax.swing.JInternalFrame {
     public void setUndecorated(boolean undecorated) {
         if (m_undecorated != undecorated) {
             m_undecorated = undecorated;
-            BasicInternalFrameUI ui = (BasicInternalFrameUI) getUI();
+            BasicInternalFrameUI xx = (BasicInternalFrameUI) getUI();
             if (undecorated) {
-                putClientProperty("titlePane", ui.getNorthPane());
+                putClientProperty("titlePane", xx.getNorthPane());
                 putClientProperty("border", getBorder());
-                ui.setNorthPane(null);
+                xx.setNorthPane(null);
                 setBorder(null);
             } else {
-                ui.setNorthPane((JComponent) getClientProperty("titlePane"));
+                xx.setNorthPane((JComponent) getClientProperty("titlePane"));
                 setBorder((Border) getClientProperty("border"));
                 putClientProperty("titlePane", null);
                 putClientProperty("border", null);
