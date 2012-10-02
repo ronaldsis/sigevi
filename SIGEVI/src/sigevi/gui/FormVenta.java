@@ -1,6 +1,7 @@
 package sigevi.gui;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
+import java.awt.print.PrinterException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -9,6 +10,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +25,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
     private sigevi.gui.FormBuscarCliente dcli;
     protected javax.swing.JDesktopPane m_desktop;
     protected boolean m_undecorated;
+    private Util uti = new Util();
 
     public void setUndecorated(boolean undecorated) {
         if (m_undecorated != undecorated) {
@@ -41,7 +44,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
             }
         }
     }
-    
+
     public FormVenta() {
         initComponents();
         setUndecorated(true);
@@ -63,11 +66,26 @@ public class FormVenta extends javax.swing.JInternalFrame {
         return cod + 1;
     }
     
+        private int getNuevoCodigoDetalle() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        Object obj = null;
+        int cod = 0;
+        try {
+            obj = sqlMapClient.queryForObject("getMaxDetalleVenta");
+        } catch (SQLException ex) {
+            Logger.getLogger(sigevi.gui.FormCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (obj != null) {
+            cod = ((Integer) obj).intValue();
+        }
+        return cod + 1;
+    }
+
     private void habilitarTextos(boolean b) {
         lblIgv.setVisible(b);
         lblSubTotal.setVisible(b);
-        txtSubTotal.setVisible(b);
         txtIgv.setVisible(b);
+        txtSubTotal.setVisible(b);
     }
 
     private void limpiartextos() {
@@ -75,16 +93,15 @@ public class FormVenta extends javax.swing.JInternalFrame {
         txtDni.setText("");
         txtDireccion.setText("");
         txtNumVenta.setText("");
-        txtTotal.setText("");
         txtSubTotal.setText("");
         txtIgv.setText("");
+        txtTotal.setText("");
         cboComprobante.setSelectedIndex(0);
         tblDetalleVenta.setModel(new DefaultTableModel());
-
+        txtNumVenta.setText(getNuevoCodigo() + "");
     }
-    
+
     private void agregarVenta() {
-        Util uti = new Util();
         DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
         Venta vnt = new Venta();
         int numVen = Integer.parseInt(txtNumVenta.getText());
@@ -108,25 +125,27 @@ public class FormVenta extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(sigevi.gui.FormVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        /***Recorremos la tabla***/
-            for (int i = 0; i < tblDetalleVenta.getRowCount(); i++) {
+
+        /**
+         * *Recorremos la tabla**
+         */
+        for (int i = 0; i < tblDetalleVenta.getRowCount(); i++) {
             int codPro = Integer.parseInt(FormVenta.tblDetalleVenta.getValueAt(i, 0).toString());
             double precio = Double.parseDouble(FormVenta.tblDetalleVenta.getValueAt(i, 3).toString());
             double cantidad = Double.parseDouble(FormVenta.tblDetalleVenta.getValueAt(i, 4).toString());
             agregarDetalleVenta(numVen, codPro, precio, cantidad);
         }
     }
-    
-    private void agregarDetalleVenta(int venta, int producto, double precio, double cantidad){
-        DetalleVenta det=new DetalleVenta();
-        det.setNroDet(getNuevoCodigo());
+
+    private void agregarDetalleVenta(int venta, int producto, double precio, double cantidad) {
+        DetalleVenta det = new DetalleVenta();
+        det.setNroDet(getNuevoCodigoDetalle());
         det.setVenta_nroVen(venta);
         det.setProducto_codPro(producto);
         det.setPreDet(precio);
         det.setCanDet(cantidad);
-        
-         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
 
             sqlMapClient.insert("insertDetalleVenta", det);
@@ -134,7 +153,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
             Logger.getLogger(sigevi.gui.FormVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -142,7 +161,6 @@ public class FormVenta extends javax.swing.JInternalFrame {
         lblCliente = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
         lblTipo = new javax.swing.JLabel();
-        btnVender = new javax.swing.JButton();
         txtConsultar = new javax.swing.JButton();
         lblNroDocumento = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -169,6 +187,10 @@ public class FormVenta extends javax.swing.JInternalFrame {
         lblTitulo3 = new javax.swing.JLabel();
         txtCodigoCliente = new javax.swing.JTextField();
         lblNroDocumento1 = new javax.swing.JLabel();
+        jToolBar = new javax.swing.JToolBar();
+        btnImprimir = new javax.swing.JButton();
+        btnVender = new javax.swing.JButton();
+        btnCalcular = new javax.swing.JButton();
 
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         setPreferredSize(new java.awt.Dimension(800, 550));
@@ -182,16 +204,6 @@ public class FormVenta extends javax.swing.JInternalFrame {
 
         lblTipo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTipo.setText("TIPO COMPROBANTE :");
-
-        btnVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/calcular.png"))); // NOI18N
-        btnVender.setText("Vender");
-        btnVender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnVender.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnVender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVenderActionPerformed(evt);
-            }
-        });
 
         txtConsultar.setBackground(new java.awt.Color(255, 255, 255));
         txtConsultar.setForeground(new java.awt.Color(255, 255, 255));
@@ -208,8 +220,10 @@ public class FormVenta extends javax.swing.JInternalFrame {
         txtNombre.setEnabled(false);
 
         txtIgv.setEditable(false);
+        txtIgv.setEnabled(false);
 
         txtTotal.setEditable(false);
+        txtTotal.setEnabled(false);
 
         lblIgv.setText("IGV :");
 
@@ -234,6 +248,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
         txtNumVenta.setEnabled(false);
 
         txtSubTotal.setEditable(false);
+        txtSubTotal.setEnabled(false);
 
         lblSubTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubTotal.setText("SUB TOTAL :");
@@ -243,7 +258,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "CODIGO", "PRODUCTO", "MEDIDA", "PRECIO", "CANTIDAD", "SUBTOTAL"
+                "CODIGO", "DESCRIPCION DEL PRODUCTO", "MEDIDA", "PRECIO", "CANTIDAD", "SUBTOTAL"
             }
         ) {
             Class[] types = new Class [] {
@@ -262,8 +277,13 @@ public class FormVenta extends javax.swing.JInternalFrame {
             }
         });
         tblDetalleVenta.setColumnSelectionAllowed(true);
+        tblDetalleVenta.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblDetalleVenta);
         tblDetalleVenta.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblDetalleVenta.getColumnModel().getColumn(0).setMinWidth(60);
+        tblDetalleVenta.getColumnModel().getColumn(0).setMaxWidth(60);
+        tblDetalleVenta.getColumnModel().getColumn(1).setMinWidth(300);
+        tblDetalleVenta.getColumnModel().getColumn(1).setMaxWidth(300);
 
         cboComprobante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FACTURA", "BOLETA" }));
         cboComprobante.addActionListener(new java.awt.event.ActionListener() {
@@ -309,6 +329,44 @@ public class FormVenta extends javax.swing.JInternalFrame {
         lblNroDocumento1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNroDocumento1.setText("COD CLIENTE :");
 
+        jToolBar.setBorder(null);
+        jToolBar.setRollover(true);
+
+        btnImprimir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/impimir.png"))); // NOI18N
+        btnImprimir.setText("Imprimir");
+        btnImprimir.setFocusable(false);
+        btnImprimir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnImprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+        jToolBar.add(btnImprimir);
+
+        btnVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/vender.png"))); // NOI18N
+        btnVender.setText("Vender");
+        btnVender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVender.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVenderActionPerformed(evt);
+            }
+        });
+        jToolBar.add(btnVender);
+
+        btnCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/calcular.png"))); // NOI18N
+        btnCalcular.setText("Calcular");
+        btnCalcular.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCalcular.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
+            }
+        });
+        jToolBar.add(btnCalcular);
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -350,10 +408,29 @@ public class FormVenta extends javax.swing.JInternalFrame {
                 .add(txtDireccion)
                 .add(246, 246, 246))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(0, 0, Short.MAX_VALUE)
+                .add(0, 595, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createSequentialGroup()
-                        .add(btnVender, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 68, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(lblFecha)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(txtFecha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(lblNroDocumento)
+                            .add(lblNroDocumento1))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(txtDni)
+                            .add(txtCodigoCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 89, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .add(37, 37, 37))
+            .add(lblTitulo1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, lblTitulo3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 750, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(layout.createSequentialGroup()
+                        .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -368,23 +445,8 @@ public class FormVenta extends javax.swing.JInternalFrame {
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                 .add(lblTotal)
                                 .add(18, 18, 18)
-                                .add(txtTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                    .add(layout.createSequentialGroup()
-                        .add(lblFecha)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(txtFecha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(lblNroDocumento)
-                            .add(lblNroDocumento1))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(txtDni)
-                            .add(txtCodigoCliente, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 89, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 750, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(37, 37, 37))
-            .add(lblTitulo1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, lblTitulo3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(txtTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -432,8 +494,8 @@ public class FormVenta extends javax.swing.JInternalFrame {
                     .add(btnAgregar)
                     .add(btnEliminar))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 156, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(5, 5, 5)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -447,16 +509,22 @@ public class FormVenta extends javax.swing.JInternalFrame {
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(lblTotal)
                             .add(txtTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(btnVender))
-                .addContainerGap(128, Short.MAX_VALUE))
+                    .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        agregarVenta();
-    }//GEN-LAST:event_btnVenderActionPerformed
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+        double st=0.0;      
+        for (int i = 0; i < tblDetalleVenta.getRowCount(); i++) {
+            st =st + Double.parseDouble(FormVenta.tblDetalleVenta.getValueAt(i, 5).toString());
+        }
+        txtSubTotal.setText(uti.df(st/1.1)+"");
+        txtIgv.setText(uti.df(st/1.18*0.18)+"");
+        txtTotal.setText(uti.df(st)+"");       
+    }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void txtConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultarActionPerformed
         dcli = new FormBuscarCliente();
@@ -485,12 +553,33 @@ public class FormVenta extends javax.swing.JInternalFrame {
         modelo.removeRow(tblDetalleVenta.getSelectedRow());
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
+        if (txtTotal.getText().equals("")||txtNombre.getText().equals("")||txtNroComprobante.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
+        } else {
+            agregarVenta();
+            JOptionPane.showMessageDialog(this, "VENTA REGISTRADA", "MENSAJE", 1, null);
+            limpiartextos();
+        }
+    }//GEN-LAST:event_btnVenderActionPerformed
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        try {
+            tblDetalleVenta.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(FormProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnVender;
     private javax.swing.JComboBox cboComprobante;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToolBar jToolBar;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblFecha;
