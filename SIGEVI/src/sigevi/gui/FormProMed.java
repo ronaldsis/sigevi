@@ -29,6 +29,7 @@ public class FormProMed extends javax.swing.JFrame {
     
     public FormProMed() {
         initComponents();
+        this.setLocationRelativeTo(null);
         txtProducto.setText(codPro + "");
         txtNomPro.setText(sigevi.gui.FormProducto.getProducto(codPro).getNomPro());
         Modelo = new DefaultTableModel(datos, Titulo);

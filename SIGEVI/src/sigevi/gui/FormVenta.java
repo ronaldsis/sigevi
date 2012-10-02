@@ -20,10 +20,9 @@ public class FormVenta extends javax.swing.JInternalFrame {
 
     private sigevi.gui.FormDetalleVenta dp;
     private sigevi.gui.FormBuscarCliente dcli;
-
     protected javax.swing.JDesktopPane m_desktop;
     protected boolean m_undecorated;
-    
+
     public void setUndecorated(boolean undecorated) {
         if (m_undecorated != undecorated) {
             m_undecorated = undecorated;
@@ -125,7 +124,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
         }
         
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -230,16 +229,30 @@ public class FormVenta extends javax.swing.JInternalFrame {
 
         tblDetalleVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "CODIGO", "PRODUCTO", "MEDIDA", "PRECIO", "CANTIDAD", "SUBTOTAL"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblDetalleVenta.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(tblDetalleVenta);
+        tblDetalleVenta.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         cboComprobante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FACTURA", "BOLETA" }));
         cboComprobante.addActionListener(new java.awt.event.ActionListener() {
@@ -452,7 +465,8 @@ public class FormVenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
+        DefaultTableModel modelo = (DefaultTableModel) FormVenta.tblDetalleVenta.getModel();
+        modelo.removeRow(tblDetalleVenta.getSelectedRow());
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -473,7 +487,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblTitulo1;
     private javax.swing.JLabel lblTitulo3;
     private javax.swing.JLabel lblTotal;
-    private javax.swing.JTable tblDetalleVenta;
+    public static javax.swing.JTable tblDetalleVenta;
     public static javax.swing.JTextField txtCodigoCliente;
     private javax.swing.JButton txtConsultar;
     public static javax.swing.JTextField txtDireccion;

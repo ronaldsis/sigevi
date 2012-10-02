@@ -29,6 +29,7 @@ public class FormBuscarCliente extends javax.swing.JFrame {
     
     public FormBuscarCliente() {
         initComponents();
+        this.setLocationRelativeTo(null);
         AutoCompleteDecorator.decorate(txtNombreCliente, BusquedaService.listarClientes(), false);
     }
 

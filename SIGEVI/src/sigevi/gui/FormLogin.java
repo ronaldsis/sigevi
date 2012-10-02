@@ -4,6 +4,7 @@
  */
 package sigevi.gui;
 
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,7 +13,8 @@ import javax.swing.JOptionPane;
  */
 public class FormLogin extends javax.swing.JFrame {
 
-    private String user = "admin", pass = "123";
+    private String user = "admin";
+    char[] pass = { '1', '2', '3' };
     private FormPrincipal frmPrincipal;
 
     public FormLogin() {
@@ -189,7 +191,7 @@ public class FormLogin extends javax.swing.JFrame {
     }
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        if (user.equals(txtUsuario.getText()) && pass.equals(txtContrasena.getText())) {
+        if (user.equals(txtUsuario.getText()) && Arrays.equals(pass,txtContrasena.getPassword())) {
             this.dispose();
             frmPrincipal = new FormPrincipal();
             frmPrincipal.setVisible(true);

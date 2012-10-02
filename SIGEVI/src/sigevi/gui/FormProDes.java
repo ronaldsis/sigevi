@@ -24,12 +24,13 @@ import sigevi.map.SqlMapConfig;
 public class FormProDes extends javax.swing.JFrame {
 
     DefaultTableModel Modelo;
-    String[] Titulo = {"CODIGO","PRODUCTO", "FORMA DE DESPACHO"};
+    String[] Titulo = {"CODIGO", "PRODUCTO", "FORMA DE DESPACHO"};
     String[][] datos = {};
     int codPro = Integer.parseInt(sigevi.gui.FormProducto.txtCodigo.getText());
-    
+
     public FormProDes() {
         initComponents();
+        this.setLocationRelativeTo(null);
         txtCodPro.setText(codPro + "");
         txtNomPro.setText(sigevi.gui.FormProducto.getProducto(codPro).getNomPro());
         Modelo = new DefaultTableModel(datos, Titulo);
@@ -39,7 +40,7 @@ public class FormProDes extends javax.swing.JFrame {
         AutoCompleteDecorator.decorate(this.cboFormaDespacho);
     }
 
- private int getNuevoCodigo() {
+    private int getNuevoCodigo() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         Object obj = null;
         int cod = 0;
@@ -89,7 +90,7 @@ public class FormProDes extends javax.swing.JFrame {
 
         for (int i = 0; i < despachos.size(); i++) {
             ProductoDespacho des = despachos.get(i);
-            Object[] fila = {des.getCodProDes(),des.getNomPro(), des.getNomDes()};
+            Object[] fila = {des.getCodProDes(), des.getNomPro(), des.getNomDes()};
             Modelo.addRow(fila);
         }
     }
@@ -106,6 +107,23 @@ public class FormProDes extends javax.swing.JFrame {
             sqlMapClient.insert("insertProductoDespacho", des);
         } catch (SQLException ex) {
             Logger.getLogger(sigevi.gui.FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void generarProductoDespacho() {
+        for (int i = 0; i < 6; i++) {
+            ProductoDespacho des = new ProductoDespacho();
+            des.setCodProDes(getNuevoCodigo());
+            des.setProducto_codPro(Integer.parseInt(txtCodPro.getText()));
+            des.setDespacho_codDes(i + 1);
+
+            SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+            try {
+
+                sqlMapClient.insert("insertProductoDespacho", des);
+            } catch (SQLException ex) {
+                Logger.getLogger(sigevi.gui.FormProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -149,6 +167,7 @@ public class FormProDes extends javax.swing.JFrame {
         txtNomPro = new javax.swing.JTextField();
         btnCerrar = new javax.swing.JButton();
         cboFormaDespacho = new javax.swing.JComboBox();
+        btnCerrar1 = new javax.swing.JButton();
 
         jLabel1.setText("PRODUCTO :");
 
@@ -172,7 +191,7 @@ public class FormProDes extends javax.swing.JFrame {
         lblTitulo2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lblTitulo2.setOpaque(true);
 
-        tblProductoDespacho.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblProductoDespacho.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jScrollPane1.setViewportView(tblProductoDespacho);
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/add.png"))); // NOI18N
@@ -203,13 +222,19 @@ public class FormProDes extends javax.swing.JFrame {
 
         cboFormaDespacho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR DESPACHO" }));
 
+        btnCerrar1.setText("Generar");
+        btnCerrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrar1ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(lblTitulo1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .add(lblTitulo2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -224,7 +249,9 @@ public class FormProDes extends javax.swing.JFrame {
                                 .add(18, 18, 18)
                                 .add(btnEliminar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 97, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                         .add(18, 18, 18)
-                        .add(btnCerrar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(btnCerrar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(btnCerrar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(layout.createSequentialGroup()
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -232,6 +259,7 @@ public class FormProDes extends javax.swing.JFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(txtNomPro)))
                 .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -245,7 +273,8 @@ public class FormProDes extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
-                    .add(cboFormaDespacho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(cboFormaDespacho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(btnCerrar1))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btnEliminar)
@@ -254,7 +283,7 @@ public class FormProDes extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
         );
 
         pack();
@@ -288,9 +317,15 @@ public class FormProDes extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
+    private void btnCerrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrar1ActionPerformed
+        generarProductoDespacho();
+        listarDespachosDeProducto(codPro);
+    }//GEN-LAST:event_btnCerrar1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnCerrar1;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JComboBox cboFormaDespacho;
     private javax.swing.JLabel jLabel1;
