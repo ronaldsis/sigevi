@@ -15,7 +15,8 @@ import javax.swing.*;
 import javax.swing.table.*;
 import jxl.*;
 import jxl.write.*;
-import sigevi.gui.FormVenta;
+import sigevi.gui.FormPrincipal;
+
 
 public class Util {
 
@@ -66,7 +67,7 @@ public class Util {
         try {
             fecha = formatoDelTexto.parse(strFecha);
         } catch (ParseException ex) {
-            Logger.getLogger(FormVenta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         return fecha;
     }
@@ -77,4 +78,5 @@ public class Util {
             DecimalFormat df = new DecimalFormat("#,###.00",simbolos);
             return (df.format (numero));
         }
+             
 }          
