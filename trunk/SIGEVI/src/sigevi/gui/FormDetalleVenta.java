@@ -430,7 +430,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         if (txtCantidad.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         } else {
-            int codPro = cboProducto.getSelectedIndex();
+            int codPro = Integer.parseInt(cboCodPro.getSelectedItem().toString());
             String nomPro = cboProducto.getSelectedItem().toString();
             String medPro = cboMedida.getSelectedItem().toString();
             double canPro = Double.parseDouble(txtCantidad.getText());
@@ -441,7 +441,6 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             modelo.addRow(fila);
             limpiar();
         }
-
     }//GEN-LAST:event_btnAgregarDetalleActionPerformed
 
     private void cboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCategoriaActionPerformed
