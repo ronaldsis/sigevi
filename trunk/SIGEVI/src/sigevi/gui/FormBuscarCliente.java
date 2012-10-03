@@ -12,10 +12,6 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import sigevi.bea.Cliente;
 import sigevi.map.SqlMapConfig;
 
-/**
- *
- * @author SIMONETTA
- */
 public class FormBuscarCliente extends javax.swing.JFrame {
 
     DefaultTableModel Modelo;
