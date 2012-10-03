@@ -3,9 +3,6 @@ package sigevi.gui;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import java.awt.print.PrinterException;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +25,6 @@ import sigevi.uti.Util;
 public class FormCompra extends javax.swing.JInternalFrame {
 
     protected javax.swing.JDesktopPane m_desktop;
-    private Util uti = new Util();
     protected boolean m_undecorated;
 
     public FormCompra() {
@@ -65,20 +61,15 @@ public class FormCompra extends javax.swing.JInternalFrame {
     }
 
     private void limpiar() {
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
-        try {
-            txtFecha.setDate((Date) formatter.parse(uti.getFecha()));
-        } catch (ParseException ex) {
-            Logger.getLogger(FormCompra.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        txtFecha.setDate(new Date());
         txtNComprobante.setText("");
         txtRuc.setText("");
         txtSubTotal.setText("");
         txtIgv.setText("");
         txtTotal.setText("");
         cboProveedor.setSelectedIndex(0);
-        tblDetalleCompra.setModel(new DefaultTableModel());
         txtNcompra.setText(getNuevoCodigo() + "");
+        Util.limpiarJTable(tblDetalleCompra);
     }
 
     private void borrar() {
@@ -94,7 +85,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
         cmp.setNroCop(numCop);
         cmp.setNroCom(txtNComprobante.getText());
         cmp.setTipCom((String) cboTipoComprobante.getSelectedItem());
-        cmp.setFecCom(uti.setFecha(txtFecha.getDate().toString()));
+        cmp.setFecCom(txtFecha.getDate());
         cmp.setProveedor_codPrv(cboCodPrv.getSelectedIndex());
         cmp.setUsuario_codUsu(FormLogin.getUsuario());
 
@@ -102,7 +93,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
 
-            sqlMapClient.insert("insertVenta", cmp);
+            sqlMapClient.insert("insertCompra", cmp);
         } catch (SQLException ex) {
             Logger.getLogger(sigevi.gui.FormVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -128,7 +119,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
 
             sqlMapClient.insert("insertDetalleCompra", det);
         } catch (SQLException ex) {
-            Logger.getLogger(sigevi.gui.FormVenta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sigevi.gui.FormCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -331,6 +322,11 @@ public class FormCompra extends javax.swing.JInternalFrame {
         });
 
         cboProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELIJA PRODUCTO" }));
+        cboProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboProductoActionPerformed(evt);
+            }
+        });
 
         lblCantidad.setText("CANTIDAD :");
 
@@ -625,7 +621,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
         if (txtCantidad.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         } else {
-            int codPro = cboProducto.getSelectedIndex();
+            int codPro = Integer.parseInt(cboCodPro.getSelectedItem().toString());
             String nomPro = cboProducto.getSelectedItem().toString();
             double canPro = Double.parseDouble(txtCantidad.getText());
             double prePro = Double.parseDouble(txtPrecio.getText());
@@ -647,7 +643,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         } else {
             agregarCompra();
-            JOptionPane.showMessageDialog(this, "VENTA REGISTRADA", "MENSAJE", 1, null);
+            JOptionPane.showMessageDialog(this, "COMPRA REGISTRADA", "MENSAJE", 1, null);
             limpiar();
         }
     }//GEN-LAST:event_btnComprarActionPerformed
@@ -667,13 +663,18 @@ public class FormCompra extends javax.swing.JInternalFrame {
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         double st = 0.0;
         for (int i = 0; i < tblDetalleCompra.getRowCount(); i++) {
-            st = st + Double.parseDouble(tblDetalleCompra.getValueAt(i, 5).toString());
+            st = st + Double.parseDouble(tblDetalleCompra.getValueAt(i, 4).toString());
         }
-        txtSubTotal.setText(uti.df(st / 1.1) + "");
-        txtIgv.setText(uti.df(st / 1.18 * 0.18) + "");
-        txtTotal.setText(uti.df(st) + "");        
+        txtSubTotal.setText(Util.df(st / 1.1) + "");
+        txtIgv.setText(Util.df(st / 1.18 * 0.18) + "");
+        txtTotal.setText(Util.df(st) + "");
     }//GEN-LAST:event_btnCalcularActionPerformed
 
+    private void cboProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboProductoActionPerformed
+        if (cboProducto.getSelectedIndex() > 0) {
+            cboCodPro.setSelectedIndex(cboProducto.getSelectedIndex());
+        }
+    }//GEN-LAST:event_cboProductoActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCalcular;
