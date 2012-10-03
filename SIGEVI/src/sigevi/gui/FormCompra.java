@@ -338,7 +338,13 @@ public class FormCompra extends javax.swing.JInternalFrame {
 
         lblSubtotal.setText("SUB TOTAL :");
 
+        txtSubTotal.setEnabled(false);
+
         lblIgv.setText("I.G.V :");
+
+        txtIgv.setEnabled(false);
+
+        txtTotal.setEnabled(false);
 
         lblTotal.setText("TOTAL A PAGAR :");
 
@@ -388,8 +394,8 @@ public class FormCompra extends javax.swing.JInternalFrame {
 
         cboCodPrv.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "codPrv" }));
 
-        jToolBar.setBorder(null);
         jToolBar.setRollover(true);
+        jToolBar.setBorder(null);
 
         btnSalir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/inicio.png"))); // NOI18N
@@ -659,7 +665,13 @@ public class FormCompra extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        
+        double st = 0.0;
+        for (int i = 0; i < tblDetalleCompra.getRowCount(); i++) {
+            st = st + Double.parseDouble(tblDetalleCompra.getValueAt(i, 5).toString());
+        }
+        txtSubTotal.setText(uti.df(st / 1.1) + "");
+        txtIgv.setText(uti.df(st / 1.18 * 0.18) + "");
+        txtTotal.setText(uti.df(st) + "");        
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
