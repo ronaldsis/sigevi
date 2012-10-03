@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigevi.gui;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -15,7 +11,6 @@ import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import sigevi.bea.Cliente;
 import sigevi.map.SqlMapConfig;
-import sigevi.uti.BusquedaService;
 
 /**
  *
@@ -26,11 +21,28 @@ public class FormBuscarCliente extends javax.swing.JFrame {
     DefaultTableModel Modelo;
     String[] Titulo = {"CODIGO", "NOMBRE/RAZÓN SOCIAL", "NRO DOC", "DIRECCIÓN"};
     String[][] datos = {};
-    
+
     public FormBuscarCliente() {
         initComponents();
         this.setLocationRelativeTo(null);
-        AutoCompleteDecorator.decorate(txtNombreCliente, BusquedaService.listarClientes(), false);
+        AutoCompleteDecorator.decorate(txtNombreCliente, listarClientes(), false);
+    }
+
+    public static List<String> listarClientes() {
+        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
+        List<Cliente> clientes = new ArrayList<>();
+        List<String> data = new ArrayList<>();
+        try {
+            clientes = sqlMapClient.queryForList("listCliente", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (int i = 0; i < clientes.size(); i++) {
+            Cliente cli = clientes.get(i);
+            data.add(cli.getNomCli());
+        }
+        return data;
     }
 
     private void listarClientes(String nomCli) {
@@ -65,7 +77,7 @@ public class FormBuscarCliente extends javax.swing.JFrame {
         cliente = ((Cliente) obj);
         return cliente;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -162,7 +174,7 @@ public class FormBuscarCliente extends javax.swing.JFrame {
         int fila = this.tblBusquedaCliente.getSelectedRow();
         if (fila != -1) {
             String dato = String.valueOf(this.tblBusquedaCliente.getValueAt(fila, 0));
-            
+
             Cliente cliente = new Cliente();
             cliente = getCliente(dato);
             if (cliente != null) {
@@ -180,7 +192,6 @@ public class FormBuscarCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "SELECCIONE UN REGISTRO DE LA LISTA", "MENSAJE", 0, null);
         }
     }//GEN-LAST:event_btnSeleccionarActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnSeleccionar;
