@@ -63,7 +63,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
         return cod + 1;
     }
 
-    public void setUndecorated(boolean undecorated) {
+    public final void setUndecorated(boolean undecorated) {
         if (m_undecorated != undecorated) {
             m_undecorated = undecorated;
             BasicInternalFrameUI bi = (BasicInternalFrameUI) getUI();
