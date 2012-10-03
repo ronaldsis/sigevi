@@ -27,7 +27,7 @@ public class FormProducto extends javax.swing.JInternalFrame {
     protected javax.swing.JDesktopPane m_desktop;
     protected boolean m_undecorated;
 
-    public void setUndecorated(boolean undecorated) {
+    public final void setUndecorated(boolean undecorated) {
         if (m_undecorated != undecorated) {
             m_undecorated = undecorated;
             BasicInternalFrameUI bi = (BasicInternalFrameUI) getUI();
