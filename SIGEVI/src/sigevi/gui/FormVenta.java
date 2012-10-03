@@ -103,7 +103,6 @@ public class FormVenta extends javax.swing.JInternalFrame {
     }
 
     private void agregarVenta() {
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
         Venta vnt = new Venta();
         int numVen = Integer.parseInt(txtNumVenta.getText());
         vnt.setNroVen(numVen);
@@ -112,12 +111,6 @@ public class FormVenta extends javax.swing.JInternalFrame {
         vnt.setFecVen(uti.setFecha(txtFecha.getText()));
         vnt.setCliente_codCli(Integer.parseInt(txtCodigoCliente.getText()));
         vnt.setUsuario_codUsu(FormLogin.getUsuario());
-        try {
-            vnt.setFecVen((Date) formatter.parse(txtFecha.getText()));
-
-        } catch (ParseException ex) {
-            Logger.getLogger(sigevi.gui.FormVenta.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         try {
@@ -127,9 +120,6 @@ public class FormVenta extends javax.swing.JInternalFrame {
             Logger.getLogger(sigevi.gui.FormVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        /**
-         * *Recorremos la tabla**
-         */
         for (int i = 0; i < tblDetalleVenta.getRowCount(); i++) {
             int codPro = Integer.parseInt(FormVenta.tblDetalleVenta.getValueAt(i, 0).toString());
             double precio = Double.parseDouble(FormVenta.tblDetalleVenta.getValueAt(i, 3).toString());
