@@ -17,13 +17,12 @@ import jxl.*;
 import jxl.write.*;
 import sigevi.gui.FormPrincipal;
 
-
 public class Util {
 
-                protected boolean m_undecorated;
-                protected javax.swing.JDesktopPane m_desktop;
-                
-    public void exportarData(JTable table, File file) {
+    protected boolean m_undecorated;
+    protected javax.swing.JDesktopPane m_desktop;
+
+    public static void exportarData(JTable table, File file) {
 
         try {
 
@@ -50,7 +49,7 @@ public class Util {
         }
     }
 
-    public String getFecha() {
+    public static String getFecha() {
         Calendar c = new GregorianCalendar();
         String min, hora, dia, mes, annio;
         min = Integer.toString(c.get(Calendar.MINUTE));
@@ -58,10 +57,10 @@ public class Util {
         dia = Integer.toString(c.get(Calendar.DATE));
         mes = Integer.toString(c.get(Calendar.MONTH));
         annio = Integer.toString(c.get(Calendar.YEAR));
-        return hora+min+dia + mes + annio;
+        return hora + min + dia + mes + annio;
     }
-    
-        public Date setFecha(String strFecha){
+
+    public static Date setFecha(String strFecha) {
         SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
         Date fecha = null;
         try {
@@ -71,12 +70,23 @@ public class Util {
         }
         return fecha;
     }
-        
-        public String df(double numero){
-            DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
-            simbolos.setDecimalSeparator('.');
-            DecimalFormat df = new DecimalFormat("#,###.00",simbolos);
-            return (df.format (numero));
+
+    public static String df(double numero) {
+        DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
+        simbolos.setDecimalSeparator('.');
+        DecimalFormat df = new DecimalFormat("#,###.00", simbolos);
+        return (df.format(numero));
+    }
+
+    public static void limpiarJTable(javax.swing.JTable Tabla) {
+        DefaultTableModel modelo = (DefaultTableModel) Tabla.getModel();
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
         }
-             
-}          
+
+        TableColumnModel modCol = Tabla.getColumnModel();
+        while (modCol.getColumnCount() > 0) {
+            modCol.removeColumn(modCol.getColumn(0));
+        }
+    }
+}
