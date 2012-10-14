@@ -285,13 +285,13 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         cboCodPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "pro" }));
 
         cboCodMed.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "med" }));
-        cboCodMed.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboCodMedActionPerformed(evt);
-            }
-        });
 
         cboCodDes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "des" }));
+        cboCodDes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboCodDesActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/limpiar.png"))); // NOI18N
         btnLimpiar.setText("LIMPIAR");
@@ -480,15 +480,6 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cboMedidaActionPerformed
 
-    private void cboCodMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodMedActionPerformed
-        if (cboCodMed.getSelectedIndex() > 0) {
-            String s = cboCodMed.getSelectedItem().toString();
-            int cod = Integer.parseInt(s);
-            txtAncho.setText(getMedida(cod).getAncMed() + "");
-            txtLargo.setText(getMedida(cod).getLarMed() + "");
-        }
-    }//GEN-LAST:event_cboCodMedActionPerformed
-
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
@@ -502,6 +493,37 @@ public class FormDetalleVenta extends javax.swing.JFrame {
     private void btnLimpiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiar1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnLimpiar1ActionPerformed
+
+    private void cboCodDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodDesActionPerformed
+        if (cboCodMed.getSelectedIndex() > 0) {
+            String c = cboCodMed.getSelectedItem().toString();
+            String s = cboDespacho.getSelectedItem().toString();
+            int cod = Integer.parseInt(c);
+
+            double ancho = getMedida(cod).getAncMed();
+            double largo = getMedida(cod).getLarMed();
+
+            switch (s) {
+                case "PLANCHA":
+                    ancho = getMedida(cod).getAncMed();
+                    largo = getMedida(cod).getLarMed();
+                    break;
+                case "3/4 PLANCHA":
+                    ancho = ancho * 3 / 4;
+                    largo = largo * 3 / 4;
+                    break;
+                case "1/2 PLANCHA":
+                    ancho = ancho * 1 / 2;
+                    largo = largo * 1 / 2;
+                    break;
+                case "1/4 PLANCHA":
+                    ancho = ancho * 1 / 4;
+                    largo = largo * 1 / 4;
+            }
+            txtAncho.setText(ancho + "");
+            txtLargo.setText(largo + "");
+        }
+    }//GEN-LAST:event_cboCodDesActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarDetalle;
     private javax.swing.JButton btnLimpiar;
