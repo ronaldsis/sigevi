@@ -24,7 +24,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         listarCategorias();
         autocompletarBox();
-        //ocultarCbo();
+        ocultarCbo();
     }
 
     private void autocompletarBox() {
@@ -62,24 +62,6 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         int b = Integer.parseInt(txtLargo.getText());
         double c = Double.parseDouble(txtPrecioPie.getText());
         txtPrecioSugerido.setText("" + (a * b * c * 12 / 1000));
-    }
-
-    private void mascara(String s) {
-        switch (s) {
-            case "VIDRIOS":
-                txtAncho.setVisible(true);
-                txtLargo.setVisible(true);
-                break;
-            case "ALUMINIO":
-                txtAncho.setVisible(false);
-                txtLargo.setVisible(false);
-                break;
-            case "ACCESORIOS":
-
-                break;
-            case "1/4 PLANCHA":
-
-        }
     }
 
     private void listarCategorias() {
@@ -137,17 +119,36 @@ public class FormDetalleVenta extends javax.swing.JFrame {
     }
 
     private void getPreciodeVenta(String s, long cmb) {
-        if (s.equals("PIE")) {
-            txtPrecioPie.setText("" + getProductoPrecio(cmb).getPrecio());
-            txtAncho.setEnabled(true);
-            txtLargo.setEnabled(true);
-            txtAncho.setText("");
-            txtLargo.setText("");
-        } else {
-            txtAncho.setEnabled(false);
-            txtLargo.setEnabled(false);
-            double a = getProductoPrecio(cmb).getPrecio();
-            txtPrecioSugerido.setText(a + "");
+        switch (s) {
+            case "PIE":
+                lblLargo.setText("LARGO");
+                lblPieCuadrado.setText("PIE");
+                txtPrecioPie.setText("" + getProductoPrecio(cmb).getPrecio());
+                txtAncho.setEnabled(true);
+                txtLargo.setEnabled(true);
+                txtAncho.setText("");
+                txtLargo.setText("");
+                break;
+            case "METRO":
+                lblLargo.setText("METROS");
+                lblPieCuadrado.setText("METRO");
+                txtPrecioPie.setText("" + getProductoPrecio(cmb).getPrecio());
+                txtAncho.setEnabled(false);
+                txtLargo.setEnabled(true);
+                txtAncho.setText("1");
+                txtLargo.setText("");
+                break;
+            default:
+                txtAncho.setEnabled(false);
+                txtLargo.setEnabled(false);
+                if(getProductoPrecio(cmb)== null){
+                    JOptionPane.showMessageDialog(this, "POR FAVOR REGISTRE PRECIOS DE PRODUCTO", "MENSAJE", 2, null);
+                }
+                else{
+                    double a = getProductoPrecio(cmb).getPrecio();
+                    txtPrecioSugerido.setText(a + "");
+                }
+                break;
         }
     }
 
@@ -450,7 +451,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDetalleActionPerformed
-        if (txtCantidad.getText().equals("")) {
+        if (txtPrecioSugerido.getText().equals("")||txtCantidad.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         } else {
             int codPro = Integer.parseInt(cboCodPro.getSelectedItem().toString());
