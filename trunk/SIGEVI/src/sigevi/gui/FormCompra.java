@@ -34,6 +34,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
         listarCategorias();
         listarProveedores();
         autocompletarBox();
+        ocultarCombos();
     }
 
     public final void setUndecorated(boolean undecorated) {
@@ -52,6 +53,11 @@ public class FormCompra extends javax.swing.JInternalFrame {
                 putClientProperty("border", null);
             }
         }
+    }
+
+    private void ocultarCombos() {
+        cboCodPro.setVisible(false);
+        cboCodPrv.setVisible(false);
     }
 
     private void autocompletarBox() {

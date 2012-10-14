@@ -24,7 +24,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         listarCategorias();
         autocompletarBox();
-        ocultarCbo();
+        //ocultarCbo();
     }
 
     private void autocompletarBox() {
@@ -52,6 +52,9 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         cboProducto.setSelectedIndex(0);
         cboMedida.setSelectedIndex(0);
         cboDespacho.setSelectedIndex(0);
+        cboCodDes.setSelectedIndex(0);
+        cboCodMed.setSelectedIndex(0);
+        cboCodPro.setSelectedIndex(0);         
     }
 
     private void calcularVentaPie() {
@@ -59,6 +62,24 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         int b = Integer.parseInt(txtLargo.getText());
         double c = Double.parseDouble(txtPrecioPie.getText());
         txtPrecioSugerido.setText("" + (a * b * c * 12 / 1000));
+    }
+
+    private void mascara(String s) {
+        switch (s) {
+            case "VIDRIOS":
+                txtAncho.setVisible(true);
+                txtLargo.setVisible(true);
+                break;
+            case "ALUMINIO":
+                txtAncho.setVisible(false);
+                txtLargo.setVisible(false);
+                break;
+            case "ACCESORIOS":
+
+                break;
+            case "1/4 PLANCHA":
+
+        }
     }
 
     private void listarCategorias() {
@@ -164,6 +185,8 @@ public class FormDetalleVenta extends javax.swing.JFrame {
     private void listarDespachosDeProducto(int cod) {
         cboDespacho.removeAllItems();
         cboDespacho.addItem("ELEGIR");
+        cboCodDes.removeAllItems();
+        cboCodDes.addItem("des");
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
         List<ProductoDespacho> productoDespachos = new ArrayList<>();
         try {
@@ -454,6 +477,8 @@ public class FormDetalleVenta extends javax.swing.JFrame {
     private void cboProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboProductoActionPerformed
         cboMedida.removeAllItems();
         cboMedida.addItem("ELEGIR");
+        cboCodMed.removeAllItems();
+        cboCodMed.addItem("med");
         if (cboProducto.getSelectedIndex() > 0) {
             cboCodPro.setSelectedIndex(cboProducto.getSelectedIndex());
             String s = cboCodPro.getSelectedItem().toString();

@@ -41,6 +41,7 @@ DefaultListModel modeloLista = new DefaultListModel();
     public FormDespacho() {
         initComponents();
         setUndecorated(true);
+        listarDespacho();
     }
 
     private int getNuevoCodigo() {
