@@ -22,10 +22,9 @@ public class FormCliente extends javax.swing.JInternalFrame {
     DefaultTableModel Modelo;
     String[] Titulo = {"CODIGO", "TIPO", "RAZÓN SOCIAL", "NRO DOC", "DIRECCIÓN", "TELEFONO", "CELULAR", "EMAIL"};
     String[][] datos = {};
-    
-        protected javax.swing.JDesktopPane m_desktop;
+    protected javax.swing.JDesktopPane m_desktop;
     protected boolean m_undecorated;
-    
+
     public void setUndecorated(boolean undecorated) {
         if (m_undecorated != undecorated) {
             m_undecorated = undecorated;
@@ -43,7 +42,7 @@ public class FormCliente extends javax.swing.JInternalFrame {
             }
         }
     }
-    
+
     public FormCliente() {
         initComponents();
         setUndecorated(true);
@@ -80,7 +79,7 @@ public class FormCliente extends javax.swing.JInternalFrame {
     private void agregarCliente() {
         Cliente cli = new Cliente();
         cli.setCodCli(Integer.parseInt(txtCodigo.getText()));
-        cli.setTipCli((String)cboTipo.getSelectedItem());
+        cli.setTipCli((String) cboTipo.getSelectedItem());
         cli.setNomCli(txtNombre.getText().toUpperCase());
         cli.setDocCli(txtNroDocumento.getText());
         cli.setDirCli(txtDireccion.getText().toUpperCase());
@@ -99,8 +98,8 @@ public class FormCliente extends javax.swing.JInternalFrame {
 
     private void modificarCliente() {
         Cliente cli = new Cliente();
-        cli=getCliente(Integer.parseInt(txtCodigo.getText()));
-        cli.setTipCli((String)cboTipo.getSelectedItem());
+        cli = getCliente(Integer.parseInt(txtCodigo.getText()));
+        cli.setTipCli((String) cboTipo.getSelectedItem());
         cli.setNomCli(txtNombre.getText().toUpperCase());
         cli.setDocCli(txtNroDocumento.getText());
         cli.setDirCli(txtDireccion.getText().toUpperCase());
@@ -140,8 +139,8 @@ public class FormCliente extends javax.swing.JInternalFrame {
 
         for (int i = 0; i < clientes.size(); i++) {
             Cliente cli = clientes.get(i);
-            Object[] fila = {cli.getCodCli(),cli.getTipCli(),cli.getNomCli(),cli.getDocCli(),
-                             cli.getDirCli(),cli.getTelCli(),cli.getCelCli(),cli.getEmaCli()};
+            Object[] fila = {cli.getCodCli(), cli.getTipCli(), cli.getNomCli(), cli.getDocCli(),
+                cli.getDirCli(), cli.getTelCli(), cli.getCelCli(), cli.getEmaCli()};
             Modelo.addRow(fila);
         }
     }
@@ -233,12 +232,22 @@ public class FormCliente extends javax.swing.JInternalFrame {
         lblTelefono.setText("TELEFONO :");
 
         txtTelefono.setEnabled(false);
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
 
         lblDocumento.setText("NRO DOCUMENTO :");
 
         txtDireccion.setEnabled(false);
 
         txtNroDocumento.setEnabled(false);
+        txtNroDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNroDocumentoKeyTyped(evt);
+            }
+        });
 
         lblDireccion.setText("DIRECCION :");
 
@@ -249,6 +258,11 @@ public class FormCliente extends javax.swing.JInternalFrame {
         lblCelular.setText("CELULAR :");
 
         txtCelular.setEnabled(false);
+        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCelularKeyTyped(evt);
+            }
+        });
 
         lblTitulo1.setBackground(new java.awt.Color(35, 94, 141));
         lblTitulo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -515,14 +529,13 @@ public class FormCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if (txtNombre.getText().equals("") || txtNroDocumento.getText().equals("") || txtDireccion.getText().equals("") ||
-            txtTelefono.getText().equals("") || txtCelular.getText().equals("") || txtEmail.getText().equals("")) {
+        if (txtNombre.getText().equals("") || txtNroDocumento.getText().equals("") || txtDireccion.getText().equals("")
+                || txtTelefono.getText().equals("") || txtCelular.getText().equals("") || txtEmail.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         }
-        if (cboTipo.getSelectedIndex()==0){
+        if (cboTipo.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "SELECCIONE UN TIPO DE CLIENTE", "MENSAJE", 2, null);
-        }
-        else {
+        } else {
             agregarCliente();
             JOptionPane.showMessageDialog(this, "CLIENTE REGISTRADO", "MENSAJE", 1, null);
             listarClientes();
@@ -561,7 +574,7 @@ public class FormCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int confirmado = JOptionPane.showConfirmDialog(this, "¿LO CONFIRMAS?","MENSAJE", 1);
+        int confirmado = JOptionPane.showConfirmDialog(this, "¿LO CONFIRMAS?", "MENSAJE", 1);
 
         if (JOptionPane.OK_OPTION == confirmado) {
             eliminarCliente();
@@ -574,8 +587,8 @@ public class FormCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (txtNombre.getText().equals("") || txtNroDocumento.getText().equals("") || txtDireccion.getText().equals("") ||
-            txtTelefono.getText().equals("") || txtCelular.getText().equals("") || txtEmail.getText().equals("")) {
+        if (txtNombre.getText().equals("") || txtNroDocumento.getText().equals("") || txtDireccion.getText().equals("")
+                || txtTelefono.getText().equals("") || txtCelular.getText().equals("") || txtEmail.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         } else {
             modificarCliente();
@@ -595,11 +608,11 @@ public class FormCliente extends javax.swing.JInternalFrame {
 
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         try {
-            String archivo="D:\\INFO-"+Util.getFecha()+".xls";
+            String archivo = "D:\\INFO-" + Util.getFecha() + ".xls";
             Util.exportarData(tblCliente, new File(archivo));
-            JOptionPane.showMessageDialog(null, "INFORMACIÓN EXPORTADA A :  " +
-                archivo, " MENSAJE",
-                JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "INFORMACIÓN EXPORTADA A :  "
+                    + archivo, " MENSAJE",
+                    JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             System.out.print(ex.getMessage());
         }
@@ -617,6 +630,35 @@ public class FormCliente extends javax.swing.JInternalFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void txtNroDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroDocumentoKeyTyped
+        char car = evt.getKeyChar();
+        if (txtNroDocumento.getText().length() >= 11) {
+            evt.consume();
+        }
+        if ((car < '0' || car > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNroDocumentoKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        char car = evt.getKeyChar();
+        if (txtTelefono.getText().length() >= 9) {
+            evt.consume();
+        }
+        if ((car < '0' || car > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        char car = evt.getKeyChar();
+        if (txtCelular.getText().length() >= 9) {
+            evt.consume();
+        }
+        if ((car < '0' || car > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCelularKeyTyped
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;

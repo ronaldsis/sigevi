@@ -89,4 +89,18 @@ public class Util {
             modCol.removeColumn(modCol.getColumn(0));
         }
     }
+    /*
+     * 
+     * 
+     * char car = evt.getKeyChar();
+     if((car<'0' || car>'9')) evt.consume();
+     *
+     * char car = evt.getKeyChar();
+     if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+     
+     char car = evt.getKeyChar();
+     if(txtNumerico.getText().length()>=8) evt.consume();
+     if((car<'0' || car>'9')) evt.consume();
+     * 
+     */
 }
