@@ -708,12 +708,11 @@ public class FormProducto extends javax.swing.JInternalFrame {
 
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         try {
-            Util exp = new Util();
-            String archivo = "D:\\INFO-" + exp.getFecha() + ".xls";
-            exp.exportarData(tblProducto, new File(archivo));
+            String archivo = "D:\\INFO-" + Util.getFecha() + ".xls";
+            Util.exportarData(tblProducto, new File(archivo));
             JOptionPane.showMessageDialog(null, "INFORMACIÓN EXPORTADA A :  " + archivo, " MENSAJE", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.print(ex.getMessage());
         }
     }//GEN-LAST:event_btnExcelActionPerformed
 

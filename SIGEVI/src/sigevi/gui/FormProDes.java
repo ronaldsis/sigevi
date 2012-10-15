@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigevi.gui;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -17,10 +13,6 @@ import sigevi.bea.Despacho;
 import sigevi.bea.ProductoDespacho;
 import sigevi.map.SqlMapConfig;
 
-/**
- *
- * @author SIMONETTA
- */
 public class FormProDes extends javax.swing.JFrame {
 
     DefaultTableModel Modelo;

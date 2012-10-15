@@ -3,8 +3,6 @@ package sigevi.gui;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import java.awt.print.PrinterException;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -108,7 +106,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
         vnt.setNroVen(numVen);
         vnt.setNroCom(txtNroComprobante.getText());
         vnt.setTipCom((String) cboComprobante.getSelectedItem());
-        vnt.setFecVen(uti.setFecha(txtFecha.getText()));
+        vnt.setFecVen(Util.setFecha(txtFecha.getText()));
         vnt.setCliente_codCli(Integer.parseInt(txtCodigoCliente.getText()));
         vnt.setUsuario_codUsu(FormLogin.getUsuario());
 
@@ -525,9 +523,9 @@ public class FormVenta extends javax.swing.JInternalFrame {
         for (int i = 0; i < tblDetalleVenta.getRowCount(); i++) {
             st = st + Double.parseDouble(FormVenta.tblDetalleVenta.getValueAt(i, 5).toString());
         }
-        txtSubTotal.setText(uti.df(st / 1.1) + "");
-        txtIgv.setText(uti.df(st / 1.18 * 0.18) + "");
-        txtTotal.setText(uti.df(st) + "");
+        txtSubTotal.setText(Util.df(st / 1.1) + "");
+        txtIgv.setText(Util.df(st / 1.18 * 0.18) + "");
+        txtTotal.setText(Util.df(st) + "");
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void txtConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultarActionPerformed

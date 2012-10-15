@@ -507,9 +507,8 @@ public class FormCategoria extends javax.swing.JInternalFrame {
 
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         try {
-            Util exp = new Util();
-            String archivo="D:\\INFO-"+exp.getFecha()+".xls";
-            exp.exportarData(tblCategoria, new File(archivo));
+            String archivo="D:\\INFO-"+Util.getFecha()+".xls";
+            Util.exportarData(tblCategoria, new File(archivo));
             JOptionPane.showMessageDialog(null, "INFORMACIÓN EXPORTADA A :  " +
                 archivo, " MENSAJE",
                 JOptionPane.INFORMATION_MESSAGE);

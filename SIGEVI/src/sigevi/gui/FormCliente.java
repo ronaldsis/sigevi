@@ -29,14 +29,14 @@ public class FormCliente extends javax.swing.JInternalFrame {
     public void setUndecorated(boolean undecorated) {
         if (m_undecorated != undecorated) {
             m_undecorated = undecorated;
-            BasicInternalFrameUI ui = (BasicInternalFrameUI) getUI();
+            BasicInternalFrameUI bi = (BasicInternalFrameUI) getUI();
             if (undecorated) {
-                putClientProperty("titlePane", ui.getNorthPane());
+                putClientProperty("titlePane", bi.getNorthPane());
                 putClientProperty("border", getBorder());
-                ui.setNorthPane(null);
+                bi.setNorthPane(null);
                 setBorder(null);
             } else {
-                ui.setNorthPane((JComponent) getClientProperty("titlePane"));
+                bi.setNorthPane((JComponent) getClientProperty("titlePane"));
                 setBorder((Border) getClientProperty("border"));
                 putClientProperty("titlePane", null);
                 putClientProperty("border", null);
@@ -595,14 +595,13 @@ public class FormCliente extends javax.swing.JInternalFrame {
 
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         try {
-            Util exp = new Util();
-            String archivo="D:\\INFO-"+exp.getFecha()+".xls";
-            exp.exportarData(tblCliente, new File(archivo));
+            String archivo="D:\\INFO-"+Util.getFecha()+".xls";
+            Util.exportarData(tblCliente, new File(archivo));
             JOptionPane.showMessageDialog(null, "INFORMACIÓN EXPORTADA A :  " +
                 archivo, " MENSAJE",
                 JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.print(ex.getMessage());
         }
     }//GEN-LAST:event_btnExcelActionPerformed
 

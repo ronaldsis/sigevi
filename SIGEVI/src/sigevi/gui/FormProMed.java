@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigevi.gui;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -16,10 +12,6 @@ import sigevi.bea.Medida;
 import sigevi.bea.ProductoMedida;
 import sigevi.map.SqlMapConfig;
 
-/**
- *
- * @author SIMONETTA
- */
 public class FormProMed extends javax.swing.JFrame {
 
     DefaultTableModel Modelo;
