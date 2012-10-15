@@ -54,14 +54,20 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         cboDespacho.setSelectedIndex(0);
         cboCodDes.setSelectedIndex(0);
         cboCodMed.setSelectedIndex(0);
-        cboCodPro.setSelectedIndex(0);         
+        cboCodPro.setSelectedIndex(0);
     }
 
     private void calcularVentaPie() {
-        int a = Integer.parseInt(txtAncho.getText());
-        int b = Integer.parseInt(txtLargo.getText());
+        double a = Double.parseDouble(txtAncho.getText());
+        double b = Double.parseDouble(txtLargo.getText());
         double c = Double.parseDouble(txtPrecioPie.getText());
         txtPrecioSugerido.setText("" + (a * b * c * 12 / 1000));
+    }
+
+    private void calcularVentaMetro() {
+        double a = Integer.parseInt(txtLargo.getText());
+        double b = Double.parseDouble(txtPrecioPie.getText());
+        txtPrecioSugerido.setText("" + (a * b));
     }
 
     private void listarCategorias() {
@@ -141,10 +147,9 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             default:
                 txtAncho.setEnabled(false);
                 txtLargo.setEnabled(false);
-                if(getProductoPrecio(cmb)== null){
+                if (getProductoPrecio(cmb) == null) {
                     JOptionPane.showMessageDialog(this, "POR FAVOR REGISTRE PRECIOS DE PRODUCTO", "MENSAJE", 2, null);
-                }
-                else{
+                } else {
                     double a = getProductoPrecio(cmb).getPrecio();
                     txtPrecioSugerido.setText(a + "");
                 }
@@ -233,7 +238,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         cboCodDes = new javax.swing.JComboBox();
         txtCodPre = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
-        btnLimpiar1 = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
 
         btnAgregarDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/add.png"))); // NOI18N
         btnAgregarDetalle.setText("AGREGAR");
@@ -325,11 +330,11 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             }
         });
 
-        btnLimpiar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/close.png"))); // NOI18N
-        btnLimpiar1.setText("CERRAR");
-        btnLimpiar1.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/close.png"))); // NOI18N
+        btnCerrar.setText("CERRAR");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiar1ActionPerformed(evt);
+                btnCerrarActionPerformed(evt);
             }
         });
 
@@ -394,7 +399,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
                     .add(layout.createSequentialGroup()
                         .add(btnLimpiar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(btnLimpiar1)))
+                        .add(btnCerrar)))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -438,7 +443,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btnAgregarDetalle)
                     .add(btnLimpiar)
-                    .add(btnLimpiar1))
+                    .add(btnCerrar))
                 .add(11, 11, 11)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(cboCodDes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -451,7 +456,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDetalleActionPerformed
-        if (txtPrecioSugerido.getText().equals("")||txtCantidad.getText().equals("")) {
+        if (txtPrecioSugerido.getText().equals("") || txtCantidad.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         } else {
             int codPro = Integer.parseInt(cboCodPro.getSelectedItem().toString());
@@ -512,13 +517,21 @@ public class FormDetalleVenta extends javax.swing.JFrame {
 
     private void txtLargoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLargoKeyPressed
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            calcularVentaPie();
+            String s =cboDespacho.getSelectedItem().toString();
+            switch (s) {
+                case "PIE": 
+                    calcularVentaPie();
+                    break;
+                case "METRO":
+                    calcularVentaMetro();
+                    break;
+            }
         }
     }//GEN-LAST:event_txtLargoKeyPressed
 
-    private void btnLimpiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiar1ActionPerformed
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_btnLimpiar1ActionPerformed
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void cboCodDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodDesActionPerformed
         if (cboCodMed.getSelectedIndex() > 0) {
@@ -552,8 +565,8 @@ public class FormDetalleVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_cboCodDesActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarDetalle;
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnLimpiar1;
     private javax.swing.JComboBox cboCategoria;
     private javax.swing.JComboBox cboCodDes;
     private javax.swing.JComboBox cboCodMed;

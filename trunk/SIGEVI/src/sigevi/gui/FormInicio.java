@@ -17,14 +17,14 @@ public class FormInicio extends javax.swing.JInternalFrame {
     public void setUndecorated(boolean undecorated) {
         if (m_undecorated != undecorated) {
             m_undecorated = undecorated;
-            BasicInternalFrameUI ui = (BasicInternalFrameUI) getUI();
+            BasicInternalFrameUI bi = (BasicInternalFrameUI) getUI();
             if (undecorated) {
-                putClientProperty("titlePane", ui.getNorthPane());
+                putClientProperty("titlePane", bi.getNorthPane());
                 putClientProperty("border", getBorder());
-                ui.setNorthPane(null);
+                bi.setNorthPane(null);
                 setBorder(null);
             } else {
-                ui.setNorthPane((JComponent) getClientProperty("titlePane"));
+                bi.setNorthPane((JComponent) getClientProperty("titlePane"));
                 setBorder((Border) getClientProperty("border"));
                 putClientProperty("titlePane", null);
                 putClientProperty("border", null);
