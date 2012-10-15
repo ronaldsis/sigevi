@@ -141,7 +141,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
                 txtPrecioPie.setText("" + getProductoPrecio(cmb).getPrecio());
                 txtAncho.setEnabled(false);
                 txtLargo.setEnabled(true);
-                txtAncho.setText("1");
+                txtAncho.setText("");
                 txtLargo.setText("");
                 break;
             default:
