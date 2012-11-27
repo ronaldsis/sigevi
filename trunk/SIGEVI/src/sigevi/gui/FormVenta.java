@@ -23,7 +23,6 @@ public class FormVenta extends javax.swing.JInternalFrame {
     private sigevi.gui.FormBuscarCliente dcli;
     protected javax.swing.JDesktopPane m_desktop;
     protected boolean m_undecorated;
-    private Util uti = new Util();
 
     public FormVenta() {
         initComponents();
@@ -98,6 +97,31 @@ public class FormVenta extends javax.swing.JInternalFrame {
         cboComprobante.setSelectedIndex(0);
         tblDetalleVenta.setModel(new DefaultTableModel());
         txtNumVenta.setText(getNuevoCodigo() + "");
+    }
+
+    private void tabla() {
+        tblDetalleVenta.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "CODIGO", "DESCRIPCION DEL PRODUCTO", "MEDIDA", "PRECIO", "CANTIDAD", "SUBTOTAL"
+                }) {
+            boolean[] canEdit = new boolean[]{
+                false, false, false, true, true, false
+            };
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        tblDetalleVenta.setColumnSelectionAllowed(true);
+        tblDetalleVenta.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblDetalleVenta);
+        tblDetalleVenta.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblDetalleVenta.getColumnModel().getColumn(0).setMinWidth(60);
+        tblDetalleVenta.getColumnModel().getColumn(0).setMaxWidth(60);
+        tblDetalleVenta.getColumnModel().getColumn(1).setMinWidth(300);
+        tblDetalleVenta.getColumnModel().getColumn(1).setMaxWidth(300);
     }
 
     private void agregarVenta() {
@@ -251,16 +275,9 @@ public class FormVenta extends javax.swing.JInternalFrame {
                 "CODIGO", "DESCRIPCION DEL PRODUCTO", "MEDIDA", "PRECIO", "CANTIDAD", "SUBTOTAL"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
-            };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true, true
+                false, false, false, true, true, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -563,6 +580,7 @@ public class FormVenta extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "VENTA REGISTRADA", "MENSAJE", 1, null);
             limpiartextos();
         }
+        tabla();
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
