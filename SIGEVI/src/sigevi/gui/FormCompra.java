@@ -85,6 +85,31 @@ public class FormCompra extends javax.swing.JInternalFrame {
         cboProducto.setSelectedIndex(0);
     }
 
+    private void tabla() {
+        tblDetalleCompra.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "CODIGO", "DESCRIPCION DEL PRODUCTO", "PRECIO", "CANTIDAD", "SUBTOTAL"
+                }) {
+            boolean[] canEdit = new boolean[]{
+                false, false, true, true, false
+            };
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        tblDetalleCompra.setColumnSelectionAllowed(true);
+        tblDetalleCompra.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblDetalleCompra);
+        tblDetalleCompra.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblDetalleCompra.getColumnModel().getColumn(0).setMinWidth(60);
+        tblDetalleCompra.getColumnModel().getColumn(0).setMaxWidth(60);
+        tblDetalleCompra.getColumnModel().getColumn(1).setMinWidth(300);
+        tblDetalleCompra.getColumnModel().getColumn(1).setMaxWidth(300);
+    }
+
     private void agregarCompra() {
         Compra cmp = new Compra();
         int numCop = Integer.parseInt(txtNcompra.getText());
@@ -624,18 +649,22 @@ public class FormCompra extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cboCategoriaProActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if (txtCantidad.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
+        if (cboCategoriaPro.getSelectedIndex() == 0 || cboProducto.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "SELECCIONE CATEGORIA / PRODUCTO", "MENSAJE", 2, null);
         } else {
-            int codPro = Integer.parseInt(cboCodPro.getSelectedItem().toString());
-            String nomPro = cboProducto.getSelectedItem().toString();
-            double canPro = Double.parseDouble(txtCantidad.getText());
-            double prePro = Double.parseDouble(txtPrecio.getText());
-            double subtotal = canPro * prePro;
-            Object[] fila = {codPro, nomPro, canPro, prePro, subtotal};
-            DefaultTableModel modelo = (DefaultTableModel) tblDetalleCompra.getModel();
-            modelo.addRow(fila);
-            borrar();
+            if (txtCantidad.getText().equals("") || txtPrecio.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
+            } else {
+                int codPro = Integer.parseInt(cboCodPro.getSelectedItem().toString());
+                String nomPro = cboProducto.getSelectedItem().toString();
+                double canPro = Double.parseDouble(txtCantidad.getText());
+                double prePro = Double.parseDouble(txtPrecio.getText());
+                double subtotal = canPro * prePro;
+                Object[] fila = {codPro, nomPro, canPro, prePro, subtotal};
+                DefaultTableModel modelo = (DefaultTableModel) tblDetalleCompra.getModel();
+                modelo.addRow(fila);
+                borrar();
+            }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -652,6 +681,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "COMPRA REGISTRADA", "MENSAJE", 1, null);
             limpiar();
         }
+        tabla();
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
