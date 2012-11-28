@@ -29,7 +29,7 @@
                           <Component id="lblProducto" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblMedida" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblStock" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAncho" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMed1" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblPrecioSugerido" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -52,8 +52,8 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lblPieCuadrado" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblLargo" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblVmedida" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMed2" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -124,14 +124,14 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtStock" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblStock" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPieCuadrado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblVmedida" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPrecioPie" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtAncho" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblAncho" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblLargo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMed1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMed2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtLargo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -207,14 +207,14 @@
         <Property name="text" type="java.lang.String" value="TIPO DE VENTA:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblAncho">
+    <Component class="javax.swing.JLabel" name="lblMed1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ANCHO:"/>
+        <Property name="text" type="java.lang.String" value="MED 1:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblLargo">
+    <Component class="javax.swing.JLabel" name="lblMed2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="LARGO:"/>
+        <Property name="text" type="java.lang.String" value="MED 2:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cboProducto">
@@ -258,9 +258,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboMedidaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblPieCuadrado">
+    <Component class="javax.swing.JLabel" name="lblVmedida">
       <Properties>
-        <Property name="text" type="java.lang.String" value="PIE:"/>
+        <Property name="text" type="java.lang.String" value="MEDIDA:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPrecioSugerido">
