@@ -57,6 +57,41 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         cboCodPro.setSelectedIndex(0);
     }
 
+    private void etiqueta(String categoria) {
+        lblMed1.setVisible(true);
+        txtAncho.setEnabled(true);
+        switch (categoria) {
+            case "VIDRIOS":
+                lblVmedida.setText("PIE S/.");
+                lblMed1.setText("ANCHO"); 
+                lblMed2.setText("LARGO"); 
+               break;
+            case "ALUMINIO":
+                lblVmedida.setText("METRO S/.");
+                lblMed1.setVisible(false);
+                txtAncho.setEnabled(false);
+                lblMed2.setText("METRO"); 
+                break;
+            case "RANURADO":
+                lblVmedida.setText("XXX S/.");
+                lblMed1.setText("ANCHO"); 
+                lblMed2.setText("LARGO"); 
+                break;
+            case "MOLDURA":
+                lblVmedida.setText("YYYY S/.");
+                lblMed1.setText("ANCHO"); 
+                lblMed2.setText("LARGO"); 
+                break;
+            case "ACRILICOS":
+                lblVmedida.setText("ZZZ S/.");
+                lblMed1.setText("ANCHO"); 
+                lblMed2.setText("LARGO"); 
+                break;
+            default:
+                break;
+        }
+    }
+
     private void calcularVentaPie() {
         double a = Double.parseDouble(txtAncho.getText());
         double b = Double.parseDouble(txtLargo.getText());
@@ -127,8 +162,6 @@ public class FormDetalleVenta extends javax.swing.JFrame {
     private void getPreciodeVenta(String s, long cmb) {
         switch (s) {
             case "PIE":
-                lblLargo.setText("LARGO");
-                lblPieCuadrado.setText("PIE");
                 txtPrecioPie.setText("" + getProductoPrecio(cmb).getPrecio());
                 txtAncho.setEnabled(true);
                 txtLargo.setEnabled(true);
@@ -136,8 +169,6 @@ public class FormDetalleVenta extends javax.swing.JFrame {
                 txtLargo.setText("");
                 break;
             case "METRO":
-                lblLargo.setText("METROS");
-                lblPieCuadrado.setText("METRO");
                 txtPrecioPie.setText("" + getProductoPrecio(cmb).getPrecio());
                 txtAncho.setEnabled(false);
                 txtLargo.setEnabled(true);
@@ -219,13 +250,13 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         lblStock = new javax.swing.JLabel();
         cboCategoria = new javax.swing.JComboBox();
         lblTipoVenta = new javax.swing.JLabel();
-        lblAncho = new javax.swing.JLabel();
-        lblLargo = new javax.swing.JLabel();
+        lblMed1 = new javax.swing.JLabel();
+        lblMed2 = new javax.swing.JLabel();
         cboProducto = new javax.swing.JComboBox();
         cboDespacho = new javax.swing.JComboBox();
         txtStock = new javax.swing.JTextField();
         cboMedida = new javax.swing.JComboBox();
-        lblPieCuadrado = new javax.swing.JLabel();
+        lblVmedida = new javax.swing.JLabel();
         lblPrecioSugerido = new javax.swing.JLabel();
         lblPrecioVenta = new javax.swing.JLabel();
         txtAncho = new javax.swing.JTextField();
@@ -265,9 +296,9 @@ public class FormDetalleVenta extends javax.swing.JFrame {
 
         lblTipoVenta.setText("TIPO DE VENTA:");
 
-        lblAncho.setText("ANCHO:");
+        lblMed1.setText("MED 1:");
 
-        lblLargo.setText("LARGO:");
+        lblMed2.setText("MED 2:");
 
         cboProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR" }));
         cboProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -292,7 +323,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
             }
         });
 
-        lblPieCuadrado.setText("PIE:");
+        lblVmedida.setText("MEDIDA:");
 
         lblPrecioSugerido.setText("PRECIO VENTA:");
 
@@ -352,7 +383,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
                             .add(lblProducto)
                             .add(lblMedida)
                             .add(lblStock)
-                            .add(lblAncho)
+                            .add(lblMed1)
                             .add(lblPrecioSugerido)))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -370,8 +401,8 @@ public class FormDetalleVenta extends javax.swing.JFrame {
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                 .add(18, 18, 18)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                    .add(lblPieCuadrado)
-                                    .add(lblLargo))
+                                    .add(lblVmedida)
+                                    .add(lblMed2))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(txtLargo)
@@ -425,13 +456,13 @@ public class FormDetalleVenta extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(txtStock, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(lblStock)
-                    .add(lblPieCuadrado)
+                    .add(lblVmedida)
                     .add(txtPrecioPie, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(txtAncho, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(lblAncho)
-                    .add(lblLargo)
+                    .add(lblMed1)
+                    .add(lblMed2)
                     .add(txtLargo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -478,6 +509,7 @@ public class FormDetalleVenta extends javax.swing.JFrame {
         cboCodPro.removeAllItems();
         cboCodPro.addItem("pro");
         listarProductosDeCategoria(cboCategoria.getSelectedIndex());
+        etiqueta(cboCategoria.getSelectedItem().toString());
     }//GEN-LAST:event_cboCategoriaActionPerformed
 
     private void cboProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboProductoActionPerformed
@@ -517,9 +549,9 @@ public class FormDetalleVenta extends javax.swing.JFrame {
 
     private void txtLargoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLargoKeyPressed
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            String s =cboDespacho.getSelectedItem().toString();
+            String s = cboDespacho.getSelectedItem().toString();
             switch (s) {
-                case "PIE": 
+                case "PIE":
                     calcularVentaPie();
                     break;
                 case "METRO":
@@ -574,16 +606,16 @@ public class FormDetalleVenta extends javax.swing.JFrame {
     private javax.swing.JComboBox cboDespacho;
     private javax.swing.JComboBox cboMedida;
     private javax.swing.JComboBox cboProducto;
-    private javax.swing.JLabel lblAncho;
     private javax.swing.JLabel lblCategoria;
-    private javax.swing.JLabel lblLargo;
+    private javax.swing.JLabel lblMed1;
+    private javax.swing.JLabel lblMed2;
     private javax.swing.JLabel lblMedida;
-    private javax.swing.JLabel lblPieCuadrado;
     private javax.swing.JLabel lblPrecioSugerido;
     private javax.swing.JLabel lblPrecioVenta;
     private javax.swing.JLabel lblProducto;
     private javax.swing.JLabel lblStock;
     private javax.swing.JLabel lblTipoVenta;
+    private javax.swing.JLabel lblVmedida;
     private javax.swing.JTextField txtAncho;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCodPre;
