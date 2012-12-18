@@ -519,6 +519,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtStock">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtStockActionPerformed"/>
       </Events>
@@ -611,8 +614,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPrecioCompra">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPrecioVenta">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
