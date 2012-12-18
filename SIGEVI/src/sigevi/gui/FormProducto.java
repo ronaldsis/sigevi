@@ -139,15 +139,17 @@ public class FormProducto extends javax.swing.JInternalFrame {
         }
 
         DefaultTableModel modelo = (DefaultTableModel) tblProducto.getModel();
-        tblProducto.setModel(modelo);
+            tblProducto.setModel(modelo);
 
-        for (int i = 0; i < productos.size(); i++) {
-            Producto pro = productos.get(i);
-            Object[] fila = {pro.getCodPro(), pro.getNomPro(), pro.getDesPro(), pro.getStoPro(),
-                pro.getPreCom(), pro.getPreVen(), pro.getNomCat()};
-            modelo.addRow(fila);
+            for (int i = 0; i < productos.size(); i++) {
+                Producto pro = productos.get(i);
+                Object[] fila = {pro.getCodPro(), pro.getNomPro(), pro.getDesPro(), pro.getStoPro(),
+                    pro.getPreCom(), pro.getPreVen(), pro.getNomCat()};
+                modelo.addRow(fila);
+            }
         }
-    }
+
+    
 
     private void cargarCategorias() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
@@ -210,6 +212,7 @@ public class FormProducto extends javax.swing.JInternalFrame {
         txtPrecioCompra.setText("");
         txtPrecioVenta.setText("");
         cboCategoria.setSelectedIndex(0);
+        Util.limpiarJTable(tblProducto);
     }
 
     private void activarTab(boolean b) {

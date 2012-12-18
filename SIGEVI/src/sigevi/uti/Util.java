@@ -79,16 +79,17 @@ public class Util {
     }
 
     public static void limpiarJTable(javax.swing.JTable Tabla) {
-        DefaultTableModel modelo = (DefaultTableModel) Tabla.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) Tabla.getModel();    
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
 
-        TableColumnModel modCol = Tabla.getColumnModel();
+     /*   TableColumnModel modCol = Tabla.getColumnModel();
         while (modCol.getColumnCount() > 0) {
             modCol.removeColumn(modCol.getColumn(0));
-        }
+        }*/
     }
+    
     /*
      * 
      * 

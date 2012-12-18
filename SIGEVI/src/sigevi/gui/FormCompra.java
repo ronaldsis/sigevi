@@ -85,31 +85,6 @@ public class FormCompra extends javax.swing.JInternalFrame {
         cboProducto.setSelectedIndex(0);
     }
 
-    private void tabla() {
-        tblDetalleCompra.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{},
-                new String[]{
-                    "CODIGO", "DESCRIPCION DEL PRODUCTO", "PRECIO", "CANTIDAD", "SUBTOTAL"
-                }) {
-            boolean[] canEdit = new boolean[]{
-                false, false, true, true, false
-            };
-
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        });
-        tblDetalleCompra.setColumnSelectionAllowed(true);
-        tblDetalleCompra.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tblDetalleCompra);
-        tblDetalleCompra.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tblDetalleCompra.getColumnModel().getColumn(0).setMinWidth(60);
-        tblDetalleCompra.getColumnModel().getColumn(0).setMaxWidth(60);
-        tblDetalleCompra.getColumnModel().getColumn(1).setMinWidth(300);
-        tblDetalleCompra.getColumnModel().getColumn(1).setMaxWidth(300);
-    }
-
     private void agregarCompra() {
         Compra cmp = new Compra();
         int numCop = Integer.parseInt(txtNcompra.getText());
@@ -522,14 +497,11 @@ public class FormCompra extends javax.swing.JInternalFrame {
                             .add(cboCodPrv, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 325, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(20, 20, 20)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                    .add(35, 35, 35)
-                                    .add(lblSubtotal))
-                                .add(lblTotal))
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, lblIgv))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, lblSubtotal)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, lblIgv)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, lblTotal))
                         .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(txtIgv, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 65, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -612,13 +584,11 @@ public class FormCompra extends javax.swing.JInternalFrame {
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(txtIgv, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(lblIgv))
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createSequentialGroup()
-                                .add(14, 14, 14)
-                                .add(lblTotal))
-                            .add(layout.createSequentialGroup()
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(txtTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(txtTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lblTotal))
+                        .add(2, 2, 2))
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                         .add(layout.createSequentialGroup()
                             .add(cboCodPro, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -681,7 +651,6 @@ public class FormCompra extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "COMPRA REGISTRADA", "MENSAJE", 1, null);
             limpiar();
         }
-        tabla();
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
