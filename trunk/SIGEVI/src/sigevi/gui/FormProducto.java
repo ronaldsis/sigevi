@@ -107,6 +107,8 @@ public class FormProducto extends javax.swing.JInternalFrame {
         pro.setDesPro(txtDescripción.getText().toUpperCase());
         pro.setStoPro(Double.parseDouble(txtStock.getText()));
         pro.setCategoria_codCat(cboCategoria.getSelectedIndex());
+        pro.setPreCom(Double.parseDouble(txtPrecioCompra.getText()));
+        pro.setPreVen(Double.parseDouble(txtPrecioVenta.getText()));
 
 
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
@@ -172,11 +174,14 @@ public class FormProducto extends javax.swing.JInternalFrame {
         btnListar.setEnabled(true);
         limpiartextos();
         activartextos(false);
+        activarTab(false);
     }
 
     private void activartextos(boolean b) {
         txtCodigo.setEnabled(!b);
         txtNombre.setEnabled(b);
+        txtPrecioCompra.setEnabled(b);
+        txtPrecioVenta.setEnabled(b);
         txtDescripción.setEnabled(b);
         txtStock.setEnabled(b);
         cboCategoria.setEnabled(b);
@@ -202,6 +207,8 @@ public class FormProducto extends javax.swing.JInternalFrame {
         txtNombre.setText("");
         txtDescripción.setText("");
         txtStock.setText("");
+        txtPrecioCompra.setText("");
+        txtPrecioVenta.setText("");
         cboCategoria.setSelectedIndex(0);
     }
 
@@ -468,6 +475,7 @@ public class FormProducto extends javax.swing.JInternalFrame {
         cboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR CATEGORIA" }));
         cboCategoria.setEnabled(false);
 
+        txtStock.setEnabled(false);
         txtStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtStockActionPerformed(evt);
@@ -522,6 +530,10 @@ public class FormProducto extends javax.swing.JInternalFrame {
         lblCodigo4.setText("PRECIO VENTA REF:");
 
         lblCodigo5.setText("PRECIO COMPRA REF :");
+
+        txtPrecioCompra.setEnabled(false);
+
+        txtPrecioVenta.setEnabled(false);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -654,6 +666,8 @@ public class FormProducto extends javax.swing.JInternalFrame {
                 txtNombre.setText(producto.getNomPro());
                 txtDescripción.setText(producto.getDesPro());
                 txtStock.setText(producto.getStoPro().toString());
+                txtPrecioCompra.setText(producto.getPreCom().toString());
+                txtPrecioVenta.setText(producto.getPreVen().toString());
                 cboCategoria.setSelectedIndex(producto.getCategoria_codCat());
                 btnEliminar.setEnabled(true);
                 btnEditar.setEnabled(true);
@@ -691,7 +705,9 @@ public class FormProducto extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "CAMPOS VACÍOS", "MENSAJE", 2, null);
         } else {
             modificarProducto();
+            activarBotones();
             JOptionPane.showMessageDialog(this, "PRODUCTO MODIFICADO", "MENSAJE", 1, null);
+            listarProductos();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 

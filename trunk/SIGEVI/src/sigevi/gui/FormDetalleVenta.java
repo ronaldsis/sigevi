@@ -73,17 +73,17 @@ public class FormDetalleVenta extends javax.swing.JFrame {
                 lblMed2.setText("METRO"); 
                 break;
             case "RANURADO":
-                lblVmedida.setText("XXX S/.");
+                lblVmedida.setText("PANEL S/.");
                 lblMed1.setText("ANCHO"); 
                 lblMed2.setText("LARGO"); 
                 break;
             case "MOLDURA":
-                lblVmedida.setText("YYYY S/.");
+                lblVmedida.setText("METRO S/.");
                 lblMed1.setText("ANCHO"); 
                 lblMed2.setText("LARGO"); 
                 break;
             case "ACRILICOS":
-                lblVmedida.setText("ZZZ S/.");
+                lblVmedida.setText("PIE S/.");
                 lblMed1.setText("ANCHO"); 
                 lblMed2.setText("LARGO"); 
                 break;
