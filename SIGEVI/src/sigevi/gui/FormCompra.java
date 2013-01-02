@@ -262,6 +262,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
         btnImprimir = new javax.swing.JButton();
         btnComprar = new javax.swing.JButton();
         btnCalcular = new javax.swing.JButton();
+        txtConsultar1 = new javax.swing.JButton();
 
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         setPreferredSize(new java.awt.Dimension(800, 550));
@@ -446,6 +447,10 @@ public class FormCompra extends javax.swing.JInternalFrame {
         });
         jToolBar.add(btnCalcular);
 
+        txtConsultar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/add.png"))); // NOI18N
+        txtConsultar1.setText("Nuevo");
+        txtConsultar1.setBackground(new java.awt.Color(255, 255, 255));
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -466,17 +471,20 @@ public class FormCompra extends javax.swing.JInternalFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(txtFecha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(cboProveedor, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(lblTipoComprobante)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(cboTipoComprobante, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(lblRUC)
-                        .add(18, 18, 18)
-                        .add(txtRuc, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 155, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(19, 19, 19)
+                        .add(txtConsultar1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(lblRUC))
+                    .add(layout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(lblTipoComprobante)))
+                .add(18, 18, 18)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, cboTipoComprobante, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, txtRuc, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(34, 34, 34)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(layout.createSequentialGroup()
                         .add(lblFormaPago)
@@ -524,7 +532,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
                         .add(btnAgregar)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(btnEliminar)
-                        .add(0, 0, Short.MAX_VALUE))
+                        .add(0, 38, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .addContainerGap()
                         .add(jScrollPane1)))
@@ -535,7 +543,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
             .add(layout.createSequentialGroup()
                 .add(lblTitulo1)
                 .add(1, 1, 1)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(lblNroCompra)
@@ -557,7 +565,8 @@ public class FormCompra extends javax.swing.JInternalFrame {
                             .add(lblRUC)
                             .add(txtRuc, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(lblFormaPago)
-                            .add(cmbFormaPago, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                            .add(cmbFormaPago, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(txtConsultar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -680,6 +689,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
             cboCodPro.setSelectedIndex(cboProducto.getSelectedIndex());
         }
     }//GEN-LAST:event_cboProductoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCalcular;
@@ -713,6 +723,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblTotal;
     private javax.swing.JTable tblDetalleCompra;
     private javax.swing.JTextField txtCantidad;
+    private javax.swing.JButton txtConsultar1;
     private org.jdesktop.swingx.JXDatePicker txtFecha;
     private javax.swing.JTextField txtIgv;
     private javax.swing.JTextField txtNComprobante;
