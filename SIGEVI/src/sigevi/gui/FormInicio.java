@@ -13,6 +13,7 @@ public class FormInicio extends javax.swing.JInternalFrame {
     private FormVenta venta;
     private FormCompra compra;
     private FormProveedor proveedor;
+    private FormReporte reporte;
 
     public void setUndecorated(boolean undecorated) {
         if (m_undecorated != undecorated) {
@@ -113,6 +114,11 @@ public class FormInicio extends javax.swing.JInternalFrame {
         btnReporte.setText("REPORTES");
         btnReporte.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnReporte.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
+            }
+        });
 
         brnSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/sistema.png"))); // NOI18N
         brnSistema.setText("SISTEMA");
@@ -157,7 +163,7 @@ public class FormInicio extends javax.swing.JInternalFrame {
                     .addComponent(btnProveedor)
                     .addComponent(btnReporte)
                     .addComponent(brnSistema))
-                .addContainerGap(296, Short.MAX_VALUE))
+                .addContainerGap(298, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleParent(this);
@@ -194,6 +200,13 @@ public class FormInicio extends javax.swing.JInternalFrame {
         FormPrincipal.escritorio.add(producto);
         producto.show();
     }//GEN-LAST:event_btnProductoActionPerformed
+
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        reporte = new FormReporte();
+        FormPrincipal.escritorio.add(reporte);
+        reporte.show();
+    }//GEN-LAST:event_btnReporteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnSistema;
     private javax.swing.JButton btnCliente;
