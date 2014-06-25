@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
       "http://www.ibatis.com/dtd/sql-map-2.dtd">   
- 
+
 <sqlMap namespace="Cliente">
     
     <!-- INSERT -->
@@ -43,7 +43,7 @@
         ORDER BY codCli;
     </select>
     
-    <select id="getMaxCliente" resultClass="int">
+    <select id="getMaxCliente" resultClass="integer">
         SELECT max(codCli)
         FROM cliente;
     </select>
@@ -55,3 +55,4 @@
     </delete>
    
 </sqlMap>
+    

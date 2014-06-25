@@ -47,6 +47,7 @@ public class FormCliente extends javax.swing.JInternalFrame {
         initComponents();
         setUndecorated(true);
     }
+    
 
     private int getNuevoCodigo() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
