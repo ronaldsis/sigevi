@@ -7,31 +7,31 @@
     <!-- INSERT -->
     <insert id="insertPerfil" parameterClass="sigevi.bea.Perfil" >
         INSERT INTO perfil (codPer, nomPer)
-        VALUES (#codPer#, #nomPer#);
+        VALUES (#codPer#, #nomPer#)
     </insert>
     
     <!-- UPDATE -->
     <update id="updatePerfil" parameterClass="sigevi.bea.Perfil" >
         UPDATE perfil SET
         nomPer =#nomPer#,
-        WHERE codPer =#codPer#;
+        WHERE codPer =#codPer#
     </update>
    
     <!-- SELECT -->
     <select id="listPerfil" resultClass="sigevi.bea.Perfil">
         SELECT codPer, nomPer
-        FROM perfil;
+        FROM perfil
     </select>
     
      <select id="getMaxPerfil" resultClass="int">
         SELECT max(codPer)
-        FROM perfil;
+        FROM perfil
     </select>
     
     <!-- DELETE -->
     <delete id="removePerfil">
         DELETE FROM perfil
-        WHERE codPer=#codPer#;
+        WHERE codPer=#codPer#
     </delete>
    
 </sqlMap>

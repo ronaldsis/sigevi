@@ -7,7 +7,7 @@
     <!-- INSERT -->
     <insert id="insertMedida" parameterClass="sigevi.bea.Medida" >
         INSERT INTO medida (codMed, nomMed,simMed, ancMed, larMed)
-        VALUES (#codMed#, #nomMed#, #simMed#, #ancMed#, #larMed#);
+        VALUES (#codMed#, #nomMed#, #simMed#, #ancMed#, #larMed#)
     </insert>
     
     <!-- UPDATE -->
@@ -17,14 +17,14 @@
         simMed =#simMed#,
         ancMed =#ancMed#
         larMed =#larMed#
-        WHERE codMed =#codMed#;
+        WHERE codMed =#codMed#
     </update>
    
     <!-- SELECT -->
     <select id="getMedida" resultClass="sigevi.bea.Medida">
         SELECT * 
         FROM medida
-        WHERE codMed =#codMed#;
+        WHERE codMed =#codMed#
     </select>
     
     <select id="listMedida" resultClass="sigevi.bea.Medida">
@@ -34,13 +34,13 @@
     
     <select id="getMaxMedida" resultClass="int">
         SELECT max(codMed)
-        FROM medida;
+        FROM medida
     </select>
     
     <!-- DELETE -->
     <delete id="removeMedida">
         DELETE FROM medida
-        WHERE codMed=#codMed#;
+        WHERE codMed=#codMed#
     </delete>
    
 </sqlMap>

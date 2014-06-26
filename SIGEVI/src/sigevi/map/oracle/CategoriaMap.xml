@@ -7,7 +7,7 @@
     <!-- INSERT -->
     <insert id="insertCategoria" parameterClass="sigevi.bea.Categoria" >
         INSERT INTO categoria (codCat, nomCat, desCat)
-        VALUES (#codCat#, #nomCat#, #desCat#);
+        VALUES (#codCat#, #nomCat#, #desCat#)
     </insert>
     
     <!-- UPDATE -->
@@ -15,30 +15,30 @@
         UPDATE categoria SET
         nomCat =#nomCat#,
         desCat =#desCat#
-        WHERE codCat =#codCat#;
+        WHERE codCat =#codCat#
     </update>
    
     <!-- SELECT -->
     <select id="getCategoria" resultClass="sigevi.bea.Categoria">
         SELECT * 
         FROM categoria
-        WHERE codCat =#codCat#;
+        WHERE codCat =#codCat#
     </select>
     
     <select id="listCategoria" resultClass="sigevi.bea.Categoria">
         SELECT codCat, nomCat,desCat
-        FROM categoria;
+        FROM categoria
     </select>
     
     <select id="getMaxCategoria" resultClass="int">
         SELECT max(codCat)
-        FROM categoria;
+        FROM categoria
     </select>
     
     <!-- DELETE -->
     <delete id="removeCategoria">
         DELETE FROM categoria
-        WHERE codCat=#codCat#;
+        WHERE codCat=#codCat#
     </delete>
    
 </sqlMap>
