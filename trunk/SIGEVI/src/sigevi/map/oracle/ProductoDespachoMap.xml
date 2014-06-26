@@ -7,7 +7,7 @@
     <!-- INSERT -->
     <insert id="insertProductoDespacho" parameterClass="sigevi.bea.ProductoDespacho" >
         INSERT INTO producto_despacho (codProDes, producto_codPro, despacho_codDes) 
-        VALUES(#codProDes#,#producto_codPro#, #despacho_codDes#);
+        VALUES(#codProDes#,#producto_codPro#, #despacho_codDes#)
     </insert>
     
     <!-- UPDATE -->
@@ -15,14 +15,14 @@
         UPDATE producto_despacho SET
         producto_codPro =#producto_codPro#,
         despacho_codDes =#despacho_codDes#
-        WHERE codProPre =#codProDes#;
+        WHERE codProPre =#codProDes#
     </update>
     
     <!-- SELECT -->
     <select id="getProductoDespacho" resultClass="sigevi.bea.ProductoDespacho">
         SELECT * 
         FROM producto_despacho
-        WHERE codProPre =#codProDes#;
+        WHERE codProPre =#codProDes#
     </select>
         
     <select id="listDespachosDeProducto" resultClass="sigevi.bea.ProductoDespacho">
@@ -32,12 +32,12 @@
         ON producto_despacho.producto_codPro=producto.codPro
         left join despacho
         on producto_despacho.despacho_codDes=despacho.codDes
-        where producto_despacho.producto_codPro=#producto_despacho.producto_codPro#;
+        where producto_despacho.producto_codPro=#producto_despacho.producto_codPro#
     </select>
     
     <select  id="getCombinacionDespacho" resultClass="sigevi.bea.ProductoDespacho">
         SELECT producto_codPro*100000+despacho_codDes as combinacion
-        FROM producto_despacho;
+        FROM producto_despacho
     </select>
     
     <select id="getMaxProductoDespacho" resultClass="int">
@@ -48,7 +48,7 @@
     <!-- DELETE -->
     <delete id="removeProductoDespacho">
         DELETE FROM producto_despacho
-        WHERE codProDes=#codProDes#;
+        WHERE codProDes=#codProDes#
     </delete>
    
 </sqlMap>

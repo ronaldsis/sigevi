@@ -7,7 +7,7 @@
     <!-- INSERT -->
     <insert id="insertUsuario" parameterClass="sigevi.bea.Usuario" >
         INSERT INTO usuario (codUsu, logUsu, nomUsu,apeUsu, pasUsu, perfil_codPer)
-        VALUES (#codUsu#, #logUsu#, #nomUsu#, #apeUsu#, #pasUsu#, #perfil_codPer#);
+        VALUES (#codUsu#, #logUsu#, #nomUsu#, #apeUsu#, #pasUsu#, #perfil_codPer#)
     </insert>
     
     <!-- UPDATE -->
@@ -18,14 +18,14 @@
         apeUsu =#apeUsu#,
         pasUsu =#pasUsu#,
         perfil_codPer =#perfil_codPer#
-        WHERE codUsu =#codUsu#;
+        WHERE codUsu =#codUsu#
     </update>
    
     <!-- SELECT -->
     <select id="getUsuario" resultClass="sigevi.bea.Usuario">
         SELECT * 
         FROM usuario
-        WHERE codUsu =#codUsu#;
+        WHERE codUsu =#codUsu#
     </select>
     
     <select id="listUsuario" resultClass="sigevi.bea.Usuario">
@@ -33,18 +33,18 @@
         FROM usuario 
         INNER JOIN perfil 
         ON usuario.perfil_codPer=perfil.codPer
-        ORDER BY codUsu;
+        ORDER BY codUsu
     </select>
     
     <select id="getMaxUsuario" resultClass="int">
         SELECT max(codUsu)
-        FROM usuario;
+        FROM usuario
     </select>
     
     <!-- DELETE -->
     <delete id="removeUsuario">
         DELETE FROM usuario
-        WHERE codUsu=#codUsu#;
+        WHERE codUsu=#codUsu#
     </delete>
    
 </sqlMap>

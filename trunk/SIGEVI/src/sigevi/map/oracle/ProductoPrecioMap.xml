@@ -7,20 +7,20 @@
     <!-- INSERT -->
     <insert id="insertProductoPrecio" parameterClass="sigevi.bea.ProductoPrecio" >
         INSERT INTO producto_precio (codProPre, producto_codPro, producto_medida_codProMed, producto_despacho_codProDes, precio)
-        VALUES (#codProPre#, #producto_codPro#, #producto_medida_codProMed#, #producto_despacho_codProDes#, #precio#);
+        VALUES (#codProPre#, #producto_codPro#, #producto_medida_codProMed#, #producto_despacho_codProDes#, #precio#)
     </insert>
     
     <!-- SELECT -->
     <select id="getProductoPrecio" resultClass="sigevi.bea.ProductoPrecio">
         SELECT * 
         FROM producto_precio
-        WHERE codProPre =#codProPre#;
+        WHERE codProPre =#codProPre#
     </select>
     
    <select id="getIdProductoPrecio" resultClass="sigevi.bea.ProductoPrecio">
         SELECT codProPre, precio
         FROM producto_precio
-        where producto_codPro*100000 + producto_medida_codProMed*1000 + producto_despacho_codProDes =#valor#;
+        where producto_codPro*100000 + producto_medida_codProMed*1000 + producto_despacho_codProDes =#valor#
     </select>
     
     <select id="listPreciosDeProducto" resultClass="sigevi.bea.ProductoPrecio">
@@ -30,24 +30,24 @@
         ON producto_medida_codProMed=medida.codMed
         INNER JOIN despacho
         ON producto_despacho_codProDes=despacho.codDes
-        where producto_precio.producto_codPro=#producto_precio.producto_codPro#;
+        where producto_precio.producto_codPro=#producto_precio.producto_codPro#
     </select>
           
     <select id="getMaxProductoPrecio" resultClass="int">
         SELECT max(codProPre)
-        FROM producto_precio;
+        FROM producto_precio
     </select>
     
     <select  id="getCombinacionPrecio" resultClass="sigevi.bea.ProductoPrecio">
         SELECT producto_codPro*100000 + producto_medida_codProMed*1000 + producto_despacho_codProDes 
         AS combinacion
-        FROM producto_precio;
+        FROM producto_precio
     </select>
         
     <!-- DELETE -->
     <delete id="removeProductoPrecio">
         DELETE FROM producto_precio
-        WHERE codProPre=#codProPre#;
+        WHERE codProPre=#codProPre#
     </delete>
    
 </sqlMap>

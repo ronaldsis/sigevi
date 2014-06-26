@@ -7,7 +7,7 @@
     <!-- INSERT -->
     <insert id="insertDetalleCompra" parameterClass="sigevi.bea.DetalleCompra" >
         INSERT INTO detalle_compra (nroDet, canDet, preDet, producto_codPro, compra_nroCop) 
-        VALUES(#nroDet#, #canDet#, #preDet#, #producto_codPro#, #compra_nroCop#);
+        VALUES(#nroDet#, #canDet#, #preDet#, #producto_codPro#, #compra_nroCop#)
     </insert>
     
     <!-- UPDATE -->
@@ -17,24 +17,24 @@
         preDet=#preDet#, 
         producto_codPro=#producto_codPro#, 
         compra_nroCop=#compra_nroCop#
-        WHERE nroDet=#nroDet#;
+        WHERE nroDet=#nroDet#
     </update>
    
     <!-- SELECT -->
     <select id="listDetalleCompra" resultClass="sigevi.bea.DetalleCompra">
         SELECT nroDet, canDet, preDet, producto_codPro, compra_nroCop
-        FROM detalle_compra;
+        FROM detalle_compra
     </select>
     
     <select id="getMaxDetalleCompra" resultClass="int">
         SELECT max(nroDet)
-        FROM detalle_compra;
+        FROM detalle_compra
     </select>
     
     <!-- DELETE -->
     <delete id="removeDetalleCompra">
         DELETE FROM detalle_compra
-        WHERE nroDet=#nroDet#;
+        WHERE nroDet=#nroDet#
     </delete>
    
 </sqlMap>

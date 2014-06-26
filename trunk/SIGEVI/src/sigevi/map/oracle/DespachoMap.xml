@@ -7,21 +7,21 @@
     <!-- INSERT -->
     <insert id="insertDespacho" parameterClass="sigevi.bea.Despacho" >
         INSERT INTO despacho (codDes, nomDes)
-        VALUES (#codDes#, #nomDes#);
+        VALUES (#codDes#, #nomDes#)
     </insert>
     
     <!-- UPDATE -->
     <update id="updateDespacho" parameterClass="sigevi.bea.Despacho" >
         UPDATE despacho SET
         nomDes =#nomDes#
-        WHERE codDes =#codDes#;
+        WHERE codDes =#codDes#
     </update>
    
     <!-- SELECT -->
     <select id="getDespacho" resultClass="sigevi.bea.Despacho">
         SELECT * 
         FROM despacho
-        WHERE codDes =#codDes#;
+        WHERE codDes =#codDes#
     </select>
     
     <select id="listDespacho" resultClass="sigevi.bea.Despacho">
@@ -31,13 +31,13 @@
     
     <select id="getMaxDespacho" resultClass="int">
         SELECT max(codDes)
-        FROM despacho;
+        FROM despacho
     </select>
     
     <!-- DELETE -->
     <delete id="removeDespacho">
         DELETE FROM despacho
-        WHERE codDes=#codDes#;
+        WHERE codDes=#codDes#
     </delete>
    
 </sqlMap>
