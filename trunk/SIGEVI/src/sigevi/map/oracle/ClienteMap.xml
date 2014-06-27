@@ -54,10 +54,7 @@
         WHERE codCli=#codCli#
     </delete>
     
-        <!--REPORTES CLIENTES  -->
-      <select id="rptClienteTop" resultClass="array">
-        SELECT nomCli, dirCli FROM cliente where codCli=1 
-    </select>
+        
    
 </sqlMap>
     
