@@ -7,20 +7,20 @@
     <transactionManager type="JDBC" commitRequired="false">
         
         <dataSource type="SIMPLE">
-            
+             <!-- oracle  -->
             <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
             <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-            <property name="JDBC.Username" value="ORACLE"/>
-            <property name="JDBC.Password" value="oracle"/>
-            
-            <!-- mysql 
+            <property name="JDBC.Username" value="vidrieria"/>
+            <property name="JDBC.Password" value="vidrieria"/>
+             
+            <!-- mysql
             <property name="SetAutoCommitAllowed" value="false" />
             <property name="DefaultAutoCommit" value="false" />
             <property name="JDBC.Driver" value="com.mysql.jdbc.Driver" />
             <property name="JDBC.ConnectionURL" value="jdbc:mysql://localhost:3306/vidrieria" />
             <property name="JDBC.Username" value="root" />
-            <property name="JDBC.Password" value="root" />
-            -->
+            <property name="JDBC.Password" value="admin" />
+             -->
             
         </dataSource>
     </transactionManager>
@@ -41,7 +41,7 @@
     <sqlMap resource="sigevi/map/mysql/CompraMap.xml" />
     <sqlMap resource="sigevi/map/mysql/DetalleVentaMap.xml" />
     <sqlMap resource="sigevi/map/mysql/DetalleCompraMap.xml" />
-    -->
+ -->
       <!-- Registrar los mapeos a base de datos Oracle-->
     <sqlMap resource="sigevi/map/oracle/UsuarioMap.xml" />
     <sqlMap resource="sigevi/map/oracle/PerfilMap.xml" />
@@ -58,6 +58,7 @@
     <sqlMap resource="sigevi/map/oracle/CompraMap.xml" />
     <sqlMap resource="sigevi/map/oracle/DetalleVentaMap.xml" />
     <sqlMap resource="sigevi/map/oracle/DetalleCompraMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/ReporteMap.xml" />
     
     
 </sqlMapConfig>
