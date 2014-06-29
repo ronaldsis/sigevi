@@ -38,44 +38,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblTitulo2" alignment="0" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblTitulo1" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lblNombre" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCodigo" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblDocumento" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblDireccion" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTelefono" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblEmail" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txtCodigo" min="-2" pref="123" max="-2" attributes="1"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="lblTipo" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="cboTipo" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtDireccion" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtNroDocumento" alignment="0" min="-2" pref="123" max="-2" attributes="1"/>
-                                  <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txtTelefono" min="-2" pref="123" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="lblCelular" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtCelular" min="-2" pref="122" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Component id="jToolBar" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="173" max="32767" attributes="0"/>
+                      <Component id="jToolBar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="558" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -87,152 +52,15 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jToolBar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblTitulo1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblTipo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cboTipo" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblDocumento" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNroDocumento" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblCelular" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCelular" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
               <Component id="lblTitulo2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="238" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="166" max="-2" attributes="0"/>
+              <EmptySpace pref="253" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblCodigo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="CODIGO :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtCodigo">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblTipo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="TIPO CLIENTE :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblNombre">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="RAZ&#xd3;N SOCIAL :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNombre">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblTelefono">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="TELEFONO :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtTelefono">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTelefonoKeyTyped"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblDocumento">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="NRO DOCUMENTO :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtDireccion">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNroDocumento">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNroDocumentoKeyTyped"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblDireccion">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="DIRECCION :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblEmail">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="EMAIL :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtEmail">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblCelular">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="CELULAR :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtCelular">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCelularKeyTyped"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblTitulo1">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="8d" green="5e" red="23" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="MANTENIMIENTO DE CLIENTES"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-            <BevelBorder/>
-          </Border>
-        </Property>
-        <Property name="opaque" type="boolean" value="true"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblTitulo2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -272,18 +100,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JComboBox" name="cboTipo">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="ELEGIR TIPO"/>
-            <StringItem index="1" value="PERSONA"/>
-            <StringItem index="2" value="EMPRESA"/>
-          </StringArray>
-        </Property>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
     <Container class="javax.swing.JToolBar" name="jToolBar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -298,104 +114,6 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnNuevo">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/sigevi/img/nuevo.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Nuevo"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevoActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnAgregar">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/sigevi/img/agregar.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Agregar"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnBuscar">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/sigevi/img/buscar.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Buscar"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnEditar">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/sigevi/img/editar.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Editar"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnEliminar">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/sigevi/img/eliminar.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Eliminar"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnGuardar">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/sigevi/img/grabar.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Grabar"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="btnListar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -410,39 +128,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnCancelar">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/sigevi/img/cancelar.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnExcel">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/sigevi/img/excel.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Excel"/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcelActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnImprimir">
@@ -476,6 +161,23 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnListar1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/sigevi/img/listar.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Listar2"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListar1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
