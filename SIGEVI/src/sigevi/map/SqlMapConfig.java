@@ -18,19 +18,8 @@ public class SqlMapConfig {
         throw new RuntimeException("Errorbuilding the SqlMapClientinstance." + e, e);
     }
     }
-//    static {
-//        try {
-//            Reader reader = Resources.getResourceAsReader("sigevi/map/SqlMapConfig.xml");
-//            sqlMap = SqlMapClientBuilder.buildSqlMapClient(reader);
-//        } catch (IOException e) {
-//            throw new RuntimeException("IO Exception: ", e);
-//        } catch (Exception e) {
-//            throw new RuntimeException("Exception Fatal Error: ", e);
-//        }
-//    }
 
     public static SqlMapClient getSqlMap() {
-        //return sqlMap;
         return sqlMapper;
     }
 }
