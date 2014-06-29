@@ -138,8 +138,7 @@ public class FormCliente extends javax.swing.JInternalFrame {
         Modelo = new DefaultTableModel(datos, Titulo);
         tblCliente.setModel(Modelo);
 
-        for (int i = 0; i < clientes.size(); i++) {
-            Cliente cli = clientes.get(i);
+        for (Cliente cli : clientes) {
             Object[] fila = {cli.getCodCli(), cli.getTipCli(), cli.getNomCli(), cli.getDocCli(),
                 cli.getDirCli(), cli.getTelCli(), cli.getCelCli(), cli.getEmaCli()};
             Modelo.addRow(fila);
