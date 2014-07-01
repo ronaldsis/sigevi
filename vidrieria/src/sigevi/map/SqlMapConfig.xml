@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig
+    PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+    
+<sqlMapConfig>
+    
+    <transactionManager type="JDBC" commitRequired="false">
+        
+        <dataSource type="SIMPLE">
+             <!-- oracle  -->
+            <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+            <property name="JDBC.Username" value="vidrieria"/>
+            <property name="JDBC.Password" value="vidrieria"/>
+             
+            <!-- mysql
+            <property name="SetAutoCommitAllowed" value="false" />
+            <property name="DefaultAutoCommit" value="false" />
+            <property name="JDBC.Driver" value="com.mysql.jdbc.Driver" />
+            <property name="JDBC.ConnectionURL" value="jdbc:mysql://localhost:3306/vidrieria" />
+            <property name="JDBC.Username" value="root" />
+            <property name="JDBC.Password" value="admin" />
+             -->
+            
+        </dataSource>
+    </transactionManager>
+
+    <!-- Registrar los mapeos a base de datos Mysql
+    <sqlMap resource="sigevi/map/mysql/UsuarioMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/PerfilMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/ClienteMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/ProveedorMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/CategoriaMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/ProductoMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/MedidaMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/DespachoMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/ProductoMedidaMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/ProductoDespachoMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/ProductoPrecioMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/VentaMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/CompraMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/DetalleVentaMap.xml" />
+    <sqlMap resource="sigevi/map/mysql/DetalleCompraMap.xml" />
+ -->
+      <!-- Registrar los mapeos a base de datos Oracle-->
+    <sqlMap resource="sigevi/map/oracle/UsuarioMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/PerfilMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/ClienteMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/ProveedorMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/CategoriaMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/ProductoMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/MedidaMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/DespachoMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/ProductoMedidaMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/ProductoDespachoMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/ProductoPrecioMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/VentaMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/CompraMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/DetalleVentaMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/DetalleCompraMap.xml" />
+    <sqlMap resource="sigevi/map/oracle/ReporteMap.xml" />
+    
+    
+</sqlMapConfig>

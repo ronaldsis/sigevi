@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+      "http://www.ibatis.com/dtd/sql-map-2.dtd">   
+ 
+<sqlMap namespace="Producto">
+    
+    <!-- INSERT -->
+    <insert id="insertProducto" parameterClass="sigevi.bea.Producto" >
+        INSERT INTO producto (codPro, nomPro, desPro, stoPro, preCom, preVen, categoria_codCat) 
+        VALUES (#codPro#, #nomPro#, #desPro#, #stoPro#, #preCom#, #preVen#, #categoria_codCat#);
+    </insert>
+    
+    <!-- UPDATE -->
+    <update id="updateProducto" parameterClass="sigevi.bea.Producto" >
+        UPDATE producto SET
+        codPro=#codPro#,
+        nomPro =#nomPro#,
+        desPro =#desPro#,
+        stoPro =#stoPro#,
+        preCom =#preCom#,
+        preVen=#preVen#,
+        categoria_codCat =#categoria_codCat#
+        WHERE codPro =#codPro#;
+    </update>
+   
+    <!-- SELECT -->
+    <select id="getProducto" resultClass="sigevi.bea.Producto">
+        SELECT * 
+        FROM producto
+        WHERE codPro =#codPro#;
+    </select>
+    
+    <select id="listProducto" resultClass="sigevi.bea.Producto">
+        SELECT codPro, nomPro, desPro, stoPro, preCom, preVen, nomCat
+        FROM producto 
+        INNER JOIN categoria
+        ON producto.categoria_codCat=categoria.codCat
+        ORDER BY codPro;
+    </select>
+    
+    <select id="listProductoXCategoria" resultClass="sigevi.bea.Producto">
+       SELECT * 
+       FROM producto
+       WHERE categoria_codCat=#categoria_codCat#;
+    </select>
+    
+    <select id="getMaxProducto" resultClass="int">
+        SELECT max(codPro)
+        FROM producto;
+    </select>
+    
+    <!-- DELETE -->
+    <delete id="removeProducto">
+        DELETE FROM producto
+        WHERE codPro=#codPro#;
+    </delete>
+   
+</sqlMap>

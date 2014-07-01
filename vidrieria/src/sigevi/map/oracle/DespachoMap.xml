@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+      "http://www.ibatis.com/dtd/sql-map-2.dtd">   
+ 
+<sqlMap namespace="Despacho">
+    
+    <!-- INSERT -->
+    <insert id="insertDespacho" parameterClass="sigevi.bea.Despacho" >
+        INSERT INTO despacho (codDes, nomDes)
+        VALUES (#codDes#, #nomDes#)
+    </insert>
+    
+    <!-- UPDATE -->
+    <update id="updateDespacho" parameterClass="sigevi.bea.Despacho" >
+        UPDATE despacho SET
+        nomDes =#nomDes#
+        WHERE codDes =#codDes#
+    </update>
+   
+    <!-- SELECT -->
+    <select id="getDespacho" resultClass="sigevi.bea.Despacho">
+        SELECT * 
+        FROM despacho
+        WHERE codDes =#codDes#
+    </select>
+    
+    <select id="listDespacho" resultClass="sigevi.bea.Despacho">
+        SELECT *
+        FROM despacho 
+    </select>
+    
+    <select id="getMaxDespacho" resultClass="int">
+        SELECT max(codDes)
+        FROM despacho
+    </select>
+    
+    <!-- DELETE -->
+    <delete id="removeDespacho">
+        DELETE FROM despacho
+        WHERE codDes=#codDes#
+    </delete>
+   
+</sqlMap>

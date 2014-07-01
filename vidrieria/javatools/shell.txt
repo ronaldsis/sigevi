@@ -1,0 +1,2 @@
+Ir mediante cdm a la ruta donde esta ubicado los jars dentro de javatools luego ejecutar la siguiente linea:
+java -jar mybatis-generator-core-1.3.1.jar -configfile generatorConfig.xml -overwrite

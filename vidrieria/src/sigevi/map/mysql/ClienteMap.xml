@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+      "http://www.ibatis.com/dtd/sql-map-2.dtd">   
+
+<sqlMap namespace="Cliente">
+    
+    <!-- INSERT -->
+    <insert id="insertCliente" parameterClass="sigevi.bea.Cliente" >
+        INSERT INTO cliente (codCli, tipCli, nomCli, docCli, dirCli, telCli, celCli, emaCli) 
+        VALUES(#codCli#, #tipCli#, #nomCli#, #docCli#, #dirCli#, #telCli#, #celCli#, #emaCli#);
+    </insert>
+    
+    <!-- UPDATE -->
+    <update id="updateCliente" parameterClass="sigevi.bea.Cliente" >
+        UPDATE cliente SET
+        tipCli=#tipCli#,
+        nomCli=#nomCli#,
+        docCli=#docCli#,
+        dirCli=#dirCli#,
+        telCli=#telCli#,
+        celCli=#celCli#,
+        emaCli=#emaCli#
+        WHERE codCli =#codCli#;
+    </update>
+   
+    <!-- SELECT -->
+    <select id="getCliente" resultClass="sigevi.bea.Cliente">
+        SELECT * 
+        FROM cliente
+        WHERE codCli =#codCli#;
+    </select>
+    
+    <select id="listClienteVenta" resultClass="sigevi.bea.Cliente">
+        SELECT codCli, nomCli, docCli, dirCli
+        FROM cliente
+        WHERE nomCli 
+        LIKE  #nomCli#;
+    </select>
+    
+    <select id="listCliente" resultClass="sigevi.bea.Cliente">
+        SELECT codCli, tipCli, nomCli, docCli, dirCli, telCli, celCli, emaCli
+        FROM cliente 
+        ORDER BY codCli;
+    </select>
+    
+    <select id="getMaxCliente" resultClass="integer">
+        SELECT max(codCli)
+        FROM cliente;
+    </select>
+    
+    <!-- DELETE -->
+    <delete id="removeCliente">
+        DELETE FROM cliente
+        WHERE codCli=#codCli#;
+    </delete>
+   
+</sqlMap>
+    

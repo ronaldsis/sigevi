@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">   
+ 
+<sqlMap namespace="Reporte">
+    
+    <resultMap id="reporte" class="sigevi.bea.Reporte">
+        <result property="cli" column="nomCli" />
+        <result property="tip" column="tipCli" />
+        <result property="mon" column="monto"/>
+    </resultMap>
+
+     <select id="sp_ventas_cliente" resultClass="sigevi.bea.Reporte" resultMap="Reporte.reporte">
+        select c.nomCli,c.tipCli,sum(a.canDet*a.preDet) as monto
+        from detalle_venta a, venta b, cliente c
+        where
+        a.venta_nroVen =b.nroVen and
+        b.cliente_codCli =c.codCli
+        group by c.nomCli, c.tipCli
+    </select>
+     
+</sqlMap>
+
+
+
+

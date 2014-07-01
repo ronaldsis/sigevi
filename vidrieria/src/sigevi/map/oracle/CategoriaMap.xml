@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+      "http://www.ibatis.com/dtd/sql-map-2.dtd">   
+ 
+<sqlMap namespace="Categoria">
+    
+    <!-- INSERT -->
+    <insert id="insertCategoria" parameterClass="sigevi.bea.Categoria" >
+        INSERT INTO categoria (codCat, nomCat, desCat)
+        VALUES (#codCat#, #nomCat#, #desCat#)
+    </insert>
+    
+    <!-- UPDATE -->
+    <update id="updateCategoria" parameterClass="sigevi.bea.Categoria" >
+        UPDATE categoria SET
+        nomCat =#nomCat#,
+        desCat =#desCat#
+        WHERE codCat =#codCat#
+    </update>
+   
+    <!-- SELECT -->
+    <select id="getCategoria" resultClass="sigevi.bea.Categoria">
+        SELECT * 
+        FROM categoria
+        WHERE codCat =#codCat#
+    </select>
+    
+    <select id="listCategoria" resultClass="sigevi.bea.Categoria">
+        SELECT codCat, nomCat,desCat
+        FROM categoria
+    </select>
+    
+    <select id="getMaxCategoria" resultClass="int">
+        SELECT max(codCat)
+        FROM categoria
+    </select>
+    
+    <!-- DELETE -->
+    <delete id="removeCategoria">
+        DELETE FROM categoria
+        WHERE codCat=#codCat#
+    </delete>
+   
+</sqlMap>
