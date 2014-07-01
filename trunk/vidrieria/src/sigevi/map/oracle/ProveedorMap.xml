@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+      "http://www.ibatis.com/dtd/sql-map-2.dtd">   
+ 
+<sqlMap namespace="Proveedor">
+    
+    <!-- INSERT -->
+    <insert id="insertProveedor" parameterClass="sigevi.bea.Proveedor" >
+        INSERT INTO proveedor (codPrv, tipPrv, nomPrv, docPrv, dirPrv, telPrv, celPrv, emaPrv) 
+        VALUES(#codPrv#, #tipPrv#, #nomPrv#, #docPrv#, #dirPrv#, #telPrv#, #celPrv#, #emaPrv#)
+    </insert>
+    
+    <!-- UPDATE -->
+    <update id="updateProveedor" parameterClass="sigevi.bea.Proveedor" >
+        UPDATE proveedor SET
+        tipPrv=#tipPrv#,
+        nomPrv=#nomPrv#,
+        docPrv=#docPrv#,
+        dirPrv=#dirPrv#,
+        telPrv=#telPrv#,
+        celPrv=#celPrv#,
+        emaPrv=#emaPrv#
+        WHERE codPrv =#codPrv#
+    </update>
+   
+    <!-- SELECT -->
+    <select id="getProveedor" resultClass="sigevi.bea.Proveedor">
+        SELECT * 
+        FROM proveedor
+        WHERE codPrv =#codPrv#
+    </select>
+    
+    <select id="listProveedor" resultClass="sigevi.bea.Proveedor">
+        SELECT codPrv, tipPrv, nomPrv, docPrv, dirPrv, telPrv, celPrv, emaPrv
+        FROM proveedor 
+        ORDER BY codPrv
+    </select>
+    
+    <select id="getMaxProveedor" resultClass="int">
+        SELECT max(codPrv)
+        FROM proveedor
+    </select>
+    
+    <!-- DELETE -->
+    <delete id="removeProveedor">
+        DELETE FROM proveedor
+        WHERE codPrv=#codPrv#
+    </delete>
+   
+</sqlMap>
