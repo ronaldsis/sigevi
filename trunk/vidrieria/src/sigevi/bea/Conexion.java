@@ -69,58 +69,6 @@ public class Conexion {
     }
     
     public String pPersonal() throws SQLException{
-        cstm = conn.prepareCall("{call p_personal_cargo(?)}");
-        cstm.registerOutParameter(1, Types.VARCHAR);
-        System.out.println("1");
-        CallableStatement cstmt = conn.prepareCall("{call dbms_output.enable(32000) }");
-        cstmt.execute();
-           System.out.println("2");
-        String sql =
-            "cli varchar2(100);\n" +
-            "tip varchar2(20);\n" +
-            "mon float;\n" +
-            " cursor reporte is\n" +
-            "   select c.nomCli,c.tipCli,sum(a.canDet*a.preDet) as monto\n" +
-            "   from detalle_venta a \n" +
-            "   inner join venta b on a.venta_nroVen =b.nroVen\n" +
-            "   inner join cliente c on b.cliente_codCli =c.codCli\n" +
-            "   group by c.nomCli, c.tipCli;\n" +
-            "   \n" +
-            "begin\n" +
-            "   \n" +
-            "       DBMS_OUTPUT.PUT_LINE('**************** REPORTE:**********************');\n" +
-            "       DBMS_OUTPUT.PUT_LINE('*CLIENTE****TIPO CLIENTE****MONTO COMPRADO*');\n" +
-            "   for f in reporte\n" +
-            "   loop \n" +
-            "   \n" +
-            "   \n" +
-            "   DBMS_OUTPUT.PUT_LINE(f.nomCli||' '||f.tipCli||' '||f.monto);\n" +
-            "   end loop;\n" +
-            "   DBMS_OUTPUT.PUT_LINE('Responsable del Reporte: Marco Castillo');\n" +
-            "   DBMS_OUTPUT.PUT_LINE('Fecha: ' ||TO_CHAR(sysdate, 'fmDAY, DD \"DE\" MONTH \"DE\" YYYY'));\n" +
-            "   DBMS_OUTPUT.PUT_LINE('');";
-           System.out.println("3");
-        stm.execute(sql);
-        System.out.println("4");
-        //cstm.execute();
-        cstmt = conn.prepareCall("{call dbms_output.get_line(?,?)}");
-        cstmt.registerOutParameter(1,java.sql.Types.VARCHAR);
-        cstmt.registerOutParameter(2,java.sql.Types.NUMERIC);
-System.out.println("5");
-        int status = 0;
-        while (status == 0)
-        {
-            System.out.println("6");
-        cstmt.execute();
-        String line = cstmt.getString(1);
-        status = cstmt.getInt(2);
-        System.out.println("7");
-            if (line != null && status == 0)
-             {System.out.println("8");
-                System.out.println(line);
-             }
-        }
-        historial = cstm.getString(1);
         
         return linea;
         }
