@@ -98,7 +98,7 @@ public class Conexion {
                      if (line != null && status == 0)
                      {
                          System.out.println(line);
-                          Object[] fila = {line};
+                          //Object[] fila = {line};
                         //  Modelo.addRow(fila);
                      }
             }
