@@ -6,7 +6,6 @@ package sigevi.bea;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,9 +21,9 @@ import sigevi.gui.hojaReporte;
  */
 public class Conexion {
 
-    private String direc ="jdbc:oracle:thin:@localhost:1521:XE";
-    private String login="vidrieria";
-    private String password="vidrieria";
+    private final String direc ="jdbc:oracle:thin:@localhost:1521:XE";
+    private final String login="vidrieria";
+    private final String password="vidrieria";
     private Connection conn;
     private Statement stm;
     private CallableStatement cstm;
@@ -106,7 +105,9 @@ public class Conexion {
                      {
                          System.out.println(line);
                           //Object[] fila = {line};
-                                       report.jTextArea1.setText(line);
+                                       //report.jTextArea1.setText(line);
+                                       report.jTextArea1.append(line+"\n");
+                                       
 
                      }
             }
