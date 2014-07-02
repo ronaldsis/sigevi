@@ -8,14 +8,14 @@ package sigevi.gui;
  *
  * @author Gaby
  */
-public class reporte extends javax.swing.JFrame {
+public class hojaReporte extends javax.swing.JFrame {
 
     /**
      * Creates new form reporte
      */
     
 
-    public reporte() {
+    public hojaReporte() {
         initComponents();
         
         

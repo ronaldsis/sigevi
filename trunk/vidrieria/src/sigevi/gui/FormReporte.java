@@ -2,20 +2,30 @@ package sigevi.gui;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import java.awt.print.PrinterException;
+import java.sql.*;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import sigevi.bea.Cliente;
+import sigevi.bea.Conexion;
 import sigevi.bea.Reporte;
 import sigevi.map.SqlMapConfig;
 
 public class FormReporte extends javax.swing.JInternalFrame {
+     Conexion con;
+    public FormReporte() throws ClassNotFoundException {
+        initComponents();
+        con=new Conexion();
+        setUndecorated(true);
+    }
 
     DefaultTableModel Modelo;
     String[] Titulo = {"CLIENTE", "TIPO", "MONTO"};
@@ -41,37 +51,7 @@ public class FormReporte extends javax.swing.JInternalFrame {
         }
     }
 
-    public FormReporte() {
-        initComponents();
-        setUndecorated(true);
-    }
-    
-    private void ejecutarSP() {
-           System.out.println("1");
-        SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
-        List<Reporte> reportes = new ArrayList<>();
-        System.out.println("2");
-        try {
-            reportes = sqlMapClient.queryForList("sp_ventas_cliente",null);
-            System.out.println("3-tamaño:" +reportes.size());
-        } catch (SQLException ex) {
-            Logger.getLogger(sigevi.gui.FormReporte.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("0");
-        }
-        System.out.println("4");
-        Modelo = new DefaultTableModel(datos, Titulo);
-        tblCliente.setModel(Modelo);
-        System.out.println("5");
-        for (Reporte reporte : reportes) {
-            System.out.println("6");
-            Reporte rpt = reporte;
-            System.out.println("7"+rpt.getCli()+"---"+rpt.getMon());
-            Object[] fila = {rpt.getCli(), rpt.getTip(), rpt.getMon()};
-            System.out.println("8");
-            Modelo.addRow(fila);
-        }
-        
-  }
+  
  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -85,6 +65,7 @@ public class FormReporte extends javax.swing.JInternalFrame {
         btnImprimir = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnListar1 = new javax.swing.JButton();
+        btnListar3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -157,6 +138,19 @@ public class FormReporte extends javax.swing.JInternalFrame {
         });
         jToolBar.add(btnListar1);
 
+        btnListar3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnListar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
+        btnListar3.setText("resporte 3");
+        btnListar3.setFocusable(false);
+        btnListar3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnListar3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnListar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListar3ActionPerformed(evt);
+            }
+        });
+        jToolBar.add(btnListar3);
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,7 +162,7 @@ public class FormReporte extends javax.swing.JInternalFrame {
                     .add(jScrollPane1)
                     .add(layout.createSequentialGroup()
                         .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 554, Short.MAX_VALUE)))
+                        .add(0, 491, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -179,7 +173,7 @@ public class FormReporte extends javax.swing.JInternalFrame {
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 166, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
 
         pack();
@@ -207,10 +201,19 @@ public class FormReporte extends javax.swing.JInternalFrame {
         //ejecutarSP();
     }//GEN-LAST:event_btnListar1ActionPerformed
 
+    private void btnListar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar3ActionPerformed
+         try {
+             con.pVentacliente();
+         } catch (SQLException ex) {
+             Logger.getLogger(FormReporte.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }//GEN-LAST:event_btnListar3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnListar1;
+    private javax.swing.JButton btnListar3;
     private javax.swing.JButton btnSalir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar;
