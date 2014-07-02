@@ -1,5 +1,7 @@
 package sigevi.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -202,7 +204,11 @@ public class FormInicio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnProductoActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-        reporte = new FormReporte();
+        try {
+            reporte = new FormReporte();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FormInicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FormPrincipal.escritorio.add(reporte);
         reporte.show();
     }//GEN-LAST:event_btnReporteActionPerformed
