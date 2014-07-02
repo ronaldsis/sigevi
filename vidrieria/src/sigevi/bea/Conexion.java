@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sigevi.gui.hojaReporte;
 
 /**
  *
@@ -74,6 +75,11 @@ public class Conexion {
         }
     
     public  void pVentacliente() throws SQLException{
+        
+         hojaReporte report = new hojaReporte();
+                
+                report.setVisible(true);
+    
       
             CallableStatement cstmt = conn.prepareCall("{call dbms_output.enable(32000) }");
             cstmt.execute();
@@ -95,11 +101,13 @@ public class Conexion {
                 cstmt.execute();
                 String line = cstmt.getString(1);
                 status = cstmt.getInt(2);
+           
                      if (line != null && status == 0)
                      {
                          System.out.println(line);
                           //Object[] fila = {line};
-                        //  Modelo.addRow(fila);
+                                       report.jTextArea1.setText(line);
+
                      }
             }
 }
