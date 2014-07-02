@@ -131,31 +131,10 @@ System.out.println("5");
             cstmt.execute();
             Statement stmt = conn.createStatement();
             String sql =
-            "DECLARE\n" +
-            "cli varchar2(100);\n" +
-            "tip varchar2(20);\n" +
-            "mon float;\n" +
-            " cursor reporte is\n" +
-            "   select c.nomCli,c.tipCli,sum(a.canDet*a.preDet) as monto\n" +
-            "   from detalle_venta a \n" +
-            "   inner join venta b on a.venta_nroVen =b.nroVen\n" +
-            "   inner join cliente c on b.cliente_codCli =c.codCli\n" +
-            "   group by c.nomCli, c.tipCli;\n" +
-            "   \n" +
-            "begin\n" +
-            "     \n" +
-            "       DBMS_OUTPUT.PUT_LINE('**************** REPORTE:**********************');\n" +
-            "       DBMS_OUTPUT.PUT_LINE('*CLIENTE****TIPO CLIENTE****MONTO COMPRADO*');\n" +
-            "   for f in reporte\n" +
-            "   loop \n" +
-            "   \n" +
-            "   \n" +
-            "   DBMS_OUTPUT.PUT_LINE(f.nomCli||' '||f.tipCli||' '||f.monto);\n" +
-            "   end loop;\n" +
-            "   DBMS_OUTPUT.PUT_LINE('Responsable del Reporte: Marco Castillo');\n" +
-            "   DBMS_OUTPUT.PUT_LINE('Fecha: ' ||TO_CHAR(sysdate, 'fmDAY, DD \"DE\" MONTH \"DE\" YYYY'));\n" +
-            "   DBMS_OUTPUT.PUT_LINE('');\n" +
-            "   end;";
+            "BEGIN\n" +
+            "  SP_VENTAS_CLIENTE();\n" +
+            "--rollback; \n" +
+            "END;";
            
             stmt.execute(sql);
             cstmt = conn.prepareCall("{call dbms_output.get_line(?,?)}");
@@ -171,6 +150,8 @@ System.out.println("5");
                      if (line != null && status == 0)
                      {
                          System.out.println(line);
+                          Object[] fila = {line};
+                        //  Modelo.addRow(fila);
                      }
             }
 }
