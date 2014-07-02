@@ -67,6 +67,7 @@ public class Conexion {
         
         return reporte;
     }
+    
         public String pReporte_Prod_x_Cat(int codigo) throws SQLException{
         cstm = conn.prepareCall("{ call p_rep_prod_por_cat(?,?)}");
         cstm.setInt(1,codigo);
@@ -77,6 +78,29 @@ public class Conexion {
         
         return reporte;
     }
+        
+   public String pReporte_Control_Stock_Bajo(int codigo) throws SQLException{
+        cstm = conn.prepareCall("{ call p_rep_de_stock_bajo(?,?)}");
+        cstm.setInt(1,codigo);
+        cstm.registerOutParameter(2, Types.VARCHAR);
+        
+        cstm.execute();
+        reporte = cstm.getString(2);
+        
+        return reporte;
+    }
+     
+   public String pReporte_Control_Stock_Alto(int codigo) throws SQLException{
+        cstm = conn.prepareCall("{ call p_rep_de_stock_alto(?,?)}");
+        cstm.setInt(1,codigo);
+        cstm.registerOutParameter(2, Types.VARCHAR);
+        
+        cstm.execute();
+        reporte = cstm.getString(2);
+        
+        return reporte;
+    }
+        
     
     public String pPersonal() throws SQLException{
         

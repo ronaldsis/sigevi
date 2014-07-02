@@ -312,7 +312,8 @@ public final class FormReporte extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnListar4ActionPerformed
 
     private void btnListar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar5ActionPerformed
-        // TODO add your handling code here:
+        insertarStock insercod = new insertarStock();
+        insercod.setVisible(true);
     }//GEN-LAST:event_btnListar5ActionPerformed
 
     private void btnListar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar6ActionPerformed
