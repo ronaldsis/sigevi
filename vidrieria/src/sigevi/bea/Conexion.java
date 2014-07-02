@@ -13,7 +13,7 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sigevi.gui.HojaReporte;
+import sigevi.gui.hojaReporte;
 
 /**
  *
@@ -75,7 +75,7 @@ public class Conexion {
     
     public  void pVentacliente() throws SQLException{
         
-         HojaReporte report = new HojaReporte();
+         hojaReporte report = new hojaReporte();
                 
                 report.setVisible(true);
     
