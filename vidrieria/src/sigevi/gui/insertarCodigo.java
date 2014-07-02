@@ -106,7 +106,7 @@ public class insertarCodigo extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(insertarCodigo.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                hojaReporte report = new hojaReporte();
+                HojaReporte report = new HojaReporte();
                 report.texto(reporte);
                 
                 report.setVisible(true);
