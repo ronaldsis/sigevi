@@ -67,6 +67,16 @@ public class Conexion {
         
         return reporte;
     }
+        public String pReporte_Prod_x_Cat(int codigo) throws SQLException{
+        cstm = conn.prepareCall("{ call p_rep_prod_por_cat(?,?)}");
+        cstm.setInt(1,codigo);
+        cstm.registerOutParameter(2, Types.VARCHAR);
+        
+        cstm.execute();
+        reporte = cstm.getString(2);
+        
+        return reporte;
+    }
     
     public String pPersonal() throws SQLException{
         
@@ -104,7 +114,6 @@ public class Conexion {
                      if (line != null && status == 0)
                      {
                          System.out.println(line);
-                          //Object[] fila = {line};
                                        //report.jTextArea1.setText(line);
                                        report.jTextArea1.append(line+"\n");
                                        
