@@ -11,39 +11,39 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import sigevi.bea.Proveedor;
+import sigevi.bea.Producto;
 import sigevi.bea.Conexion;
 import sigevi.map.SqlMapConfig;
 
 
-public class selecionarNombreProveedor extends javax.swing.JFrame {
+public class selecionarNombreProducto extends javax.swing.JFrame {
 
     /**
      * Creates new form insertarCodigo
      */
     
     Conexion con;
-    public selecionarNombreProveedor() {
+    public selecionarNombreProducto() {
         initComponents();
         try {
             con = new Conexion();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(selecionarNombreProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(selecionarNombreProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
         listarProveedores();
     }
 
       private void listarProveedores() {
         SqlMapClient sqlMapClient = SqlMapConfig.getSqlMap();
-        List<Proveedor> Proveedores = new ArrayList<>();
+        List<Producto> Pro = new ArrayList<>();
         try {
-            Proveedores = sqlMapClient.queryForList("listProveedor", null);
+            Pro = sqlMapClient.queryForList("listProducto", null);
         } catch (SQLException ex) {
-            Logger.getLogger(sigevi.gui.selecionarNombreProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sigevi.gui.selecionarNombreProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (Proveedor cat : Proveedores) {
-            cboCategoria.addItem(cat.getNomPrv());
+        for (Producto cat : Pro) {
+            cboCategoria.addItem(cat.getNomPro());
         }
     }
     /**
@@ -64,7 +64,7 @@ public class selecionarNombreProveedor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel1.setText("Seleccione nombre proveedor");
+        jLabel1.setText("Seleccione Producto");
 
         jButtonAceptar.setText("Aceptar");
         jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +77,7 @@ public class selecionarNombreProveedor extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel3.setText("REPORTE PRODUCTOS POR PROVEEDOR");
+        jLabel3.setText("REPORTE DE GANACIA POR PRODUCTO");
 
         cboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ELEGIR" }));
         cboCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -93,15 +93,17 @@ public class selecionarNombreProveedor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(cboCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(87, 87, 87)
                 .addComponent(jButtonAceptar)
-                .addGap(142, 142, 142))
+                .addGap(73, 73, 73))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 438, Short.MAX_VALUE))
         );
@@ -110,16 +112,16 @@ public class selecionarNombreProveedor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonAceptar)
-                        .addGap(33, 33, 33))))
+                        .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jButtonAceptar)))
+                .addGap(20, 20, 20))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, Short.MAX_VALUE))
         );
@@ -133,7 +135,7 @@ public class selecionarNombreProveedor extends javax.swing.JFrame {
             
                 String reporte="";
                 
-                    reporte = con.pReporte_Prod_x_Prove(codigo);
+                    reporte = con.pReporte_Ganancia_x_Producto(codigo);
                
                 hojaReporte report = new hojaReporte();
                 report.texto(reporte);

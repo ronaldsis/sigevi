@@ -80,10 +80,19 @@ public final class FormReporte extends javax.swing.JInternalFrame {
         btnListar7 = new javax.swing.JButton();
         btnListar8 = new javax.swing.JButton();
         btnListar9 = new javax.swing.JButton();
-        btnImprimir = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnListar10 = new javax.swing.JButton();
         btnListar11 = new javax.swing.JButton();
+        btnListar13 = new javax.swing.JButton();
+        btnListar14 = new javax.swing.JButton();
+        btnListar15 = new javax.swing.JButton();
+        btnListar16 = new javax.swing.JButton();
+        btnListar17 = new javax.swing.JButton();
+        btnListar18 = new javax.swing.JButton();
+        btnListar19 = new javax.swing.JButton();
+        btnListar20 = new javax.swing.JButton();
+        btnListar21 = new javax.swing.JButton();
+        btnListar22 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -199,18 +208,6 @@ public final class FormReporte extends javax.swing.JInternalFrame {
             }
         });
 
-        btnImprimir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/impimir.png"))); // NOI18N
-        btnImprimir.setText("Imprimir");
-        btnImprimir.setFocusable(false);
-        btnImprimir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnImprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImprimirActionPerformed(evt);
-            }
-        });
-
         btnSalir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/inicio.png"))); // NOI18N
         btnSalir.setText("Salir");
@@ -225,7 +222,7 @@ public final class FormReporte extends javax.swing.JInternalFrame {
 
         btnListar10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnListar10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
-        btnListar10.setText("REPORTE 10");
+        btnListar10.setText("REPORTE CLIENTES");
         btnListar10.setFocusable(false);
         btnListar10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnListar10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -247,6 +244,126 @@ public final class FormReporte extends javax.swing.JInternalFrame {
             }
         });
 
+        btnListar13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnListar13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
+        btnListar13.setText("REPORTE PROVEEDORES");
+        btnListar13.setFocusable(false);
+        btnListar13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnListar13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnListar13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListar13ActionPerformed(evt);
+            }
+        });
+
+        btnListar14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnListar14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
+        btnListar14.setText("REPORTE DE USUARIOS");
+        btnListar14.setFocusable(false);
+        btnListar14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnListar14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnListar14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListar14ActionPerformed(evt);
+            }
+        });
+
+        btnListar15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnListar15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
+        btnListar15.setText("Producto con menor venta");
+        btnListar15.setFocusable(false);
+        btnListar15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnListar15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnListar15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListar15ActionPerformed(evt);
+            }
+        });
+
+        btnListar16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnListar16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
+        btnListar16.setText("GANANCIA POR PRODUCTO");
+        btnListar16.setFocusable(false);
+        btnListar16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnListar16.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnListar16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListar16ActionPerformed(evt);
+            }
+        });
+
+        btnListar17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnListar17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
+        btnListar17.setText("Producto con mayor venta");
+        btnListar17.setFocusable(false);
+        btnListar17.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnListar17.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnListar17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListar17ActionPerformed(evt);
+            }
+        });
+
+        btnListar18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnListar18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
+        btnListar18.setText("COMPRAS ENTRE FECHAS");
+        btnListar18.setFocusable(false);
+        btnListar18.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnListar18.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnListar18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListar18ActionPerformed(evt);
+            }
+        });
+
+        btnListar19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnListar19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
+        btnListar19.setText("R19");
+        btnListar19.setFocusable(false);
+        btnListar19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnListar19.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnListar19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListar19ActionPerformed(evt);
+            }
+        });
+
+        btnListar20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnListar20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
+        btnListar20.setText("R16");
+        btnListar20.setFocusable(false);
+        btnListar20.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnListar20.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnListar20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListar20ActionPerformed(evt);
+            }
+        });
+
+        btnListar21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnListar21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
+        btnListar21.setText("VENTAS ENTRE FECHAS");
+        btnListar21.setFocusable(false);
+        btnListar21.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnListar21.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnListar21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListar21ActionPerformed(evt);
+            }
+        });
+
+        btnListar22.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnListar22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/listar.png"))); // NOI18N
+        btnListar22.setText("R20");
+        btnListar22.setFocusable(false);
+        btnListar22.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnListar22.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnListar22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListar22ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -257,11 +374,14 @@ public final class FormReporte extends javax.swing.JInternalFrame {
                         .add(0, 0, Short.MAX_VALUE)
                         .add(lblTitulo2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 845, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
+                        .add(24, 24, 24)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
-                                .add(24, 24, 24)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(btnListar3)
+                                    .add(layout.createSequentialGroup()
+                                        .add(btnListar14)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(btnListar16))
                                     .add(layout.createSequentialGroup()
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                                             .add(btnListar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 275, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -269,29 +389,47 @@ public final class FormReporte extends javax.swing.JInternalFrame {
                                                 .add(btnListar7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .add(btnListar4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .add(18, 18, 18)
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                             .add(layout.createSequentialGroup()
                                                 .add(btnListar8)
                                                 .add(27, 27, 27)
-                                                .add(btnSalir))
+                                                .add(btnSalir, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .add(layout.createSequentialGroup()
                                                 .add(btnListar5)
                                                 .add(18, 18, 18)
-                                                .add(btnListar6))
+                                                .add(btnListar6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .add(layout.createSequentialGroup()
-                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                                    .add(btnListar9)
-                                                    .add(layout.createSequentialGroup()
-                                                        .add(57, 57, 57)
-                                                        .add(btnListar11)))
-                                                .add(131, 131, 131)
-                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                                    .add(btnImprimir)
-                                                    .add(btnListar10)))))))
+                                                .add(btnListar9)
+                                                .add(18, 18, 18)
+                                                .add(btnListar10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 151, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                                    .add(layout.createSequentialGroup()
+                                        .add(btnListar3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 315, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(btnListar11)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(btnListar13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 171, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                .add(0, 0, Short.MAX_VALUE))
                             .add(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                        .add(0, 73, Short.MAX_VALUE)))
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(9, 9, 9)
+                                        .add(btnListar19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 222, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .add(btnListar22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 237, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .add(layout.createSequentialGroup()
+                                        .add(btnListar17)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btnListar15)
+                                        .add(18, 18, 18)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                            .add(btnListar21, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .add(btnListar18, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
+                                        .add(172, 172, 172)))
+                                .add(btnListar20))))
+                    .add(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jToolBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -323,16 +461,29 @@ public final class FormReporte extends javax.swing.JInternalFrame {
                     .add(btnListar7)
                     .add(btnListar9)
                     .add(btnListar10))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(btnListar11)
+                    .add(btnListar3)
+                    .add(btnListar13))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(34, 34, 34)
-                        .add(btnImprimir))
-                    .add(layout.createSequentialGroup()
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(btnListar11)
-                            .add(btnListar3))))
-                .add(243, 243, 243))
+                            .add(btnListar14)
+                            .add(btnListar16))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(btnListar20)
+                            .add(btnListar17)
+                            .add(btnListar18)
+                            .add(btnListar15)))
+                    .add(btnListar21))
+                .add(18, 18, 18)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(btnListar19)
+                    .add(btnListar22))
+                .add(83, 83, 83))
         );
 
         pack();
@@ -341,10 +492,6 @@ public final class FormReporte extends javax.swing.JInternalFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-       
-    }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnListar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar1ActionPerformed
         insertarCodigoCliente insercod = new insertarCodigoCliente();
@@ -391,7 +538,11 @@ public final class FormReporte extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnListar9ActionPerformed
 
     private void btnListar10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar10ActionPerformed
-        // TODO add your handling code here:
+              try {
+             con.pReporteCliente();
+         } catch (SQLException ex) {
+             Logger.getLogger(FormReporte.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }//GEN-LAST:event_btnListar10ActionPerformed
 
     private void btnListar11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar11ActionPerformed
@@ -402,11 +553,89 @@ public final class FormReporte extends javax.swing.JInternalFrame {
          }
     }//GEN-LAST:event_btnListar11ActionPerformed
 
+    private void btnListar13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar13ActionPerformed
+                try {
+             con.pReporteProveedor();
+         } catch (SQLException ex) {
+             Logger.getLogger(FormReporte.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }//GEN-LAST:event_btnListar13ActionPerformed
+
+    private void btnListar14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar14ActionPerformed
+              try {
+             con.pReporteUsuario();
+         } catch (SQLException ex) {
+             Logger.getLogger(FormReporte.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }//GEN-LAST:event_btnListar14ActionPerformed
+
+    private void btnListar15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar15ActionPerformed
+         try {
+             String reporte=con.pReporteMenorProducto();
+             hojaReporte report = new hojaReporte();
+                report.texto(reporte);
+                
+                report.setVisible(true);
+                
+         } catch (SQLException ex) {
+             Logger.getLogger(FormReporte.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }//GEN-LAST:event_btnListar15ActionPerformed
+
+    private void btnListar16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar16ActionPerformed
+         selecionarNombreProducto insercod = new selecionarNombreProducto();
+        insercod.setVisible(true); 
+    }//GEN-LAST:event_btnListar16ActionPerformed
+
+    private void btnListar17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar17ActionPerformed
+          try {
+             String reporte=con.pReporteMayorProducto();
+             hojaReporte report = new hojaReporte();
+                report.texto(reporte);
+                
+                report.setVisible(true);
+                
+         } catch (SQLException ex) {
+             Logger.getLogger(FormReporte.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }//GEN-LAST:event_btnListar17ActionPerformed
+
+    private void btnListar18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar18ActionPerformed
+          insertarFechasCompra insercod = new insertarFechasCompra();
+        insercod.setVisible(true);  
+    }//GEN-LAST:event_btnListar18ActionPerformed
+
+    private void btnListar19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar19ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListar19ActionPerformed
+
+    private void btnListar20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar20ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListar20ActionPerformed
+
+    private void btnListar21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar21ActionPerformed
+        insertarFechasVenta insercod = new insertarFechasVenta();
+        insercod.setVisible(true);   
+    }//GEN-LAST:event_btnListar21ActionPerformed
+
+    private void btnListar22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListar22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListar22ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnListar1;
     private javax.swing.JButton btnListar10;
     private javax.swing.JButton btnListar11;
+    private javax.swing.JButton btnListar13;
+    private javax.swing.JButton btnListar14;
+    private javax.swing.JButton btnListar15;
+    private javax.swing.JButton btnListar16;
+    private javax.swing.JButton btnListar17;
+    private javax.swing.JButton btnListar18;
+    private javax.swing.JButton btnListar19;
+    private javax.swing.JButton btnListar20;
+    private javax.swing.JButton btnListar21;
+    private javax.swing.JButton btnListar22;
     private javax.swing.JButton btnListar3;
     private javax.swing.JButton btnListar4;
     private javax.swing.JButton btnListar5;
