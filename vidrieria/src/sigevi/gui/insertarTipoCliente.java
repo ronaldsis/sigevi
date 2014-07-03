@@ -11,19 +11,19 @@ import javax.swing.JOptionPane;
 import sigevi.bea.Conexion;
 
 
-public class insertarCodigo extends javax.swing.JFrame {
+public class insertarTipoCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form insertarCodigo
      */
     
     Conexion con;
-    public insertarCodigo() {
+    public insertarTipoCliente() {
         initComponents();
         try {
             con = new Conexion();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(insertarCodigo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(insertarTipoCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -37,20 +37,14 @@ public class insertarCodigo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextcodigo = new javax.swing.JTextField();
         jButtonAceptar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        cboComprobante = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14));
-        jLabel1.setText("Ingrese código: ");
-
-        jTextcodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextcodigoActionPerformed(evt);
-            }
-        });
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Seleciones tipo cliente: ");
 
         jButtonAceptar.setText("Aceptar");
         jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -62,32 +56,40 @@ public class insertarCodigo extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo3.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
 
+        cboComprobante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PERSONA", "EMPRESA" }));
+        cboComprobante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboComprobanteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonAceptar)
-                        .addGap(151, 151, 151)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(cboComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(38, 38, 38)
+                .addComponent(jButtonAceptar)
+                .addContainerGap(161, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 424, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonAceptar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonAceptar)
+                    .addComponent(cboComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, Short.MAX_VALUE))
@@ -98,45 +100,45 @@ public class insertarCodigo extends javax.swing.JFrame {
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         try{
-            int codigo =Integer.parseInt(jTextcodigo.getText());
-            if(codigo>=1 & codigo<200){
+           
+            String codigo =String.valueOf( cboComprobante.getSelectedItem());
+           System.out.println("OLA KE HACE"+ codigo);
                 String reporte="";
-                try {
-                    reporte = con.pReporte(codigo);
-                } catch (SQLException ex) {
-                    Logger.getLogger(insertarCodigo.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                System.out.println("22222"+ codigo);
+                    reporte = con.pReporteTipoCliente(codigo);
+                System.out.println("3333"+ codigo);
                 hojaReporte report = new hojaReporte();
                 report.texto(reporte);
                 
                 report.setVisible(true);
                 
                 this.setVisible(false);
-            }else{
-                JOptionPane.showMessageDialog(null, "Codigo invalido");
-            }
+           
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Codigo invalido");
             
             
         }
         
-        jTextcodigo.setText("");
+      
         
         
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
-    private void jTextcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextcodigoActionPerformed
+    private void cboComprobanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboComprobanteActionPerformed
+        if (cboComprobante.getSelectedIndex() == 0) {
             
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextcodigoActionPerformed
+        } else {
+          
+        }
+    }//GEN-LAST:event_cboComprobanteActionPerformed
 
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cboComprobante;
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextcodigo;
     // End of variables declaration//GEN-END:variables
 }

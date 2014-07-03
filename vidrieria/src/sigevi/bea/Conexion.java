@@ -67,10 +67,42 @@ public class Conexion {
         
         return reporte;
     }
-    
-        public String pReporte_Prod_x_Cat(int codigo) throws SQLException{
-        cstm = conn.prepareCall("{ call p_rep_prod_por_cat(?,?)}");
+    public String pReporteTipoCliente(String codigo) throws SQLException{
+      
+        cstm = conn.prepareCall("{ call P_TIPO_CLIENTE(?,?)}");
+        cstm.setString(1, codigo);
+        cstm.registerOutParameter(2, Types.VARCHAR);
+        System.out.println("DDDDDDDDDDDDDDD"+ codigo); 
+        cstm.execute();
+        System.out.println("EEEEEEEEEEEEEE"+ codigo);
+        reporte = cstm.getString(2);
+        System.out.println("FFFFFFFFFFFFFFF"+ codigo);
+        
+        return reporte;
+    }
+       public String pReporteProvee(int codigo) throws SQLException{
+        cstm = conn.prepareCall("{ call p_reporte_proveedor(?,?)}");
         cstm.setInt(1,codigo);
+        cstm.registerOutParameter(2, Types.VARCHAR);
+        
+        cstm.execute();
+        reporte = cstm.getString(2);
+        
+        return reporte;
+    }
+    
+        public String pReporte_Prod_x_Cat(String codigo) throws SQLException{
+        cstm = conn.prepareCall("{ call p_rep_prod_por_cat(?,?)}");
+        cstm.setString(1,codigo);
+        cstm.registerOutParameter(2, Types.VARCHAR);
+        cstm.execute();
+        reporte = cstm.getString(2);
+        
+        return reporte;
+    }
+          public String pReporte_Prod_x_Prove(String codigo) throws SQLException{
+        cstm = conn.prepareCall("{ call p_rep_prod_por_prove(?,?)}");
+        cstm.setString(1,codigo);
         cstm.registerOutParameter(2, Types.VARCHAR);
         
         cstm.execute();
@@ -120,6 +152,44 @@ public class Conexion {
             String sql =
             "BEGIN\n" +
             "  SP_VENTAS_CLIENTE();\n" +
+            "--rollback; \n" +
+            "END;";
+           
+            stmt.execute(sql);
+            cstmt = conn.prepareCall("{call dbms_output.get_line(?,?)}");
+            cstmt.registerOutParameter(1,java.sql.Types.VARCHAR);
+            cstmt.registerOutParameter(2,java.sql.Types.NUMERIC);
+
+            int status = 0;
+            while (status == 0)
+            {
+                cstmt.execute();
+                String line = cstmt.getString(1);
+                status = cstmt.getInt(2);
+           
+                     if (line != null && status == 0)
+                     {
+                         System.out.println(line);
+                                       //report.jTextArea1.setText(line);
+                                       report.jTextArea1.append(line+"\n");
+                                       
+
+                     }
+            }
+}
+     public  void pReporteProducto() throws SQLException{
+        
+         hojaReporte report = new hojaReporte();
+                
+                report.setVisible(true);
+    
+      
+            CallableStatement cstmt = conn.prepareCall("{call dbms_output.enable(32000) }");
+            cstmt.execute();
+            Statement stmt = conn.createStatement();
+            String sql =
+            "BEGIN\n" +
+            "  P_PRODUCTO();\n" +
             "--rollback; \n" +
             "END;";
            
