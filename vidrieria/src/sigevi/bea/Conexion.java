@@ -305,7 +305,44 @@ public class Conexion {
                      }
             }
 }
+      public  void pReporteMedidas() throws SQLException{
+        
+         hojaReporte report = new hojaReporte();
+                
+                report.setVisible(true);
+    
       
+            CallableStatement cstmt = conn.prepareCall("{call dbms_output.enable(32000) }");
+            cstmt.execute();
+            Statement stmt = conn.createStatement();
+            String sql =
+            "BEGIN\n" +
+            "  P_MEDIDAS();\n" +
+            "--rollback; \n" +
+            "END;";
+           
+            stmt.execute(sql);
+            cstmt = conn.prepareCall("{call dbms_output.get_line(?,?)}");
+            cstmt.registerOutParameter(1,java.sql.Types.VARCHAR);
+            cstmt.registerOutParameter(2,java.sql.Types.NUMERIC);
+
+            int status = 0;
+            while (status == 0)
+            {
+                cstmt.execute();
+                String line = cstmt.getString(1);
+                status = cstmt.getInt(2);
+           
+                     if (line != null && status == 0)
+                     {
+                         System.out.println(line);
+                                       //report.jTextArea1.setText(line);
+                                       report.jTextArea1.append(line+"\n");
+                                       
+
+                     }
+            }
+}
       public  void pReporteUsuario() throws SQLException{
         
          hojaReporte report = new hojaReporte();
