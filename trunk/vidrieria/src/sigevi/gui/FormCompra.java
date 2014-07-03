@@ -315,10 +315,12 @@ public class FormCompra extends javax.swing.JInternalFrame {
         tblDetalleCompra.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblDetalleCompra);
         tblDetalleCompra.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tblDetalleCompra.getColumnModel().getColumn(0).setMinWidth(60);
-        tblDetalleCompra.getColumnModel().getColumn(0).setMaxWidth(60);
-        tblDetalleCompra.getColumnModel().getColumn(1).setMinWidth(300);
-        tblDetalleCompra.getColumnModel().getColumn(1).setMaxWidth(300);
+        if (tblDetalleCompra.getColumnModel().getColumnCount() > 0) {
+            tblDetalleCompra.getColumnModel().getColumn(0).setMinWidth(60);
+            tblDetalleCompra.getColumnModel().getColumn(0).setMaxWidth(60);
+            tblDetalleCompra.getColumnModel().getColumn(1).setMinWidth(300);
+            tblDetalleCompra.getColumnModel().getColumn(1).setMaxWidth(300);
+        }
 
         cboCategoriaPro.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
         cboCategoriaPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CATEGORÍA" }));
@@ -532,7 +534,7 @@ public class FormCompra extends javax.swing.JInternalFrame {
                         .add(btnAgregar)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(btnEliminar)
-                        .add(0, 38, Short.MAX_VALUE))
+                        .add(0, 0, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .addContainerGap()
                         .add(jScrollPane1)))
@@ -561,12 +563,13 @@ public class FormCompra extends javax.swing.JInternalFrame {
                             .add(lblNroComprobante)
                             .add(txtNComprobante, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(lblRUC)
-                            .add(txtRuc, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(lblFormaPago)
-                            .add(cmbFormaPago, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(txtConsultar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(txtConsultar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                .add(lblRUC)
+                                .add(txtRuc, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(lblFormaPago)
+                                .add(cmbFormaPago, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(lblTitulo2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)

@@ -1,5 +1,7 @@
 package sigevi.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -12,6 +14,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private FormCliente cliente;
     private FormVenta venta;
     private FormCompra compra;
+    private FormReporte reporte;
     private FormProveedor proveedor;
     private FormDespacho precio;
     private FormInicio inicio;
@@ -58,6 +61,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         mCompras = new javax.swing.JMenu();
         mOcompra = new javax.swing.JMenuItem();
         mReportes = new javax.swing.JMenu();
+        mOcompra1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SIGEVI: SISTEMA DE GESTIÓN DE VIDRIERIA");
@@ -181,6 +185,16 @@ public class FormPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(mCompras);
 
         mReportes.setText("Reportes");
+
+        mOcompra1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigevi/img/ico.png"))); // NOI18N
+        mOcompra1.setText("Reportes");
+        mOcompra1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mOcompra1ActionPerformed(evt);
+            }
+        });
+        mReportes.add(mOcompra1);
+
         jMenuBar1.add(mReportes);
 
         setJMenuBar(jMenuBar1);
@@ -265,6 +279,16 @@ public class FormPrincipal extends javax.swing.JFrame {
         precio.show();
     }//GEN-LAST:event_mDespachoActionPerformed
 
+    private void mOcompra1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mOcompra1ActionPerformed
+        try {
+            reporte = new FormReporte();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(reporte);
+        reporte.show();
+    }//GEN-LAST:event_mOcompra1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
@@ -277,6 +301,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu mMantenimiento;
     private javax.swing.JMenuItem mMedida;
     private javax.swing.JMenuItem mOcompra;
+    private javax.swing.JMenuItem mOcompra1;
     private javax.swing.JMenuItem mOventa;
     private javax.swing.JMenuItem mProductos;
     private javax.swing.JMenuItem mProveedores;
