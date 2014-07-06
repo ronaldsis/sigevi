@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry location="mysql-connector-java-5.1.18-bin.jar" />
+    
+    <!-- Generaremos para MyBatis:MyBatis3 Ibatis2: Ibatis2Java5-->
+    <context id="SCV" targetRuntime="Ibatis2Java5" defaultModelType="hierarchical">
+       
+        <!-- No generamos los comentarios -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        
+        <!-- Parámetros de conexión a la bd -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/vidrieria" 
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+        
+         <!-- Generador de Entidades-->
+        <javaModelGenerator targetPackage="sigevi.ent"
+                            targetProject="../">
+            <property name="enableSubPackages" value="false" />
+        </javaModelGenerator>     
+        
+         <!-- Generador de Mapeos XML-->
+        <sqlMapGenerator targetPackage="sigevi.map"
+                         targetProject="../">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+               
+        <!-- Generamos el código fuente de todas las tablas evitando la generación varios métodos -->
+        <table tableName="producto_precio" enableCountByExample="false" enableDeleteByExample="false"   
+               enableUpdateByExample="false" selectByPrimaryKeyQueryId="false"   
+               selectByExampleQueryId="false" enableSelectByExample="false" modelType="flat">  
+            <property name="useActualColumnNames" value="true"/>  
+        </table> 
+        
+    </context>
+</generatorConfiguration>
